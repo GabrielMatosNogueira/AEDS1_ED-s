@@ -70,7 +70,7 @@ int main (void)
     IO_print("\n12 - Metodo ");
 
     IO_print("\nDigite uma opcao: ");
-    opcao= IO_readint;
+    opcao= IO_readint("\n");
 
     // Menu de opcoes do usuario
     switch(opcao)
@@ -135,7 +135,7 @@ void method_00(void)
 {
     // identificar
     IO_id("Metodo 0411 - v1.0\n");
-    
+
     // encerrar
     printf("%s\n", "\nApertar ENTER para continuar\n");
     getchar();
@@ -144,10 +144,10 @@ void method_00(void)
 void method_01(void)
 {
     // identificar
-    IO_id("Metodo 0411 - v1.0\n");
+    IO_id("\n\tMetodo 0411 - v1.0\n");
 
     // declaracao de variaveis
-    int limite[2];
+    int limite[2]; limite[1]=0; limite[2]=0;
     int quantidade=0;
     int i=0;
     int count=0;
@@ -155,24 +155,24 @@ void method_01(void)
 
     // perguntar o numero de numeros e o limite das funcoes
     IO_print("Digite a quantidade de numeros a testar no intervalo: ");
-    quantidade=IO_readint;
+    quantidade=IO_readint("");
     IO_print("\nDigite o limite inferior:");
-    limite[1]=IO_readdouble("\n");
+    limite[1]=IO_readint("");
     IO_print("\nDigite o limite superior:");
-    limite[2]=IO_readdouble("\n");
+    limite[2]=IO_readint("");
 
     // atualizar o scan da variaável
     for (i=0; i<quantidade; i=i+1)
     {
-        numeroTemporario= IO_readdouble("\n");
-        if(numeroTemporario<=limite[2] && numeroTemporario>=limite[1])
+        numeroTemporario= IO_readdouble("\nDigite um numero a ser testado: ");
+        if(numeroTemporario<=limite[1] && numeroTemporario>=limite[2])
         {
-            IO_print("O numero %lf pertence ao intervalo", numeroTemporario);
+            IO_print("pertence ao intervalo\n");
             quantidade=quantidade+1;
         }
         else
         {
-            IO_print("O numero %lf nao pertence ao intervalo", numeroTemporario);
+            IO_print("nao pertence ao intervalo\n");
         }
         
     }
