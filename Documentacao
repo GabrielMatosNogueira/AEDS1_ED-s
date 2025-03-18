@@ -56,18 +56,18 @@ int main (void)
     IO_id("\n\t");
 
     IO_print("\n0 - Parar");
-    IO_print("\n1 - ");
-    IO_print("\n2 - ");
-    IO_print("\n3 - ");
-    IO_print("\n4 - ");
-    IO_print("\n5 - ");
-    IO_print("\n6 - ");
-    IO_print("\n7 - ");
-    IO_print("\n8 - ");
-    IO_print("\n9 - ");
-    IO_print("\n10 - ");
-    IO_print("\n11 - ");
-    IO_print("\n12 - ");
+    IO_print("\n1 - Metodo ");
+    IO_print("\n2 - Metodo ");
+    IO_print("\n3 - Metodo ");
+    IO_print("\n4 - Metodo ");
+    IO_print("\n5 - Metodo ");
+    IO_print("\n6 - Metodo ");
+    IO_print("\n7 - Metodo ");
+    IO_print("\n8 - Metodo ");
+    IO_print("\n9 - Metodo");
+    IO_print("\n10 - Metodo ");
+    IO_print("\n11 - Metodo ");
+    IO_print("\n12 - Metodo ");
 
     IO_print("\nDigite uma opcao: ");
     opcao=IO_readint;
