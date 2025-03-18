@@ -71,95 +71,151 @@ int main (void)
 
     IO_print("\nDigite uma opcao: ");
     opcao=IO_readint;
+
+    // Menu de opcoes do usuario
+    switch(opcao)
+    {
+        case 0:
+        method_00();
+        break;
+
+        case 1:
+        method_01();
+        break;
+
+        case 2:
+        method_02();
+        break;
+
+        case 3:
+        method_03();
+        break;
+
+        case 4:
+        method_04();
+        break;
+
+        case 5:
+        method_05();
+        break;
+
+        case 6:
+        method_06();
+        break;
+
+        case 7:
+        method_07();
+        break;
+
+        case 8:
+        method_08();
+        break;
+
+        case 9:
+        method_09();
+        break;
+
+        case 10:
+        method_10();
+        break;
+
+        case 11:
+        method_11();
+        break;
+
+        case 12:
+        method_12();
+        break;
+    }
 }
 
 // Funcoes do programa
 
-void method_0(void)
+void method_00(void)
 {
     // identificar
-    printf("%s\n", "\nMetodo_2\n");
+    printf("%s\n", "\nMetodo 00\n");
     // encerrar
     printf("%s\n", "\nApertar ENTER para continuar\n");
     getchar();
 }
 
-void method_1(void)
+void method_01(void)
 {
     // identificar
-    printf("%s\n", "\nMetodo_2\n");
+    printf("%s\n", "\nMetodo 01\n");
     // encerrar
     printf("%s\n", "\nApertar ENTER para continuar\n");
     getchar();
 }
 
-void method_2(void)
+void method_02(void)
 {
     // identificar
-    printf("%s\n", "\nMetodo_2\n");
+    printf("%s\n", "\nMetodo 02\n");
     // encerrar
     printf("%s\n", "\nApertar ENTER para continuar\n");
     getchar();
 }
 
-void method_3(void)
+void method_03(void)
 {
     // identificar
-    printf("%s\n", "\nMetodo_3\n");
+    printf("%s\n", "\nMetodo 03\n");
     // encerrar
     printf("%s\n", "\nApertar ENTER para continuar\n");
     getchar();
 }
 
-void method_4(void)
+void method_04(void)
 {
     // identificar
-    printf("%s\n", "\nMetodo_4\n");
+    printf("%s\n", "\nMetodo 04\n");
     // encerrar
     printf("%s\n", "\nApertar ENTER para continuar\n");
     getchar();
 }
 
-void method_5(void)
+void method_05(void)
 {
     // identificar
-    printf("%s\n", "\nMetodo_5\n");
+    printf("%s\n", "\nMetodo 05\n");
     // encerrar
     printf("%s\n", "\nApertar ENTER para continuar\n");
     getchar();
 }
 
-void method_6(void)
+void method_06(void)
 {
     // identificar
-    printf("%s\n", "\nMetodo_6\n");
+    printf("%s\n", "\nMetodo 06\n");
     // encerrar
     printf("%s\n", "\nApertar ENTER para continuar\n");
     getchar();
 }
 
-void method_7(void)
+void method_07(void)
 {
     // identificar
-    printf("%s\n", "\nMetodo_7\n");
+    printf("%s\n", "\nMetodo 07\n");
     // encerrar
     printf("%s\n", "\nApertar ENTER para continuar\n");
     getchar();
 }
 
-void method_8(void)
+void method_08(void)
 {
     // identificar
-    printf("%s\n", "\nMetodo_8\n");
+    printf("%s\n", "\nMetodo 08\n");
     // encerrar
     printf("%s\n", "\nApertar ENTER para continuar\n");
     getchar();
 }
 
-void method_9(void)
+void method_09(void)
 {
     // identificar
-    printf("%s\n", "\nMetodo_9\n");
+    printf("%s\n", "\nMetodo 09\n");
     // encerrar
     printf("%s\n", "\nApertar ENTER para continuar\n");
     getchar();
@@ -168,8 +224,83 @@ void method_9(void)
 void method_10(void)
 {
     // identificar
-    printf("%s\n", "\nMetodo_10\n");
+    printf("%s\n", "\nMetodo 10\n");
     // encerrar
     printf("%s\n", "\nApertar ENTER para continuar\n");
     getchar();
 }
+
+void method_11(void)
+{
+    // identificar
+    printf("%s\n", "\nMetodo 11\n");
+    // encerrar
+    printf("%s\n", "\nApertar ENTER para continuar\n");
+    getchar();
+}
+
+void method_12(void)
+{
+    // identificar
+    printf("%s\n", "\nMetodo 12\n");
+    // encerrar
+    printf("%s\n", "\nApertar ENTER para continuar\n");
+    getchar();
+}
+
+/*-------------------------------------------------------------------------------------------------
+DOCUMENTACAO
+/*-------------------------------------------------------------------------------------------------
+
+1.0 - DOCUMENTACAO COMPLEMENTAR
+
+---------------------------------------------------------------------------------------------------
+
+2.0 - OBSERVACOES
+
+---------------------------------------------------------------------------------------------------
+
+3.0 - TESTES
+
+*Method_00: OK
+-
+
+*Method_01:
+-
+
+*Method_02:
+-
+
+*Method_03:
+-
+
+*Method_04:
+-
+
+*Method_05:
+-
+
+*Method_06:
+-
+
+*Method_07:
+-
+
+*Method_08:
+-
+
+*Method_09:
+-
+
+*Method_10:
+-
+
+*Method_11:
+-
+
+*Method_12:
+-
+---------------------------------------------------------------------------------------------------
+
+
+*/
