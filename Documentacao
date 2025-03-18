@@ -17,7 +17,7 @@ cd 1563147_Gabriel_Matos_Nogueira (Windows, Linux e macOS)
 
     2.1 - Compile o programa
     Windows:    gcc -o ED04 ED04.c
-    Linux:      gcc -o standart standart.c
+    Linux:      gcc -o ED04 ED04.c
     macOS:      gcc -o ED04 ED04.c
 
 
@@ -28,3 +28,148 @@ cd 1563147_Gabriel_Matos_Nogueira (Windows, Linux e macOS)
 
 ---------------------------------------------------------------------------------------------------
 */
+
+// Declaracao de biblioteca(s)
+#include "io.h"
+
+// Declaracao dos metodos utilizados
+void method_00();
+void method_01();
+void method_02();
+void method_03();
+void method_04();
+void method_05();
+void method_06();
+void method_07();
+void method_08();
+void method_09();
+void method_10();
+void method_11();
+void method_12();
+
+
+// Funcao Principal
+int main (void)
+{
+    // armazenar a opcao do usuario
+    int opcao=0;
+    IO_id("\n\tED04");
+
+    IO_print("\n0 - Parar");
+    IO_print("\n1 - ");
+    IO_print("\n2 - ");
+    IO_print("\n3 - ");
+    IO_print("\n4 - ");
+    IO_print("\n5 - ");
+    IO_print("\n6 - ");
+    IO_print("\n7 - ");
+    IO_print("\n8 - ");
+    IO_print("\n9 - ");
+    IO_print("\n10 - ");
+    IO_print("\n11 - ");
+    IO_print("\n12 - ");
+
+    IO_print("\nDigite uma opcao: ");
+    opcao=IO_readint;
+}
+
+// Funcoes do programa
+
+void method_0(void)
+{
+    // identificar
+    printf("%s\n", "\nMetodo_2\n");
+    // encerrar
+    printf("%s\n", "\nApertar ENTER para continuar\n");
+    getchar();
+}
+
+void method_1(void)
+{
+    // identificar
+    printf("%s\n", "\nMetodo_2\n");
+    // encerrar
+    printf("%s\n", "\nApertar ENTER para continuar\n");
+    getchar();
+}
+
+void method_2(void)
+{
+    // identificar
+    printf("%s\n", "\nMetodo_2\n");
+    // encerrar
+    printf("%s\n", "\nApertar ENTER para continuar\n");
+    getchar();
+}
+
+void method_3(void)
+{
+    // identificar
+    printf("%s\n", "\nMetodo_3\n");
+    // encerrar
+    printf("%s\n", "\nApertar ENTER para continuar\n");
+    getchar();
+}
+
+void method_4(void)
+{
+    // identificar
+    printf("%s\n", "\nMetodo_4\n");
+    // encerrar
+    printf("%s\n", "\nApertar ENTER para continuar\n");
+    getchar();
+}
+
+void method_5(void)
+{
+    // identificar
+    printf("%s\n", "\nMetodo_5\n");
+    // encerrar
+    printf("%s\n", "\nApertar ENTER para continuar\n");
+    getchar();
+}
+
+void method_6(void)
+{
+    // identificar
+    printf("%s\n", "\nMetodo_6\n");
+    // encerrar
+    printf("%s\n", "\nApertar ENTER para continuar\n");
+    getchar();
+}
+
+void method_7(void)
+{
+    // identificar
+    printf("%s\n", "\nMetodo_7\n");
+    // encerrar
+    printf("%s\n", "\nApertar ENTER para continuar\n");
+    getchar();
+}
+
+void method_8(void)
+{
+    // identificar
+    printf("%s\n", "\nMetodo_8\n");
+    // encerrar
+    printf("%s\n", "\nApertar ENTER para continuar\n");
+    getchar();
+}
+
+void method_9(void)
+{
+    // identificar
+    printf("%s\n", "\nMetodo_9\n");
+    // encerrar
+    printf("%s\n", "\nApertar ENTER para continuar\n");
+    getchar();
+}
+
+void method_10(void)
+{
+    // identificar
+    printf("%s\n", "\nMetodo_10\n");
+    // encerrar
+    printf("%s\n", "\nApertar ENTER para continuar\n");
+    getchar();
+}
