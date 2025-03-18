@@ -1,6 +1,6 @@
 /*
-Nome do Programa:   ED04
-Data:               18/03/2025
+Nome do Programa:   ED
+Data:               //2025
 Nome:               Gabriel Matos Nogueira
 Codigo de Pessoa:   1563147
 Matricula:          870863
@@ -16,15 +16,15 @@ da sua maquina
 cd 1563147_Gabriel_Matos_Nogueira (Windows, Linux e macOS)
 
     2.1 - Compile o programa
-    Windows:    gcc -o ED04 ED04.c
-    Linux:      gcc -o ED04 ED04.c
-    macOS:      gcc -o ED04 ED04.c
+    Windows:    gcc -o  .c
+    Linux:      gcc -o  .c
+    macOS:      gcc -o  .c
 
 
     2.2 - Execute o programa
-    Windows:    ED04
-    Linux:      ./ED04
-    macOS:      ./ED04
+    Windows:     ED
+    Linux:      ./ED
+    macOS:      ./
 
 ---------------------------------------------------------------------------------------------------
 */
@@ -53,7 +53,7 @@ int main (void)
 {
     // armazenar a opcao do usuario
     int opcao=0;
-    IO_id("\n\tED04");
+    IO_id("\n\t");
 
     IO_print("\n0 - Parar");
     IO_print("\n1 - ");
@@ -250,7 +250,7 @@ void method_12(void)
 
 /*-------------------------------------------------------------------------------------------------
 DOCUMENTACAO
-/*-------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------
 
 1.0 - DOCUMENTACAO COMPLEMENTAR
 
