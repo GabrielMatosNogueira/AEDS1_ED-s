@@ -1,0 +1,30 @@
+/*
+Nome do Programa:   ED04
+Data:               18/03/2025
+Nome:               Gabriel Matos Nogueira
+Codigo de Pessoa:   1563147
+Matricula:          870863
+Versao:             1.0
+
+---------------------------------------------------------------------------------------------------
+
+Como executar o programa no terminal:
+1.0 - Certifique-se que o compilador MINGW esteja instalado e presente nas variaveis de ambiente 
+da sua maquina
+
+2.0 - Adentre a pasta para executar o programa:
+cd 1563147_Gabriel_Matos_Nogueira (Windows, Linux e macOS)
+
+    2.1 - Compile o programa
+    Windows:    gcc -o ED04 ED04.c
+    Linux:      gcc -o standart standart.c
+    macOS:      gcc -o ED04 ED04.c
+
+
+    2.2 - Execute o programa
+    Windows:    ED04
+    Linux:      ./ED04
+    macOS:      ./ED04
+
+---------------------------------------------------------------------------------------------------
+*/
