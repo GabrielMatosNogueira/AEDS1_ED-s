@@ -278,63 +278,58 @@ void method_03(void)
     getchar();
 }
 
-void caracteresReijeitados(char *frase)
-{
-    char caracteresNegados[100]="";
-    
+// Funcao para adicionar caracteres rejeitados
+void caracteresReijeitados(char *resultado, char caractere) {
+    int tamanho = strlen(resultado);
+    resultado[tamanho] = caractere;  // Adiciona o caractere ao final da string
+    resultado[tamanho + 1] = '\0';   // Finaliza a string com o caractere nulo
 }
 
-void method_04(void)
-{
+void method_04(void) {
     // Identificar
-    printf("%s\n", "\nMetodo 0414\n");
+    printf("Metodo 0414\n");
 
     // Declarar variaveis
     char frase[100] = "";
-    char resultado[100]="";
+    char caracteresintervalo[100] = "";
+    char caracteresrejeitados[100] = "";
     int contador = 0;
 
     // Ler uma sequencia de caracteres do teclado
     IO_print("Digite uma sequencia de ate 100 caracteres: ");
-    fgets(frase, sizeof(frase), stdin); // Le a string
-    frase[strcspn(frase, "\n")] = '\0'; // Remove o caractere de nova linha (\n)
+    fgets(frase, sizeof(frase), stdin);
+    frase[strcspn(frase, "\n")] = '\0';  // Remove o caractere quando ENTER e' apertado
 
-    // Percorrer a sequencia e contar letras minusculas no intervalo ('c', 'p')
+    // Percorrer a sequencia e classificar os caracteres
     for (int i = 0; i < strlen(frase); i++) {
-        // Verificar se o caractere e minusculo
         if (frase[i] >= 'a' && frase[i] <= 'z') {
-            // Verificar se esta no intervalo ('c', 'p')
+            // Verificar se esta no intervalo
             if (frase[i] > 'c' && frase[i] < 'p') {
                 contador++;
-                printf("Caractere '%c' esta no intervalo ('c', 'p')\n", frase[i]);
+                caracteresReijeitados(caracteresintervalo, frase[i]);
+            } else {
+                caracteresReijeitados(caracteresrejeitados, frase[i]);
             }
-            else
-            {
-                caracteresReijeitados(frase[i]);
-            }
+        } else if (frase[i] >= 'A' && frase[i] <= 'Z') {
+            // Processar letras maiusculas como rejeitadas
+            caracteresReijeitados(caracteresrejeitados, frase[i]);
+        } else {
+            // Qualquer outro caractere tambem e rejeitado
+            caracteresReijeitados(caracteresrejeitados, frase[i]);
         }
     }
 
-    // Exibir letras maiusculas diretamente
-    IO_print("\nLetras maiusculas encontradas na sequencia:\n");
-    for (int i = 0; i < strlen(frase); i++)
-    {
-        // Verificar se o caractere e maiusculo
-        if (frase[i] >= 'A' && frase[i] <= 'Z')
-        {
-            printf("Caractere '%c' e uma letra maiuscula\n", frase[i]);
-        }
-        else
-        {
-            caracteresReijeitados(frase[i]);
-        }
-    }
+    // Mostra os caracteres que estao no intervalo
+    printf("\nCaracteres no intervalo: %s\n", caracteresintervalo);
+
+    // Mostra os caracteres rejeitados
+    printf("\nCaracteres rejeitados: %s\n", caracteresrejeitados);
 
     // Mostrar a quantidade total
-    printf("\nTotal de letras minusculas no intervalo ('c', 'p'): %d\n", contador);
+    printf("\nTotal de letras minusculas no intervalo: %d\n", contador);
 
     // Encerrar
-    printf("\nAperte ENTER para continuar");
+    IO_print("\nAperte ENTER para continuar");
     getchar();
 }
 
