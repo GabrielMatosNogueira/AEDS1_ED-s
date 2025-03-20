@@ -201,11 +201,14 @@ void method_02(void)
     frase[strcspn(frase, "\n")] = '\0'; // Remove o caractere de nova linha (\n)
 
     // Percorrer a sequencia e contar letras minusculas no intervalo ('c', 'p')
-    for (int i = 0; i < strlen(frase); i++) {
+    for (int i = 0; i < strlen(frase); i++)
+    {
         // Verificar se o caractere e minusculo
-        if (frase[i] >= 'a' && frase[i] <= 'z') {
+        if (frase[i] >= 'a' && frase[i] <= 'z')
+        {
             // Verificar se esta no intervalo ('c', 'p')
-            if (frase[i] > 'c' && frase[i] < 'p') {
+            if (frase[i] > 'c' && frase[i] < 'p')
+            {
                 contador++;
                 printf("Caractere '%c' esta no intervalo ('c', 'p')\n", frase[i]);
             }
@@ -214,9 +217,11 @@ void method_02(void)
 
     // Exibir letras maiusculas diretamente
     IO_print("\nLetras maiusculas encontradas na sequencia:\n");
-    for (int i = 0; i < strlen(frase); i++) {
+    for (int i = 0; i < strlen(frase); i++)
+    {
         // Verificar se o caractere e maiusculo
-        if (frase[i] >= 'A' && frase[i] <= 'Z') {
+        if (frase[i] >= 'A' && frase[i] <= 'Z')
+        {
             printf("Caractere '%c' e uma letra maiuscula\n", frase[i]);
         }
     }
@@ -229,15 +234,15 @@ void method_02(void)
     getchar();
 }
 
-void receberString(char* frase) 
+void receberString(char *frase)
 {
     // Ler uma sequencia de caracteres do teclado
     printf("Digite uma frase: ");
-    fgets(frase, 100, stdin);  // Limitar a leitura a 100 caracteres
+    fgets(frase, 100, stdin);           // Limitar a leitura a 100 caracteres
     frase[strcspn(frase, "\n")] = '\0'; // Remove o caractere de nova linha (\n)
 }
 
-void method_03(void) 
+void method_03(void)
 {
     // Identificar
     printf("%s\n", "\nMetodo 0413\n");
@@ -245,27 +250,32 @@ void method_03(void)
     // Declarar variaveis
     char frase[100] = "";
     int contador = 0;
-    
+
     // Chamar a funcao para receber a string
     receberString(frase);
 
     // Percorrer a sequencia e contar letras minusculas no intervalo ('c', 'p')
-    for (int i = 0; i < strlen(frase); i++) {
+    for (int i = 0; i < strlen(frase); i++)
+    {
         // Verificar se o caractere e minusculo
-        if (frase[i] >= 'a' && frase[i] <= 'z') {
+        if (frase[i] >= 'a' && frase[i] <= 'z')
+        {
             // Verificar se esta no intervalo ('c', 'p')
-            if (frase[i] > 'c' && frase[i] < 'p') {
+            if (frase[i] > 'c' && frase[i] < 'p')
+            {
                 contador++;
-                printf("Caractere '%c' (posicao %d) esta no intervalo ('c', 'p')\n", frase[i], i+1);
+                printf("Caractere '%c' (posicao %d) esta no intervalo ('c', 'p')\n", frase[i], i + 1);
             }
         }
     }
 
     // Exibir letras maiusculas diretamente
     printf("\nLetras maiusculas encontradas na sequencia:\n");
-    for (int i = 0; i < strlen(frase); i++) {
+    for (int i = 0; i < strlen(frase); i++)
+    {
         // Verificar se o caractere e maiusculo
-        if (frase[i] >= 'A' && frase[i] <= 'Z') {
+        if (frase[i] >= 'A' && frase[i] <= 'Z')
+        {
             printf("Caractere '%c' (posicao %d) e uma letra maiuscula\n", frase[i], i);
         }
     }
@@ -278,14 +288,15 @@ void method_03(void)
     getchar();
 }
 
-// Funcao para adicionar caracteres rejeitados
-void caracteresReijeitados(char *resultado, char caractere) {
+void caracteresReijeitados(char *resultado, char caractere)
+{
     int tamanho = strlen(resultado);
-    resultado[tamanho] = caractere;  // Adiciona o caractere ao final da string
-    resultado[tamanho + 1] = '\0';   // Finaliza a string com o caractere nulo
+    resultado[tamanho] = caractere; // Adiciona o caractere ao final da string
+    resultado[tamanho + 1] = '\0';  // Finaliza a string com o caractere nulo
 }
 
-void method_04(void) {
+void method_04(void)
+{
     // Identificar
     printf("Metodo 0414\n");
 
@@ -298,22 +309,31 @@ void method_04(void) {
     // Ler uma sequencia de caracteres do teclado
     IO_print("Digite uma sequencia de ate 100 caracteres: ");
     fgets(frase, sizeof(frase), stdin);
-    frase[strcspn(frase, "\n")] = '\0';  // Remove o caractere quando ENTER e' apertado
+    frase[strcspn(frase, "\n")] = '\0'; // Remove o caractere quando ENTER e' apertado
 
     // Percorrer a sequencia e classificar os caracteres
-    for (int i = 0; i < strlen(frase); i++) {
-        if (frase[i] >= 'a' && frase[i] <= 'z') {
+    for (int i = 0; i < strlen(frase); i++)
+    {
+        if (frase[i] >= 'a' && frase[i] <= 'z')
+        {
             // Verificar se esta no intervalo
-            if (frase[i] > 'c' && frase[i] < 'p') {
+            if (frase[i] > 'c' && frase[i] < 'p')
+            {
                 contador++;
                 caracteresReijeitados(caracteresintervalo, frase[i]);
-            } else {
+            }
+            else
+            {
                 caracteresReijeitados(caracteresrejeitados, frase[i]);
             }
-        } else if (frase[i] >= 'A' && frase[i] <= 'Z') {
+        }
+        else if (frase[i] >= 'A' && frase[i] <= 'Z')
+        {
             // Processar letras maiusculas como rejeitadas
             caracteresReijeitados(caracteresrejeitados, frase[i]);
-        } else {
+        }
+        else
+        {
             // Qualquer outro caractere tambem e rejeitado
             caracteresReijeitados(caracteresrejeitados, frase[i]);
         }
@@ -333,19 +353,80 @@ void method_04(void) {
     getchar();
 }
 
+int contaLetras(char *frase)
+{
+    int contador = 0;
+    int i=0;
+    int tamanho = strlen(frase);
+    for (i = 0; i < tamanho; i++) {
+        if ((frase[i] > 'c' && frase[i] < 'p') || (frase[i] > 'C' && frase[i] < 'P')) {
+            contador++;
+        }
+    }
+    return contador;
+}
+
 void method_05(void)
 {
     // identificar
-    printf("%s\n", "\nMetodo 05\n");
+    IO_id("\nMetodo 05\n");
+
+    // Declaracao de variaveis
+    char frase[100] = "";
+    int contador=0;
+
+    // Leitura da cadeia de caracteres
+    IO_print("\nDigite a frase digitada: ");
+    fgets(frase, 100, stdin);
+
+    // Recebe o numero de letras dentro do conjunto
+    contador=contaLetras(frase);
+
+    // Recebe o numero de letras dentro do conjunto
+    IO_print("\nNumero de caracteres dentro do conjunto maiores que o conjunto ('c','C') e menores que ('P', 'p'): ");
+    printf("%d", contador);
+
     // encerrar
     printf("%s\n", "\nApertar ENTER para continuar\n");
     getchar();
 }
 
+char* exibeLetras(char *frase)
+{
+    int i=0;
+    int tamanho=0;
+    char letras[100]="";
+    letras[strcspn(letras,"\n")]='\0';
+    tamanho = strlen(frase);
+
+    for (i = 0; i < tamanho; i++) {
+        if ((frase[i] > 'c' && frase[i] < 'p') || (frase[i] > 'C' && frase[i] < 'P')) {
+            letras[i];
+        }
+    }
+    return letras;
+}
+
 void method_06(void)
 {
     // identificar
-    printf("%s\n", "\nMetodo 06\n");
+    IO_id("\nMetodo 06\n");
+
+    // Declaracao de variaveis
+    char frase[100] = "";
+    int contador=0;
+
+    // Leitura da cadeia de caracteres
+    IO_print("\nDigite a frase digitada: ");
+    fgets(frase, 100, stdin);
+
+    // Recebe o numero de letras dentro do conjunto
+    contador=exibeLetras(frase);
+
+    // Recebe o numero de letras dentro do conjunto
+    IO_print("\nNumero de caracteres dentro do conjunto maiores que o conjunto ('c','C') e menores que ('P', 'p'): ");
+    printf("%s", exibeLetras);
+
     // encerrar
     printf("%s\n", "\nApertar ENTER para continuar\n");
     getchar();
