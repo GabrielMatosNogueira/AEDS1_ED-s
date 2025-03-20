@@ -32,6 +32,22 @@ cd 1563147_Gabriel_Matos_Nogueira (Windows, Linux e macOS)
 // Declaracao de biblioteca(s)
 #include "io.h"
 
+// Declaracao das funcoes
+// Declaracao dos metodos utilizados
+void method_00();
+void method_01();
+void method_02();
+void method_03();
+void method_04();
+void method_05();
+void method_06();
+void method_07();
+void method_08();
+void method_09();
+void method_10();
+void method_11();
+void method_12();
+
 // Funcao Principal
 int main(void)
 {
@@ -112,7 +128,6 @@ int main(void)
         break;
     }
 }
-
 // Funcoes do programa
 
 void method_00(void)
@@ -241,7 +256,7 @@ void method_03(void)
             // Verificar se esta no intervalo ('c', 'p')
             if (frase[i] > 'c' && frase[i] < 'p') {
                 contador++;
-                printf("Caractere '%c' (posicao %d) esta no intervalo ('c', 'p')\n", frase[i], i);
+                printf("Caractere '%c' (posicao %d) esta no intervalo ('c', 'p')\n", frase[i], i+1);
             }
         }
     }
@@ -263,12 +278,63 @@ void method_03(void)
     getchar();
 }
 
+void caracteresReijeitados(char *frase)
+{
+    char caracteresNegados[100]="";
+    
+}
+
 void method_04(void)
 {
-    // identificar
+    // Identificar
     printf("%s\n", "\nMetodo 0414\n");
-    // encerrar
-    printf("%s\n", "\nApertar ENTER para continuar\n");
+
+    // Declarar variaveis
+    char frase[100] = "";
+    char resultado[100]="";
+    int contador = 0;
+
+    // Ler uma sequencia de caracteres do teclado
+    IO_print("Digite uma sequencia de ate 100 caracteres: ");
+    fgets(frase, sizeof(frase), stdin); // Le a string
+    frase[strcspn(frase, "\n")] = '\0'; // Remove o caractere de nova linha (\n)
+
+    // Percorrer a sequencia e contar letras minusculas no intervalo ('c', 'p')
+    for (int i = 0; i < strlen(frase); i++) {
+        // Verificar se o caractere e minusculo
+        if (frase[i] >= 'a' && frase[i] <= 'z') {
+            // Verificar se esta no intervalo ('c', 'p')
+            if (frase[i] > 'c' && frase[i] < 'p') {
+                contador++;
+                printf("Caractere '%c' esta no intervalo ('c', 'p')\n", frase[i]);
+            }
+            else
+            {
+                caracteresReijeitados(frase[i]);
+            }
+        }
+    }
+
+    // Exibir letras maiusculas diretamente
+    IO_print("\nLetras maiusculas encontradas na sequencia:\n");
+    for (int i = 0; i < strlen(frase); i++)
+    {
+        // Verificar se o caractere e maiusculo
+        if (frase[i] >= 'A' && frase[i] <= 'Z')
+        {
+            printf("Caractere '%c' e uma letra maiuscula\n", frase[i]);
+        }
+        else
+        {
+            caracteresReijeitados(frase[i]);
+        }
+    }
+
+    // Mostrar a quantidade total
+    printf("\nTotal de letras minusculas no intervalo ('c', 'p'): %d\n", contador);
+
+    // Encerrar
+    printf("\nAperte ENTER para continuar");
     getchar();
 }
 
