@@ -675,8 +675,7 @@ void method_11(void)
     int total = 0;
 
     // Requisicao do numero de cadeias de caracteres
-    IO_print("Digite o numero de cadeias de caracteres: ");
-    numeroCadeias=IO_readin("");
+    numeroCadeias=IO_readint("Digite o numero de cadeias de caracteres: ");
 
     getchar();
 
@@ -718,39 +717,57 @@ int contarDigitos(char *frase) {
     return count;
 }
 
+// Funcao para contar a quantidade de digitos em uma cadeia
+int calcularQuantidadeDigitos(char *frase) 
+{
+    int count = 0;
+    int tamanho = strlen(frase);
+    
+    // Percorre a string verificando os digitos
+    for (int i = 0; i < tamanho; i++) {
+        if (frase[i] >= '0' && frase[i] <= '9') {
+            count++;
+        }
+    }
+    return count;
+}
+
+
 void method_12(void)
 {
     // Identificar
     printf("%s\n", "\nMetodo 04E2\n");
 
     // Declaracao de variaveis
-    char cadeia1[100]="";
-    char cadeia2[100]="";
-    int digitosCadeia1 = 0;
-    int digitosCadeia2 = 0;
+    char cadeia1[100], cadeia2[100];
+    int qtd1, qtd2;
 
-    // Leitura das duas cadeias de caracteres
+    // Ler a primeira cadeia de caracteres
     printf("Digite a primeira cadeia de caracteres: ");
     fgets(cadeia1, sizeof(cadeia1), stdin);
+    cadeia1[strcspn(cadeia1, "\n")] = '\0';
+
+    // Ler a segunda cadeia de caracteres
     printf("Digite a segunda cadeia de caracteres: ");
     fgets(cadeia2, sizeof(cadeia2), stdin);
+    cadeia2[strcspn(cadeia2, "\n")] = '\0';
 
-    // Contagem de digitos em cada cadeia
-    digitosCadeia1 = contarDigitos(cadeia1);
-    digitosCadeia2 = contarDigitos(cadeia2);
+    // Contar os digitos em cada cadeia
+    qtd1 = calcularQuantidadeDigitos(cadeia1);
+    qtd2 = calcularQuantidadeDigitos(cadeia2);
 
-    // Exibe qual cadeia tem mais digitos
-    if(digitosCadeia1 > digitosCadeia2) {
-        printf("\nA primeira cadeia possui mais digitos. Digitos: %d\n", digitosCadeia1);
-    } else if(digitosCadeia2 > digitosCadeia1) {
-        printf("\nA segunda cadeia possui mais digitos. Digitos: %d\n", digitosCadeia2);
+    // Comparar e exibir o resultado
+    if (qtd1 > qtd2) {
+        printf("A primeira cadeia possui mais digitos. Digitos numericos: %d\n", qtd1);
+    } else if (qtd2 > qtd1) {
+        printf("A segunda cadeia possui mais digitos. Digitos numericos: %d\n", qtd2);
     } else {
-        printf("\nAmbas as cadeias possuem a mesma quantidade de digitos. Digitos: %d\n", digitosCadeia1);
+        printf("Ambas as cadeias possuem a mesma quantidade de digitos. Digitos numericos: %d\n", qtd1);
     }
 
     // Encerrar
     printf("%s\n", "\nApertar ENTER para continuar\n");
-    getchar();  // Aguarda o usuario apertar ENTER antes de continuar
+    getchar();
 }
 
 /*
@@ -769,40 +786,40 @@ DOCUMENTACAO
 *Method_00: OK
 - Sem observacoes
 
-*Method_01:
+*Method_01: OK
 -
 
-*Method_02:
+*Method_02: OK
 -
 
-*Method_03:
+*Method_03: OK
 -
 
-*Method_04:
+*Method_04: OK
 -
 
-*Method_05:
+*Method_05: OK
 -
 
-*Method_06:
+*Method_06: OK
 -
 
-*Method_07:
+*Method_07: OK
 -
 
-*Method_08:
+*Method_08: OK
 -
 
-*Method_09:
+*Method_09: OK
 -
 
-*Method_10:
+*Method_10: OK
 -
 
-*Method_11:
+*Method_11: OK
 -
 
-*Method_12:
+*Method_12: OK
 -
 ---------------------------------------------------------------------------------------------------
 */
