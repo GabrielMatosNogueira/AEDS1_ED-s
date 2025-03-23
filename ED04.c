@@ -645,22 +645,112 @@ void method_10(void)
     getchar();
 }
 
+int contarAlfaNumericosEspacos(char *frase) 
+{
+    int i = 0;
+    int count = 0;
+    int tamanho = strlen(frase);
+
+    // Filtra os caracteres alfanumericos e espacos em branco
+    for(i = 0; i < tamanho; i++) {
+        // Verifica se o caractere e alfanumerico ou um espaco
+        if( (frase[i] >= 'a' && frase[i] <= 'z') || 
+            (frase[i] >= 'A' && frase[i] <= 'Z') || 
+            (frase[i] >= '0' && frase[i] <= '9') || 
+            (frase[i] == ' ') ) {
+            count++;
+        }
+    }
+    
+    return count;
+}
+
 void method_11(void)
 {
-    // identificar
-    printf("%s\n", "\nMetodo 11\n");
-    // encerrar
-    printf("%s\n", "\nApertar ENTER para continuar\n");
+    // Identificar
+    printf("%s\n", "\nMetodo 04E1\n");
+
+    // Declaracao de variaveis
+    int numeroCadeias = 0;
+    int total = 0;
+
+    // Requisicao do numero de cadeias de caracteres
+    IO_print("Digite o numero de cadeias de caracteres: ");
+    numeroCadeias=IO_readin("");
+
     getchar();
+
+    for (int i = 0; i < numeroCadeias; i++) {
+        char palavra[100];
+        printf("\nDigite a cadeia %d: ", i + 1);
+        fgets(palavra, sizeof(palavra), stdin);
+
+        int qtd = contarAlfaNumericosEspacos(palavra);
+        
+        if (qtd > 3) {
+            total += qtd;
+            printf("\nCadeia %d: %s - Alfanumericos e Espacos: %d\n", i + 1, palavra, qtd);
+        }
+    }
+
+    // Exibir o total de simbolos alfanumericos e espacos das palavras com mais de 3 simbolos
+    IO_print("\nTotal de alfanumericos e espacos em todas as palavras com mais de 3 simbolos: ");
+    printf("%d\n", total);
+
+    // Encerrar
+    printf("%s\n", "\nApertar ENTER para continuar\n");
+    getchar();  // Aguarda o usuario apertar ENTER antes de continuar
+}
+
+// Funcao para contar a quantidade de digitos em uma cadeia
+int contarDigitos(char *frase) {
+    int i = 0;
+    int count = 0;
+    int tamanho = strlen(frase);
+
+    // Filtra os digitos
+    for(i = 0; i < tamanho; i++) {
+        if( frase[i] >= '0' && frase[i] <= '9') {
+            count++;
+        }
+    }
+    
+    return count;
 }
 
 void method_12(void)
 {
-    // identificar
-    printf("%s\n", "\nMetodo 12\n");
-    // encerrar
+    // Identificar
+    printf("%s\n", "\nMetodo 04E2\n");
+
+    // Declaracao de variaveis
+    char cadeia1[100]="";
+    char cadeia2[100]="";
+    int digitosCadeia1 = 0;
+    int digitosCadeia2 = 0;
+
+    // Leitura das duas cadeias de caracteres
+    printf("Digite a primeira cadeia de caracteres: ");
+    fgets(cadeia1, sizeof(cadeia1), stdin);
+    printf("Digite a segunda cadeia de caracteres: ");
+    fgets(cadeia2, sizeof(cadeia2), stdin);
+
+    // Contagem de digitos em cada cadeia
+    digitosCadeia1 = contarDigitos(cadeia1);
+    digitosCadeia2 = contarDigitos(cadeia2);
+
+    // Exibe qual cadeia tem mais digitos
+    if(digitosCadeia1 > digitosCadeia2) {
+        printf("\nA primeira cadeia possui mais digitos. Digitos: %d\n", digitosCadeia1);
+    } else if(digitosCadeia2 > digitosCadeia1) {
+        printf("\nA segunda cadeia possui mais digitos. Digitos: %d\n", digitosCadeia2);
+    } else {
+        printf("\nAmbas as cadeias possuem a mesma quantidade de digitos. Digitos: %d\n", digitosCadeia1);
+    }
+
+    // Encerrar
     printf("%s\n", "\nApertar ENTER para continuar\n");
-    getchar();
+    getchar();  // Aguarda o usuario apertar ENTER antes de continuar
 }
 
 /*
