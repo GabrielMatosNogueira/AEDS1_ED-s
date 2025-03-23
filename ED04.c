@@ -391,78 +391,255 @@ void method_05(void)
     getchar();
 }
 
-char* exibeLetras(char *frase)
+void exibeLetras(char *frase, char *letras, int *contador)
 {
-    int i=0;
-    int tamanho=0;
-    char letras[100]="";
-    letras[strcspn(letras,"\n")]='\0';
-    tamanho = strlen(frase);
+    int i = 0;
+    int j = 0;
+    int tamanho = strlen(frase);
 
+    // Percorrer a string
     for (i = 0; i < tamanho; i++) {
+        // Verificar se esta no conjunto especificado
         if ((frase[i] > 'c' && frase[i] < 'p') || (frase[i] > 'C' && frase[i] < 'P')) {
-            letras[i];
+            letras[j++] = frase[i];
+            (*contador)++;
         }
     }
-    return letras;
+    letras[j] = '\0';
 }
 
-void method_06(void)
-{
-    // identificar
-    IO_id("\nMetodo 06\n");
+void method_06(void) {
+    // Mostrar identificacao
+    printf("\nMetodo 06\n");
 
     // Declaracao de variaveis
     char frase[100] = "";
+    char letras[100] = "";
+    int contador = 0;
+
+    // Ler a string do usuario
+    printf("\nDigite a frase: ");
+    fgets(frase, 100, stdin);
+    frase[strcspn(frase, "\n")] = '\0'; // Remover quebra de linha
+
+    // Processar a string
+    exibeLetras(frase, letras, &contador);
+
+    // Mostrar resultados
+    printf("\nCaracteres no conjunto ('c'-'p' e 'C'-'P'): %s\n", letras);
+    printf("\nNumero de caracteres: %d\n", contador);
+
+    // Finalizar
+    printf("\nApertar ENTER para continuar");
+    getchar();
+}
+
+// Funcao para retornar quantidade de digitos pares
+int contadorPares (char *frase)
+{
+    // Declarar variaveis
+    int i=0;
+    int tamanho=0;
     int contador=0;
 
-    // Leitura da cadeia de caracteres
-    IO_print("\nDigite a frase digitada: ");
-    fgets(frase, 100, stdin);
+    // Definicao do tamanho do for
+    tamanho=strlen(frase);
 
-    // Recebe o numero de letras dentro do conjunto
-    contador=exibeLetras(frase);
-
-    // Recebe o numero de letras dentro do conjunto
-    IO_print("\nNumero de caracteres dentro do conjunto maiores que o conjunto ('c','C') e menores que ('P', 'p'): ");
-    printf("%s", exibeLetras);
-
-    // encerrar
-    printf("%s\n", "\nApertar ENTER para continuar\n");
-    getchar();
+    // Procurar caractere por caractere
+    for(i=0; i<tamanho; i=i+1)
+    {
+        if(frase[i]%2==0)
+        {
+            contador=contador+1;
+        }
+    }
+    return contador;
 }
 
 void method_07(void)
 {
     // identificar
     printf("%s\n", "\nMetodo 07\n");
+
+    // Declarar variaveis
+    char frase[100]="";
+    int numerosPares=0;
+
+    // Requisicao da frase
+    IO_print("Digite a frase desejada: ");
+
+    // Ler a frase
+    fgets(frase, 100, stdin);
+    frase[strcspn(frase, "\n")] = '\0'; // Remover quebra de linha
+
+    // Chamar a funcao para ler a quantidade de caracteres pares
+    numerosPares=contadorPares(frase);
+
+    // Exibir a quantidade de caracteres pares
+    IO_print("\nA quantidade de caracteres pares digitados e: ");
+    printf("%d", numerosPares);
+
     // encerrar
     printf("%s\n", "\nApertar ENTER para continuar\n");
     getchar();
 }
+
+// Funcao para exibir os numeros nao alfanumericos
+void naoAlfaNumericos(char *frase, char *caracteresFiltrados)
+{
+    // Declaracao de variaveis
+    int i = 0;
+    int j = 0;
+    int tamanho = strlen(frase);
+
+    // Filtragem dos caracteres nao alfanumericos
+    for(i = 0; i < tamanho; i++)
+    {
+        // Verificacao de caracteres nao alfanumericos
+        if( !( (frase[i] >= 'a' && frase[i] <= 'z') || 
+               (frase[i] >= 'A' && frase[i] <= 'Z') || 
+               (frase[i] >= '0' && frase[i] <= '9') ))
+        {
+            // Adiciona o caracter nao alfanumerico ao array
+            caracteresFiltrados[j] = frase[i];
+            j++;
+        }
+    }
+
+    // Garantir que a string de caracteres filtrados termine corretamente
+    caracteresFiltrados[j] = '\0';
+}
+
 
 void method_08(void)
 {
-    // identificar
+    // Identificar
     printf("%s\n", "\nMetodo 08\n");
-    // encerrar
+
+    // Declaracao de variaveis
+    char frase[100] = "";
+    char naoAlfaNum[100] = "";
+
+    // Requisicao da frase ao usuario
+    IO_print("Digite a frase desejada: ");
+
+    // Leitura da frase
+    fgets(frase, 100, stdin);
+    frase[strcspn(frase, "\n")] = '\0';
+
+    // Chamada da funcao de caracteres
+    naoAlfaNumericos(frase, naoAlfaNum);
+
+    // Listagem dos caracteres nao alfanumericos
+    IO_print("\nOs caracteres nao alfanumericos sao: ");
+    printf("%s", naoAlfaNum);
+
+    // Encerrar
     printf("%s\n", "\nApertar ENTER para continuar\n");
     getchar();
 }
 
+// Funcao para exibir os numeros nao alfanumericos
+void AlfaNumericos(char *frase, char *caracteresFiltrados)
+{
+    // Declaracao de variaveis
+    int i = 0;
+    int j = 0;
+    int tamanho = strlen(frase);
+
+    // Filtragem dos caracteres nao alfanumericos
+    for(i = 0; i < tamanho; i++)
+    {
+        // Verificacao de caracteres nao alfanumericos
+        if( (  (frase[i] >= 'a' && frase[i] <= 'z') || 
+               (frase[i] >= 'A' && frase[i] <= 'Z') || 
+               (frase[i] >= '0' && frase[i] <= '9') ))
+        {
+            // Adiciona o caracter nao alfanumerico ao array
+            caracteresFiltrados[j] = frase[i];
+            j++;
+        }
+    }
+
+    // Garantir que a string de caracteres filtrados termine corretamente
+    caracteresFiltrados[j] = '\0';
+}
+
+
 void method_09(void)
 {
-    // identificar
+    // Identificacao
     printf("%s\n", "\nMetodo 09\n");
-    // encerrar
+
+    // Declaracao de variaveis
+    char frase[100] = "";
+    char naoAlfaNum[100] = "";
+
+    // Requisicao da frase ao usuario
+    IO_print("Digite a frase desejada: ");
+
+    // Leitura da frase
+    fgets(frase, 100, stdin);
+    frase[strcspn(frase, "\n")] = '\0';
+
+    // Chamada da funcao de caracteres
+    AlfaNumericos(frase, naoAlfaNum);
+
+    // Listagem dos caracteres nao alfanumericos
+    IO_print("\nOs caracteres alfanumericos sao: ");
+    printf("%s", naoAlfaNum);
+
+    // Encerrar
     printf("%s\n", "\nApertar ENTER para continuar\n");
     getchar();
+}
+
+int contarAlfaNumericos(char *frase) 
+{
+    int i = 0;
+    int count = 0;
+    int tamanho = strlen(frase);
+
+    // Filtra os caracteres alfanumericos
+    for(i = 0; i < tamanho; i++) {
+        if( (frase[i] >= 'a' && frase[i] <= 'z') || 
+            (frase[i] >= 'A' && frase[i] <= 'Z') || 
+            (frase[i] >= '0' && frase[i] <= '9') ) {
+            count++;
+        }
+    }
+    
+    return count;
 }
 
 void method_10(void)
 {
     // identificar
     printf("%s\n", "\nMetodo 10\n");
+
+    // Declaracao de variaveis
+    int numeroCadeias=0;
+    int total=0;
+
+    // Requisicao do numero de cadeias de caracteres
+    IO_print("Digite o numero de cadeias de caracteres: ");
+    numeroCadeias=IO_readint("");
+
+    // Ler a(s) cadeia(s) de caractere(s)
+    for (int i = 0; i < numeroCadeias; i++) 
+    {
+        char palavra[100];
+        printf("\nDigite a cadeia %d: ", i + 1);
+        fgets(palavra, sizeof(palavra), stdin);
+
+        int qtd = contarAlfaNumericos(palavra);
+        printf("\nCadeia %d: %s - Alfanumericos: %d\n", i + 1, palavra, qtd);
+        total += qtd;
+    }
+
+    IO_print("\nTotal de alfanumericos em todas as palavras digitadas: ");
+    printf("%d", total);
+
     // encerrar
     printf("%s\n", "\nApertar ENTER para continuar\n");
     getchar();
