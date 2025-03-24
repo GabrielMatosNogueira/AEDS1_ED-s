@@ -166,7 +166,7 @@ void FUNCAO_0511(int n)
     int tamanho = n; // Recebimendo do tamanho do loop pelo tamanho indicado pelo ponteiro
 
     // Loop sequencial dos multiplos de 3
-    for (i = 1; i < tamanho+1; i++)
+    for (i = 1; i < tamanho+1; i=i+1)
     {
         printf("[%d] ", i * 3);
     }
@@ -209,18 +209,22 @@ METODO_0512
 ---------------------------------------------------------------------------------------------------
 */
 
-void METODO_0512(void)
+void METODO_0512(int n)
 {
     // Identificacao
     printf("%s\n", "\nMetodo 02\n");
 
-    // Encerrament
-    printf("%s\n", "\nApertar ENTER para continuar\n");
-    getchar();
+    // Declaracao das variaveis
+    int i=0;
+
+    IO_print("Os valores multiplos de 3 e 5 sao:\n");
+
+    // Exibicao dos valores inteiros multiplos de 3 E 5
+    for(i=1; i<n+1; i=i+1)
+    {
+        printf("[%d]\n", i*(3*5));
+    }
 }
-
-
-
 
 /*
 ---------------------------------------------------------------------------------------------------
@@ -234,7 +238,16 @@ void method_02(void)
     // Identificacao
     printf("%s\n", "\nMetodo 02\n");
 
-    // Encerrament
+    // Declaracao das variaveis
+    int n=0;
+
+    // Leitura da variavel n
+    n=IO_readint("Digite quantos numeros quer exibir dos multiplos de 3 E 5: ");
+
+    // Chamada da funcao para exibir dos multiplos de 3 e 5
+    METODO_0512(n);
+
+    // Encerramento
     printf("%s\n", "\nApertar ENTER para continuar\n");
     getchar();
 }
