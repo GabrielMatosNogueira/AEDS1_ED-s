@@ -205,7 +205,7 @@ void method_01(void)
 /*
 ---------------------------------------------------------------------------------------------------
 METODO_0512
--
+- Exibe os valores multiplos de 3 e 5 | MMC(3,5)= 15
 ---------------------------------------------------------------------------------------------------
 */
 
@@ -251,11 +251,39 @@ void method_02(void)
     printf("%s\n", "\nApertar ENTER para continuar\n");
     getchar();
 }
+/*
+---------------------------------------------------------------------------------------------------
+METODO_0513
+- Geracao de potencias de grandeza 4 de forma decrescente
+---------------------------------------------------------------------------------------------------
+*/
+
+void METODO_0513 (int tamanho) // ESTRUTURA PARA COMPILAR A MATH.H -> gcc programa.c -o programa -lm
+{
+    // Declaracao de variaveis
+    int i=0;
+    double expoente = (double)tamanho;
+    printf("%lf\n", expoente);
+    printf("%d\n", tamanho);
+    IO_print("\nOs numeros elevadas a quarta de maneira descrescente sao:\n");
+
+    // Loop para exibicao
+    for(i=0; i<=tamanho; i=i+1)
+    {
+        printf("[%.2lf]\n", pow(4, expoente));
+        expoente = expoente-1.0;
+        if(tamanho==0)
+        {
+
+        }
+    }
+
+}
 
 /*
 ---------------------------------------------------------------------------------------------------
 METODO 03
--
+- Ler quantas unidades exibir do numero digitado a quarta potencia de forma decrescente ate 4
 ---------------------------------------------------------------------------------------------------
 */
 
@@ -264,22 +292,60 @@ void method_03(void)
     // Identificacao
     printf("%s\n", "\nMetodo 03\n");
 
+    // Declaracao de variaveis
+    int tamanho=0;
+
+    // Leitura do tamanho
+    tamanho=IO_readint("\nDigite a quantidade de numeros elevada a quarta potencia em forma decrescente a exibir: ");
+
+    // Chamada da funcao para exibir as potencias
+    METODO_0513(tamanho);
+
     // Encerramento
     printf("%s\n", "\nApertar ENTER para continuar\n");
     getchar();
+}
+
+/*
+---------------------------------------------------------------------------------------------------
+METODO 0514
+- Exibir a quantidade de numeros com denominadores multiplos de 3
+---------------------------------------------------------------------------------------------------
+*/
+
+void METODO_0514 (int quantidade)
+{
+    // Declaracao de variaveis
+    int i=0;
+
+    // Loop para a exibicao das numeros fracionarios
+    for (i=1; i <(quantidade+1); i=i+1)
+    {
+        printf("[1/%d]\n", i*3);
+    }
 }
 
 /*
 ---------------------------------------------------------------------------------------------------
 METODO 04
--
+- Leitura da quantidade de numeros
 ---------------------------------------------------------------------------------------------------
 */
 
 void method_04(void)
 {
-    // IdentificacaosequenciaDe3
+    // Identificacao
     printf("%s\n", "\nMetodo 04\n");
+
+    // Declaracao de variaveis
+    int quantidade=0;
+
+    // Leitura da quantidade
+    quantidade=IO_readint("Digite a quantidade de numeros fracionarios com denominador multiplo de 3: ");
+
+    // Chamada da funcao
+    METODO_0514(quantidade);
+
 
     // Encerramento
     printf("%s\n", "\nApertar ENTER para continuar\n");
@@ -288,8 +354,23 @@ void method_04(void)
 
 /*
 ---------------------------------------------------------------------------------------------------
+METODO_0515
+- 
+---------------------------------------------------------------------------------------------------
+*/
+
+void METODO_0515 (int numero)
+{
+
+}
+
+
+
+
+/*
+---------------------------------------------------------------------------------------------------
 METODO 05
--
+- 
 ---------------------------------------------------------------------------------------------------
 */
 
