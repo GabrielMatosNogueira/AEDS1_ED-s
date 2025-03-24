@@ -355,22 +355,29 @@ void method_04(void)
 /*
 ---------------------------------------------------------------------------------------------------
 METODO_0515
-- 
+- Exibir os fracionarios com os denominadores elevados ao quadrado
 ---------------------------------------------------------------------------------------------------
 */
 
-void METODO_0515 (int numero)
+void METODO_0515 (double quantidade)
 {
+    // Declaracao de Variaveis
+    int x=0;
+    int i=0;
+
+    // Loop para exibir os numeros fracionarios
+    for (i=1; i< quantidade; i=i+1)
+    {
+        printf("1/[x^[%d]]", x);
+        x=x+2;
+    }
 
 }
-
-
-
 
 /*
 ---------------------------------------------------------------------------------------------------
 METODO 05
-- 
+- Leitura da quantidade e passagem de parametro para a funcao METODO_0515
 ---------------------------------------------------------------------------------------------------
 */
 
@@ -378,6 +385,12 @@ void method_05(void)
 {
     // Identificacao
     printf("%s\n", "\nMetodo 05\n");
+
+    // Declaracao de variaveis
+    double quantidade=0.0;
+
+    // Leitura da variavel numero
+    METODO_0515(quantidade);
 
     // Encerramento
     printf("%s\n", "\nApertar ENTER para continuar\n");
@@ -463,6 +476,9 @@ void method_10(void)
 {
     // Identificacao
     printf("%s\n", "\nMetodo 10\n");
+
+    // Declaracao de variaveis
+
 
     // Encerramento
     printf("%s\n", "\nApertar ENTER para continuar\n");
