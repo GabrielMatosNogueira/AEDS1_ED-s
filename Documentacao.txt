@@ -49,90 +49,88 @@ void method_12();
 
 
 // Funcao Principal
-int main (void)
+int main(void)
 {
     // armazenar a opcao do usuario
-    int opcao=0;
+    int opcao = 0;
     IO_id("\n\t");
-
-    IO_print("\n0 - Parar");
-    IO_print("\n1 - Metodo ");
-    IO_print("\n2 - Metodo ");
-    IO_print("\n3 - Metodo ");
-    IO_print("\n4 - Metodo ");
-    IO_print("\n5 - Metodo ");
-    IO_print("\n6 - Metodo ");
-    IO_print("\n7 - Metodo ");
-    IO_print("\n8 - Metodo ");
-    IO_print("\n9 - Metodo");
-    IO_print("\n10 - Metodo ");
-    IO_print("\n11 - Metodo ");
-    IO_print("\n12 - Metodo ");
-
-    IO_print("\nDigite uma opcao: ");
-    opcao=IO_readint("");
 
     // Menu de opcoes do usuario
     do
     {
+        IO_print("\n0 - Parar");
+        IO_print("\n1 - Metodo 0511");
+        IO_print("\n2 - Metodo 0512");
+        IO_print("\n3 - Metodo 0513");
+        IO_print("\n4 - Metodo 0514");
+        IO_print("\n5 - Metodo 0515");
+        IO_print("\n6 - Metodo 0516");
+        IO_print("\n7 - Metodo 0517");
+        IO_print("\n8 - Metodo 0518");
+        IO_print("\n9 - Metodo 0519");
+        IO_print("\n10 - Metodo 0520");
+        IO_print("\n11 - Metodo 05E1");
+        IO_print("\n12 - Metodo 05E2");
+
+        opcao = IO_readint("\nDigite uma opcao: ");
         switch(opcao)
         {
             case 0:
-            method_00();
-            break;
+                    method_00();
+                    break;
 
-            case 1:
-            method_01();
-            break;
+                case 1:
+                    method_01();
+                    break;
 
-            case 2:
-            method_02();
-            break;
+                case 2:
+                    method_02();
+                    break;
 
-            case 3:
-            method_03();
-            break;
+                case 3:
+                    method_03();
+                    break;
 
-            case 4:
-            method_04();
-            break;
+                case 4:
+                    method_04();
+                    break;
 
-            case 5:
-            method_05();
-            break;
+                case 5:
+                    method_05();
+                    break;
 
-            case 6:
-            method_06();
-            break;
+                case 6:
+                    method_06();
+                    break;
 
-            case 7:
-            method_07();
-            break;
+                case 7:
+                    method_07();
+                    break;
 
-            case 8:
-            method_08();
-            break;
+                case 8:
+                    method_08();
+                    break;
 
-            case 9:
-            method_09();
-            break;
+                case 9:
+                    method_09();
+                    break;
 
-            case 10:
-            method_10();
-            break;
+                case 10:
+                    method_10();
+                    break;
 
-            case 11:
-            method_11();
-            break;
+                case 11:
+                    method_11();
+                    break;
 
-            case 12:
-            method_12();
-            break;
+                case 12:
+                    method_12();
+                    break;
         }
     } while (opcao!=0);
 }
-
 // Funcoes do programa
+
 /*
 ---------------------------------------------------------------------------------------------------
 METODO 00
@@ -141,12 +139,13 @@ METODO 00
 */
 void method_00(void)
 {
-    // identificar
+    // Identificacao
     printf("%s\n", "\nMetodo 00\n");
 
-    // encerracao do programa
-    IO_print("\n\tPrograma finalizado...)
-    // encerrar
+    // Mensagem de encerramento
+    IO_print ("ENCERRANDO O PROGRAMA...\n");
+
+    // Encerramento
     printf("%s\n", "\nApertar ENTER para continuar\n");
     getchar();
 }
