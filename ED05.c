@@ -359,16 +359,16 @@ METODO_0515
 ---------------------------------------------------------------------------------------------------
 */
 
-void METODO_0515 (double quantidade)
+void METODO_0515 (int quantidade)
 {
     // Declaracao de Variaveis
-    int x=0;
+    int x=2;
     int i=0;
 
     // Loop para exibir os numeros fracionarios
     for (i=1; i< quantidade; i=i+1)
     {
-        printf("1/[x^[%d]]", x);
+        printf("[1/x^[%d]]\n", x);
         x=x+2;
     }
 
@@ -387,9 +387,12 @@ void method_05(void)
     printf("%s\n", "\nMetodo 05\n");
 
     // Declaracao de variaveis
-    double quantidade=0.0;
+    int quantidade=0.0;
 
     // Leitura da variavel numero
+    quantidade=IO_readint("\nDigite a quantidade de numeros fracionarios com denominador elevado a numeros sequencialmente somados por 2: ");
+
+    // Chamada da funcao para exibir os numeros
     METODO_0515(quantidade);
 
     // Encerramento
