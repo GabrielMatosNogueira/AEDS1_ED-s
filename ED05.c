@@ -32,22 +32,6 @@ cd 1563147_Gabriel_Matos_Nogueira (Windows, Linux e macOS)
 // Declaracao de biblioteca(s)
 #include "io.h"
 
-// Declaracao dos metodos utilizados
-void method_00();
-void FUNCAO_0511(int n);
-void method_01();
-void method_02();
-void method_03();
-void method_04();
-void method_05();
-void method_06();
-void method_07();
-void method_08();
-void method_09();
-void method_10();
-void method_11();
-void method_12();
-
 // Funcao Principal
 int main(void)
 {
@@ -403,24 +387,36 @@ void method_05(void)
 /*
 ---------------------------------------------------------------------------------------------------
 METODO_0516
--
+- 
 ---------------------------------------------------------------------------------------------------
 */
 
-void METODO_0516(void)
+void METODO_0516(int quantidade)
 {
-    // Identificacao
-    printf("%s\n", "\nMetodo 06\n");
+    // Declaracao de variaveis
+    int i=0;
+    int contador=0;
 
-    // Encerramento
-    printf("%s\n", "\nApertar ENTER para continuar\n");
-    getchar();
+    // Loop para mostrar os multiplos de 3 e nao multiplos
+    for (i=3; i<(quantidade+3); i=i+1)
+    {
+        if ( quantidade % 4 == 0)
+        {
+
+        }
+        else
+        {
+            printf("[%d] ", i*3);
+        }
+    }
+
+
 }
 
 /*
 ---------------------------------------------------------------------------------------------------
 METODO 06
--
+- Ler a quantidade de numeros multiplos de 3 e nao multiplo de 4
 ---------------------------------------------------------------------------------------------------
 */
 
@@ -428,6 +424,15 @@ void method_06(void)
 {
     // Identificacao
     printf("%s\n", "\nMetodo 06\n");
+
+    // Declaracao de variavel
+    int quantidade=0;
+
+    // Leitura da variavel
+    quantidade=IO_readint("Digite a quantidade de numeros multiplos de 3 e nao multiplos de quatro: ");
+
+    // Chamada da funcao
+    METODO_0516(quantidade);
 
     // Encerramento
     printf("%s\n", "\nApertar ENTER para continuar\n");
