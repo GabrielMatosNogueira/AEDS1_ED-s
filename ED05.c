@@ -29,6 +29,30 @@ cd 1563147_Gabriel_Matos_Nogueira (Windows, Linux e macOS)
 ---------------------------------------------------------------------------------------------------
 */
 
+// Declaracao dos metodos utilizados
+void method_00();
+void method_01();
+void method_02();
+void method_03();
+void method_04();
+void method_05();
+void method_06();
+void method_07();
+void method_08();
+void method_09();
+void method_10();
+void method_11();
+void method_12();
+
+// Declaracao das funcoes auxiliares
+void FUNCAO_0511(int n);
+void METODO_0512(int n);
+void METODO_0514(int quantidade);
+void METODO_0515(int quantidade);
+void METODO_0516(int quantidade);
+int METODO_0517(int quantidade)
+
+
 // Declaracao de biblioteca(s)
 #include "io.h"
 
@@ -387,30 +411,30 @@ void method_05(void)
 /*
 ---------------------------------------------------------------------------------------------------
 METODO_0516
-- 
+- Calcular e exibir os numeros multiplos de 3 e nao multiplos de 4
 ---------------------------------------------------------------------------------------------------
 */
 
 void METODO_0516(int quantidade)
 {
     // Declaracao de variaveis
-    int i=0;
-    int contador=0;
+    int i=1;
+    int numero=1;
 
     // Loop para mostrar os multiplos de 3 e nao multiplos
-    for (i=3; i<(quantidade+3); i=i+1)
+    while (i <= quantidade)
     {
-        if ( quantidade % 4 == 0)
+        numero = i * 3;
+        if (numero % 4 != 0)
         {
-
+            printf("[%d] ", numero);
         }
         else
         {
-            printf("[%d] ", i*3);
+            quantidade = quantidade + 1;
         }
+        i = i + 1;
     }
-
-
 }
 
 /*
@@ -429,7 +453,7 @@ void method_06(void)
     int quantidade=0;
 
     // Leitura da variavel
-    quantidade=IO_readint("Digite a quantidade de numeros multiplos de 3 e nao multiplos de quatro: ");
+    quantidade=IO_readint("Digite a quantidade de numeros multiplos de 3 e nao multiplos de 4 que deseja ver: ");
 
     // Chamada da funcao
     METODO_0516(quantidade);
@@ -437,6 +461,28 @@ void method_06(void)
     // Encerramento
     printf("%s\n", "\nApertar ENTER para continuar\n");
     getchar();
+}
+
+/*
+---------------------------------------------------------------------------------------------------
+METODO 0517
+-
+---------------------------------------------------------------------------------------------------
+*/
+
+double METODO_0517(int quantidade)
+{
+    // Declarar variaveis
+    int valor=4;
+    int i=0;
+    double soma=0;
+
+    // Loop para soma
+    for(i=0; i<quantidade; i = i+1)
+    {
+        soma = (1/4)
+    }
+    return (soma);
 }
 
 /*
@@ -450,6 +496,16 @@ void method_07(void)
 {
     // Identificacao
     printf("%s\n", "\nMetodo 07\n");
+
+    // Declarar variaveis
+    int quantidade = 0;
+
+    // Leitura de quatidade de vezes
+    IO_print("Digite quantas operacoes deseja fazer: ");
+    quantidade=IO_readint;
+
+    // Chamar funcao auxiliar
+    METODO_0517(quantidade);
 
     // Encerramento
     printf("%s\n", "\nApertar ENTER para continuar\n");
