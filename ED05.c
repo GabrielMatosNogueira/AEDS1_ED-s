@@ -29,6 +29,9 @@ cd 1563147_Gabriel_Matos_Nogueira (Windows, Linux e macOS)
 ---------------------------------------------------------------------------------------------------
 */
 
+// Declaracao de biblioteca(s)
+#include "io.h"
+
 // Declaracao dos metodos utilizados
 void method_00();
 void method_01();
@@ -50,11 +53,9 @@ void METODO_0512(int n);
 void METODO_0514(int quantidade);
 void METODO_0515(int quantidade);
 void METODO_0516(int quantidade);
-int METODO_0517(int quantidade)
+double METODO_0517(double quantidade);
+int METODO_0518(int quantidade);
 
-
-// Declaracao de biblioteca(s)
-#include "io.h"
 
 // Funcao Principal
 int main(void)
@@ -66,6 +67,7 @@ int main(void)
     // Menu de opcoes do usuario
     do
     {
+        IO_id("\n\tOpcoes de Metodos");
         IO_print("\n0 - Parar");
         IO_print("\n1 - Metodo 0511");
         IO_print("\n2 - Metodo 0512");
@@ -470,25 +472,26 @@ METODO 0517
 ---------------------------------------------------------------------------------------------------
 */
 
-double METODO_0517(int quantidade)
+double METODO_0517(double quantidade)
 {
-    // Declarar variaveis
-    int valor=4;
-    int i=0;
-    double soma=0;
+    // Declaracao de variaveis
+    double valor = 4.0;
+    int i = 0;
+    double soma = 0.0;
 
     // Loop para soma
-    for(i=0; i<quantidade; i = i+1)
+    for(i = 0; i < quantidade; i=i+1)
     {
-        soma = (1/4)
+        soma = soma + (1.0 / valor);
+        valor = valor + 4.0;           
     }
-    return (soma);
+    return soma;
 }
 
 /*
 ---------------------------------------------------------------------------------------------------
 METODO 07
--
+- Metodo para calcular a soma dos inversos de 4 em 4, com indice inicial em 4
 ---------------------------------------------------------------------------------------------------
 */
 
@@ -498,14 +501,22 @@ void method_07(void)
     printf("%s\n", "\nMetodo 07\n");
 
     // Declarar variaveis
-    int quantidade = 0;
+    double quantidade = 0.0;
+    double soma=0.0;
 
     // Leitura de quatidade de vezes
-    IO_print("Digite quantas operacoes deseja fazer: ");
-    quantidade=IO_readint;
+    quantidade=IO_readdouble("Digite quantas operacoes deseja fazer: ");
+    quantidade= (double)quantidade;
 
-    // Chamar funcao auxiliar
-    METODO_0517(quantidade);
+    // Atribuir o valor da soma retornado pela funcao
+    soma=METODO_0517(quantidade);
+
+    // Exibir o resultado da soma dos elementos
+    IO_print("O resultado da soma e: ");
+    printf("%.4lf", soma);
+
+    // Quebra de linha
+    IO_print("\n");
 
     // Encerramento
     printf("%s\n", "\nApertar ENTER para continuar\n");
@@ -514,18 +525,55 @@ void method_07(void)
 
 /*
 ---------------------------------------------------------------------------------------------------
+METODO 0518
+- Calcular a soma com indice em 5, 
+---------------------------------------------------------------------------------------------------
+*/
+
+int METODO_518(int quantidade) 
+{
+    // Declaração de variáveis
+    int valorAtual1 = 5;
+    int valorAtual2 = 1;
+    int soma = 0;
+    
+    // Loop para calcular a soma
+    for(int i = 1; i <= quantidade; i = i + 1) {
+        soma = soma + valorAtual1;
+        valorAtual1 = valorAtual1 + valorAtual2;
+        valorAtual2 = valorAtual2 + 1;
+    }
+    
+    return soma;
+}
+
+/*
+---------------------------------------------------------------------------------------------------
 METODO 08
--
+- 
 ---------------------------------------------------------------------------------------------------
 */
 
 void method_08(void)
 {
     // Identificacao
-    printf("%s\n", "\nMetodo 08\n");
+    printf("\nMetodo 08\n");
 
-    // Encerramento
-    printf("%s\n", "\nApertar ENTER para continuar\n");
+    // Declarar variaveis
+    int quantidade=0;
+    int soma=0;
+
+    // Leitura da quantidade de operacoes
+    quantidade=IO_readint("Digite quantas operacoes deseja fazer: ");
+
+    // Atribuir o valor da soma retornado pela funcao METODO_518
+    soma = METODO_518(quantidade);
+
+    // Exibir o resultado da soma dos elementos
+    printf("O resultado da soma e: %d\n", soma);
+
+    // Mensagem final para o usuario
+    printf("\nApertar ENTER para continuar\n");
     getchar();
 }
 
