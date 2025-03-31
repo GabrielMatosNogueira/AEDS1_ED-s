@@ -205,16 +205,14 @@ RECURSAO | METODO 0612
 
 void method_0612(int n, int quantidade)
 {
-    if (quantidade <= 0)
-    {
-        return;
-    }
-
     // Exibe o multiplo de 3 atual
     printf("[%d] ", n);
 
     // Chama recursivamente para exibir o proximo multiplo de 3
-    method_0611(n - 3, quantidade - 1);
+    if (quantidade > 1) 
+    {
+        method_0612(n - 3, quantidade - 1);
+    }
 }
 
 /*
@@ -231,12 +229,15 @@ void method_02(void)
 
     // Declaracao de Variaveis
     int quantidade=0;
+    int n=3;
 
     // Leitura da variavel quantidade
     quantidade=IO_readint("Digite a quantidade de numeros multiplos de 3 que deseja exibir: ");
 
+    n= 3*quantidade;
+
     // Chamada da funcao recursiva
-    method_0612(3*quantidade, quantidade);
+    method_0612(n, quantidade);
 
     // encerramento
     printf("%s\n", "\nApertar ENTER para continuar\n");
