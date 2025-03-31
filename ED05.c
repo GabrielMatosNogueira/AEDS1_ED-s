@@ -579,8 +579,32 @@ void method_08(void)
 
 /*
 ---------------------------------------------------------------------------------------------------
+METODO 0519
+- Calcular a soma dos quadrados dos números naturais começando no valor 25
+---------------------------------------------------------------------------------------------------
+*/
+
+int METODO_0519(int quantidade)
+{
+    // Declaracao de variaveis
+    int i = 0;
+    int numero = 25;
+    int soma = 0;
+
+    // Loop para somar os quadrados dos números naturais
+    for(i = 0; i < quantidade; i = i + 1)
+    {
+        soma = soma + (numero * numero);
+        numero = numero + 1;
+    }
+
+    return soma;
+}
+
+/*
+---------------------------------------------------------------------------------------------------
 METODO 09
--
+- Chama o METODO 0519 e exibe o resultado da soma dos quadrados
 ---------------------------------------------------------------------------------------------------
 */
 
@@ -589,15 +613,52 @@ void method_09(void)
     // Identificacao
     printf("%s\n", "\nMetodo 09\n");
 
-    // Encerramento
-    printf("%s\n", "\nApertar ENTER para continuar\n");
+    // Declarar variaveis
+    int quantidade = 0;
+    int soma = 0;
+
+    // Leitura da quantidade de operacoes
+    quantidade = IO_readint("Digite quantos quadrados dos numeros naturais deseja somar começando no 25: ");
+
+    // Chama a funcao METODO_0519 para calcular a soma
+    soma = METODO_0519(quantidade);
+
+    // Exibe o resultado
+    printf("A soma dos quadrados e: %d\n", soma);
+
+    // Mensagem final para o usuario
+    printf("\nApertar ENTER para continuar\n");
     getchar();
 }
 
 /*
 ---------------------------------------------------------------------------------------------------
+METODO 0520
+- Calcular a soma dos inversos (1/x) das adicoes de numeros naturais terminando no valor 3
+---------------------------------------------------------------------------------------------------
+*/
+
+double METODO_0520(int quantidade)
+{
+    // Declaracao de variaveis
+    int i = 0;
+    double soma = 0.0;
+    int numero = 13;
+
+    // Loop para calcular a soma dos inversos
+    for(i = 0; i < quantidade; i = i + 1)
+    {
+        soma = soma + (1.0 / numero);
+        numero = numero - 1;
+    }
+
+    return soma;
+}
+
+/*
+---------------------------------------------------------------------------------------------------
 METODO 10
--
+- Chama o METODO 0520 e exibe o resultado da soma dos inversos
 ---------------------------------------------------------------------------------------------------
 */
 
@@ -606,18 +667,49 @@ void method_10(void)
     // Identificacao
     printf("%s\n", "\nMetodo 10\n");
 
-    // Declaracao de variaveis
+    // Declarar variaveis
+    int quantidade = 0;
+    double soma = 0.0;
 
+    // Leitura da quantidade de operacoes
+    quantidade = IO_readint("Digite quantos inversos deseja somar começando de 1/13 até 1/3: ");
 
-    // Encerramento
-    printf("%s\n", "\nApertar ENTER para continuar\n");
+    // Chama a funcao METODO_0520 para calcular a soma
+    soma = METODO_0520(quantidade);
+
+    // Exibe o resultado
+    printf("A soma dos inversos e: %.4lf\n", soma);
+
+    // Mensagem final para o usuario
+    printf("\nApertar ENTER para continuar\n");
     getchar();
 }
 
 /*
 ---------------------------------------------------------------------------------------------------
+METODO 05E1
+- Ler um numero inteiro e calcular o fatorial do valor
+---------------------------------------------------------------------------------------------------
+*/
+
+int METODO_05E1(int n)
+{
+    // Declaracao de variaveis
+    int fatorial = 1;
+
+    // Calcular o fatorial de n
+    for(int i = 1; i <= n; i = i + 1)
+    {
+        fatorial = fatorial * i;
+    }
+
+    return fatorial;
+}
+
+/*
+---------------------------------------------------------------------------------------------------
 METODO 11
--
+- Chama o METODO 05E1 e exibe o resultado do fatorial
 ---------------------------------------------------------------------------------------------------
 */
 
@@ -626,15 +718,59 @@ void method_11(void)
     // Identificacao
     printf("%s\n", "\nMetodo 11\n");
 
-    // Encerramento
-    printf("%s\n", "\nApertar ENTER para continuar\n");
+    // Declarar variaveis
+    int n = 0;
+    int fatorial = 0;
+
+    // Leitura do numero
+    n = IO_readint("Digite um numero para calcular o fatorial: ");
+
+    // Chama a funcao METODO_05E1 para calcular o fatorial
+    fatorial = METODO_05E1(n);
+
+    // Exibe o resultado
+    printf("O fatorial de %d e: %d\n", n, fatorial);
+
+    // Mensagem final para o usuario
+    printf("\nApertar ENTER para continuar\n");
     getchar();
 }
 
 /*
 ---------------------------------------------------------------------------------------------------
+METODO 05E2
+- Calcular a funcao f(n) = (1+2/3!) * (1+4/5!) * (1+6/7!) * ...
+---------------------------------------------------------------------------------------------------
+*/
+
+double METODO_05E2(int n)
+{
+    // Declaracao de variaveis
+    double resultado = 1.0;
+
+    // Calcular a funcao
+    for(int i = 1; i <= n; i = i + 1)
+    {
+        double denominador = (2 * i + 1);
+        double fatorial = 1;
+
+        // Calcular o fatorial de 3, 5, 7, etc.
+        for(int j = 1; j <= denominador; j = j + 1)
+        {
+            fatorial = fatorial * j;
+        }
+
+        // Atualizar o resultado
+        resultado = resultado * (1 + (2.0 / fatorial));
+    }
+
+    return resultado;
+}
+
+/*
+---------------------------------------------------------------------------------------------------
 METODO 12
--
+- Chama o METODO 05E2 e exibe o resultado
 ---------------------------------------------------------------------------------------------------
 */
 
@@ -643,8 +779,21 @@ void method_12(void)
     // Identificacao
     printf("%s\n", "\nMetodo 12\n");
 
-    // Encerramento
-    printf("%s\n", "\nApertar ENTER para continuar\n");
+    // Declarar variaveis
+    int n = 0;
+    double resultado = 0.0;
+
+    // Leitura do numero
+    n = IO_readint("Digite um numero para calcular a funcao f(n): ");
+
+    // Chama a funcao METODO_05E2 para calcular o resultado
+    resultado = METODO_05E2(n);
+
+    // Exibe o resultado
+    printf("O resultado da funcao e: %.4lf\n", resultado);
+
+    // Mensagem final para o usuario
+    printf("\nApertar ENTER para continuar\n");
     getchar();
 }
 
