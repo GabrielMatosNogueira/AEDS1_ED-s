@@ -47,7 +47,6 @@ void method_10();
 void method_11();
 void method_12();
 
-
 // Funcao Principal
 int main(void)
 {
@@ -279,8 +278,18 @@ void method_03(void)
     // Leitura da variavel quantidade
     quantidade=IO_readint("Digite quantos numeros multiplos de 3: ");
 
+
+    if (quantidade==0 || quantidade<0)
+    {
+        printf("\n0");
+    }
+    else
+    {
+        printf("[1\1] ");
+    }
+
     // Chamada da funcao com atribuicao de valor
-    method_0613(1, quantidade);
+    method_0613(3, quantidade);
 
     // Encerramento
     printf("%s\n", "\nApertar ENTER para continuar\n");
@@ -341,18 +350,31 @@ void method_04(void)
 /*
 ---------------------------------------------------------------------------------------------------
 METODO 0615
-- 
+
+|x  |   y  |  z |
+|3  |   1  |  4 |
+|4  |   3  |  7 |
+|7  |   5  |  12|
+|12 |   7  |  19|
 ---------------------------------------------------------------------------------------------------
 */
 
-/*void method_0615(void)
+int method_0615(int x, int y, int z, int quantidade)
 {
-    // Declaracao de variaveis
-    int x=0;
-    int y=3;
-    int z=1;
-    
-}*/
+    int soma=0;
+    if(quantidade<1)
+    {
+        return 0;
+    }
+    printf("\t[%d]\t ", x);
+    printf("[%d]\t ", y);
+    printf("[%d]\n ", z);
+    x=z;
+    y=y+2;
+    z=x+y;
+    method_0615(x, y, z, quantidade-1);
+    return soma;
+}
 
 /*
 ---------------------------------------------------------------------------------------------------
@@ -368,12 +390,20 @@ void method_05(void)
 
     // Declaracao de variaveis
     int quantidade=0;
+    int x=3;
+    int y=1;
+    int z=4;
+    int soma=0;
 
     // Leitura da variavel quantidade
     quantidade=IO_readint("Digite quantos numeros multiplos de 3: ");
 
     // Chamada da funcao com atribuicao de valor
-    //method_0615(quantidade);
+    soma=method_0615(x,y,z,quantidade);
+
+    // Exibicao da soma
+    printf("\n\tResultado da soma e: %d", soma);
+    IO_print("\n");
 
     // Encerramento
     printf("%s\n", "\nApertar ENTER para continuar\n");
