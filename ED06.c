@@ -369,9 +369,12 @@ int method_0615(int x, int y, int z, int quantidade)
     printf("\t[%d]\t ", x);
     printf("[%d]\t ", y);
     printf("[%d]\n ", z);
+
     x=z;
     y=y+2;
     z=x+y;
+    soma=soma+z;
+
     method_0615(x, y, z, quantidade-1);
     return soma;
 }
