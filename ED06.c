@@ -356,27 +356,31 @@ METODO 0615
 |4  |   3  |  7 |
 |7  |   5  |  12|
 |12 |   7  |  19|
+
+3 + 4 + 7 + 12 + 19
+Soma de z no caso 5 = 45
 ---------------------------------------------------------------------------------------------------
 */
 
-int method_0615(int x, int y, int z, int quantidade)
+int method_0615(int x, int y, int z, int quantidade, int soma)
 {
-    int soma=0;
-    if(quantidade<1)
+    if(quantidade<1)                         // 2: Ocorre porque a primeira soma é 3 depois o resultado das somas
     {
-        return 0;
+        printf("\nA soma e: [%d]\n ", soma);
+        return soma;
     }
+
+    soma=soma+z;
+
     printf("\t[%d]\t ", x);
     printf("[%d]\t ", y);
     printf("[%d]\n ", z);
 
     x=z;
-    y=y+2;
+    y=y+2;  
     z=x+y;
-    soma=soma+z;
 
-    method_0615(x, y, z, quantidade-1);
-    return soma;
+    method_0615(x, y, z, quantidade-1, soma);
 }
 
 /*
@@ -402,7 +406,7 @@ void method_05(void)
     quantidade=IO_readint("Digite quantos numeros multiplos de 3: ");
 
     // Chamada da funcao com atribuicao de valor
-    soma=method_0615(x,y,z,quantidade);
+    soma=method_0615(x,y,z,quantidade-1, soma+3);
 
     // Exibicao da soma
     printf("\n\tResultado da soma e: %d", soma);
@@ -411,6 +415,18 @@ void method_05(void)
     // Encerramento
     printf("%s\n", "\nApertar ENTER para continuar\n");
     getchar();
+}
+
+/*
+---------------------------------------------------------------------------------------------------
+METODO 0616
+- 
+---------------------------------------------------------------------------------------------------
+*/
+
+void method_0616(void)
+{
+    
 }
 
 /*
@@ -538,7 +554,8 @@ DOCUMENTACAO
 
 1.0 - DOCUMENTACAO COMPLEMENTAR
 
-- Sem observacoes
+- Metodo 05:
+  Bem limitado pela formatacao int o que nao permite grandes somas como >2000
 
 ---------------------------------------------------------------------------------------------------
 
