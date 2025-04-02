@@ -386,7 +386,7 @@ int method_0615(int x, int y, int z, int quantidade, int soma)
 /*
 ---------------------------------------------------------------------------------------------------
 METODO 05
-- 
+- Alterar a solucao com menos parametros para mais eficiencia do programa
 ---------------------------------------------------------------------------------------------------
 */
 
