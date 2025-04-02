@@ -534,14 +534,16 @@ METODO 08
 ---------------------------------------------------------------------------------------------------
 */
 
-void method_08(void)
+void method_0618(char *frase, int quantidade)
 {
-    // Identificacao
-    printf("%s\n", "\nMetodo 08\n");
+    if (frase[quantidade] == '\0') return; 
 
-    // Encerramento
-    printf("%s\n", "\nApertar ENTER para continuar\n");
-    getchar();
+    if ((int)(frase[quantidade]) % 2 == 0) 
+    {
+        printf("Caractere '%c' (ASCII %d) é par\n", frase[quantidade], frase[quantidade]);
+    }
+
+    method_0618(frase, quantidade + 1);
 }
 
 /*
@@ -556,6 +558,19 @@ void method_08(void)
     // Identificacao
     printf("%s\n", "\nMetodo 08\n");
 
+    // Declarar variaveis
+    int quantidade=0;
+    char frase[81]="";
+
+    // Leitura da frase
+    fgets(frase[81], sizeof(frase), stdin);
+
+    quantidade = strlen(frase);
+
+    // Chamada da funcao
+    method_0618(frase, quantidade);
+
+    printf("A quantidade de caracteres e: [%d]", quantidade);
     // Encerramento
     printf("%s\n", "\nApertar ENTER para continuar\n");
     getchar();
