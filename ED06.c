@@ -596,7 +596,8 @@ void method_09(void)
 /*
 ---------------------------------------------------------------------------------------------------
 METODO 10
-- 
+- calcular certo termo par da série de Fibonacci começando em 1.
+Testar essa função para quantidades diferentes.
 ---------------------------------------------------------------------------------------------------
 */
 
@@ -604,6 +605,13 @@ void method_10(void)
 {
     // Identificacao
     printf("%s\n", "\nMetodo 10\n");
+
+    // Declaracao de variaveis
+    int quantidade=0;
+    int n1=0;
+    int n2=0;
+
+    // Chamada da funcao
 
     // Encerramento
     printf("%s\n", "\nApertar ENTER para continuar\n");
