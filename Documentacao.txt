@@ -9,7 +9,7 @@ Versao:             1.0
 ---------------------------------------------------------------------------------------------------
 
 Como executar o programa no terminal:
-1.0 - Certifique-se que o compilador MINGW esteja instalado e presente nas variaveis de ambiente 
+1.0 - Certifique-se que o compilador GCC esteja instalado e presente nas variaveis de ambiente 
 da sua maquina
 
 2.0 - Adentre a pasta para executar o programa:
@@ -59,18 +59,18 @@ int main(void)
     do
     {
         IO_print("\n0 - Parar");
-        IO_print("\n1 - Metodo 0511");
-        IO_print("\n2 - Metodo 0512");
-        IO_print("\n3 - Metodo 0513");
-        IO_print("\n4 - Metodo 0514");
-        IO_print("\n5 - Metodo 0515");
-        IO_print("\n6 - Metodo 0516");
-        IO_print("\n7 - Metodo 0517");
-        IO_print("\n8 - Metodo 0518");
-        IO_print("\n9 - Metodo 0519");
-        IO_print("\n10 - Metodo 0520");
-        IO_print("\n11 - Metodo 05E1");
-        IO_print("\n12 - Metodo 05E2");
+        IO_print("\n1 - Metodo 0a11");
+        IO_print("\n2 - Metodo 0a12");
+        IO_print("\n3 - Metodo 0a13");
+        IO_print("\n4 - Metodo 0a14");
+        IO_print("\n5 - Metodo 0a15");
+        IO_print("\n6 - Metodo 0a16");
+        IO_print("\n7 - Metodo 0a17");
+        IO_print("\n8 - Metodo 0a18");
+        IO_print("\n9 - Metodo 0a19");
+        IO_print("\n10 - Metodo 0a20");
+        IO_print("\n11 - Metodo 0a21");
+        IO_print("\n12 - Metodo 0a22");
 
         opcao = IO_readint("\nDigite uma opcao: ");
         switch(opcao)
