@@ -420,13 +420,25 @@ void method_05(void)
 /*
 ---------------------------------------------------------------------------------------------------
 METODO 0616
-- 
+- Recursivo
+    [1/3] = 0.333333
+    [1/9] = 0.111111
+    [1/15] = 0.066667
+    [1/21] = 0.047619
+    [1/27] = 0.037037
+    SOMA CALCULADORA CASSIO MODELO FX-82MS = 0.595767195
 ---------------------------------------------------------------------------------------------------
 */
 
-void method_0616(void)
+double method_0616(int quantidade, double numero, double soma)
 {
-    
+    if (quantidade > 0)                                       
+    {                                                                // [1, "infinito") ---> ate o limite da memoria
+        printf("\t[1/%.0lf] = %.15lf\n", numero, 1.0 / numero);      // Mostrando cada termo
+        soma = soma + (1.0 / (double)numero);                        // Acumulando soma corretamente
+        return method_0616(quantidade - 1, numero + 6.0, soma);      // Chamando recursivamente com soma atualizada
+    }
+    return soma; // Retorna a soma final
 }
 
 /*
@@ -441,6 +453,21 @@ void method_06(void)
     // Identificacao
     printf("%s\n", "\nMetodo 06\n");
 
+    // Declaracao de variaveis
+    int quantidade=0;
+    double numero=3.0;
+    double soma=0.0;
+
+    // Leitura da variavel
+    quantidade=IO_readint("Digite quantos fracoes cujos denominadores sao multiplos de 3 deseja ver: ");
+
+    // Chamada da funcao
+    soma=method_0616(quantidade, numero, soma);
+
+    // Exibicao da soma
+    IO_print("\nO valor da soma: ");
+    printf("%lf", soma);
+
     // Encerramento
     printf("%s\n", "\nApertar ENTER para continuar\n");
     getchar();
@@ -448,15 +475,69 @@ void method_06(void)
 
 /*
 ---------------------------------------------------------------------------------------------------
-METODO 07
+METODO 617
 - 
 ---------------------------------------------------------------------------------------------------
 */
 
+/*
+---------------------------------------------------------------------------------------------------
+METODO 617
+- Exibir cada caractere da string ao contrario, um por linha.
+---------------------------------------------------------------------------------------------------
+*/
+void method_0617(char string[80], int tamanho)
+{
+    // Verificar se ainda há caracteres para exibir
+    if (tamanho >= 0) 
+    {
+        // Exibir o caractere atual
+        printf("%c\n", string[tamanho]); 
+        
+        // Chamar a funcao para o proximo caractere
+        method_0617(string, tamanho - 1); 
+    }
+}
+
+/*
+---------------------------------------------------------------------------------------------------
+METODO 07
+- Ler uma string e chamar o metodo recursivo para exibi-la ao contrario.
+---------------------------------------------------------------------------------------------------
+*/
 void method_07(void)
 {
     // Identificacao
-    printf("%s\n", "\nMetodo 07\n");
+    printf("%s\n", "\nMetodo 06\n");
+    
+    // Declarar o vetor para armazenar a string
+    char string[81]; 
+ 
+    // Ler a string do usuario
+    strcpy(string, IO_readstring("\nDigite uma frase: ")); 
+
+    // Determinar o tamanho da string
+    int tamanho = strlen(string) - 1;
+
+    // Chamar a funcao para exibir os caracteres ao contrario
+    method_0617(string, tamanho);
+
+    // Encerramento
+    printf("%s\n", "\nApertar ENTER para continuar\n");
+    getchar();
+}
+
+/*
+---------------------------------------------------------------------------------------------------
+METODO 08
+- 
+---------------------------------------------------------------------------------------------------
+*/
+
+void method_08(void)
+{
+    // Identificacao
+    printf("%s\n", "\nMetodo 08\n");
 
     // Encerramento
     printf("%s\n", "\nApertar ENTER para continuar\n");
