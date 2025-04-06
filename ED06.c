@@ -510,13 +510,13 @@ void method_07(void)
     // Identificacao
     printf("%s\n", "\nMetodo 06\n");
     
-    // Declarar o vetor para armazenar a string
+    // Declaracao de variaveis
     char string[81]; 
  
-    // Ler a string do usuario
+    // Leitura da string do usuario
     strcpy(string, IO_readstring("\nDigite uma frase: ")); 
 
-    // Determinar o tamanho da string
+    // Determinacao do tamanho da string
     int tamanho = strlen(string) - 1;
 
     // Chamar a funcao para exibir os caracteres ao contrario
@@ -530,125 +530,246 @@ void method_07(void)
 /*
 ---------------------------------------------------------------------------------------------------
 METODO 08
-- 
+- Contar os dígitos com valores pares em uma cadeia de caracteres usando recursão.
 ---------------------------------------------------------------------------------------------------
 */
 
-void method_0618(char *frase, int quantidade)
+int method_0618(char *frase, int posicao)
 {
-    if (frase[quantidade] == '\0') return; 
+    // Caso base: chegou ao fim da string
+    if (frase[posicao] == '\0') return 0;
 
-    if ((int)(frase[quantidade]) % 2 == 0) 
+    int contador = 0;
+
+    // Se for digito e for par
+    if (isdigit(frase[posicao]) && (frase[posicao] - '0') % 2 == 0)
     {
-        printf("Caractere '%c' (ASCII %d) é par\n", frase[quantidade], frase[quantidade]);
+        printf("Digito par encontrado: '%c'\n", frase[posicao]);
+        contador = 1;
     }
 
-    method_0618(frase, quantidade + 1);
+    // Chamada recursiva
+    return contador + method_0618(frase, posicao + 1);
 }
 
 /*
 ---------------------------------------------------------------------------------------------------
 METODO 08
-- 
 ---------------------------------------------------------------------------------------------------
 */
 
 void method_08(void)
 {
     // Identificacao
-    printf("%s\n", "\nMetodo 08\n");
+    printf("\nMetodo 08\n");
 
     // Declarar variaveis
-    int quantidade=0;
-    char frase[81]="";
+    char frase[81];
 
     // Leitura da frase
-    fgets(frase[81], sizeof(frase), stdin);
+    printf("Digite uma frase: ");
+    fgets(frase, sizeof(frase), stdin);
 
-    quantidade = strlen(frase);
+    // Remover quebra de linha do fgets, se existir
+    frase[strcspn(frase, "\n")] = '\0';
 
-    // Chamada da funcao
-    method_0618(frase, quantidade);
+    // Chamada da função recursiva
+    int pares = method_0618(frase, 0);
 
-    printf("A quantidade de caracteres e: [%d]", quantidade);
+    // Mostrar resultado
+    printf("Quantidade de dígitos pares: [%d]\n", pares);
+
     // Encerramento
-    printf("%s\n", "\nApertar ENTER para continuar\n");
+    printf("\nApertar ENTER para continuar\n");
     getchar();
+}
+
+/*
+---------------------------------------------------------------------------------------------------
+Função Recursiva 0619
+- Conta letras maiusculas entre ['D' , 'O']
+---------------------------------------------------------------------------------------------------
+*/
+int method_0619(char *frase, int posicao)
+{
+    if (frase[posicao] == '\0') return 0;
+
+    int contador = 0;
+
+    if (frase[posicao] >= 'D' && frase[posicao] <= 'O')
+    {
+        printf("Maiúscula entre 'C' e 'P' encontrada: '%c'\n", frase[posicao]);
+        contador = 1;
+    }
+
+    return contador + method_0619(frase, posicao + 1);
 }
 
 /*
 ---------------------------------------------------------------------------------------------------
 METODO 09
-- 
 ---------------------------------------------------------------------------------------------------
 */
-
 void method_09(void)
 {
     // Identificacao
-    printf("%s\n", "\nMetodo 09\n");
+    printf("\nMetodo 09\n");
+
+    // Declarcao de Variaveis
+    char frase[81];
+
+    // Leitura da frase
+    printf("Digite uma frase: ");
+    fgets(frase, sizeof(frase), stdin);
+
+    // Remover '\n' do final se existir
+    frase[strcspn(frase, "\n")] = '\0';
+
+    // Chamada da funcao recursiva
+    int quantidade = method_0619(frase, 0);
+
+    // Exibir resultado
+    printf("Quantidade de letras maiúsculas entre 'C' e 'P': [%d]\n", quantidade);
 
     // Encerramento
-    printf("%s\n", "\nApertar ENTER para continuar\n");
+    printf("\nApertar ENTER para continuar\n");
     getchar();
 }
 
 /*
 ---------------------------------------------------------------------------------------------------
-METODO 10
-- calcular certo termo par da série de Fibonacci começando em 1.
-Testar essa função para quantidades diferentes.
+Função recursiva 0620
+- Soma os N primeiros termos pares da sequência de Fibonacci começando em 1
 ---------------------------------------------------------------------------------------------------
 */
+int method_0620(int a, int b, int quantidade, int cont)
+{
+    if (quantidade == 0) return 0;
 
+    int c = a + b;
+
+    if (c % 2 == 0)
+    {
+        printf("[%d]. Termo par desta chamada: %d\n", cont + 1, c);
+        return c + method_0620(b, c, quantidade - 1, cont + 1);
+    }
+
+    return method_0620(b, c, quantidade, cont);
+}
+
+/*
+---------------------------------------------------------------------------------------------------
+METODO 10
+---------------------------------------------------------------------------------------------------
+*/
 void method_10(void)
 {
     // Identificacao
-    printf("%s\n", "\nMetodo 10\n");
+    printf("\nMetodo 10\n");
 
-    // Declaracao de variaveis
-    int quantidade=0;
-    int n1=0;
-    int n2=0;
+    int quantidade;
 
-    // Chamada da funcao
+    // Ler a quantidade do usuario
+    quantidade = IO_readint("Digite quantos termos pares da sequência de Fibonacci deseja somar: ");
+
+    // Chamada da funcao recursiva
+    int soma = method_0620(0, 1, quantidade, 0);
+
+    // Resultado
+    printf("\nSoma de todos os [%d] termos: %d\n", quantidade, soma);
 
     // Encerramento
-    printf("%s\n", "\nApertar ENTER para continuar\n");
+    printf("\nApertar ENTER para continuar\n");
     getchar();
 }
 
 /*
 ---------------------------------------------------------------------------------------------------
 METODO 11
-- 
 ---------------------------------------------------------------------------------------------------
 */
 
+// Funcao recursiva (06E1)
+int f06E1(int x, int n)
+{
+    if (n < 3) return 1; // Caso base: só o 1
+
+    if (n % 2 == 0) return f06E1(x, n - 1); // Ignora pares
+
+    return pow(x, n) + f06E1(x, n - 2); // Soma x^n com o termo anterior
+}
+
+// Metodo 11
 void method_11(void)
 {
     // Identificacao
-    printf("%s\n", "\nMetodo 11\n");
+    printf("\nMetodo 11\n");
+
+    int x = 0;
+    int n = 0;
+
+    // Entrada
+    printf("Digite o valor de x: ");
+    scanf("%d", &x);
+
+    printf("Digite o valor de n: ");
+    scanf("%d", &n);
+
+    // Chamada da funcao
+    int resultado = f06E1(x, n);
+
+    // Resultado
+    printf("Resultado da funcao f(x, n) = %d\n", resultado);
 
     // Encerramento
-    printf("%s\n", "\nApertar ENTER para continuar\n");
-    getchar();
+    printf("\nApertar ENTER para continuar\n");
+    getchar(); getchar(); // Dois getchar() para capturar o ENTER corretamente
 }
 
 /*
 ---------------------------------------------------------------------------------------------------
 METODO 12
-- 
 ---------------------------------------------------------------------------------------------------
 */
 
+// Funcao para calcular fatorial
+double fatorial(int n)
+{
+    if (n <= 1) return 1;
+    return n * fatorial(n - 1);
+}
+
+// Funcao recursiva 06E2
+double f06E2(int termo)
+{
+    if (termo == 0) return 1; // Primeiro termo é 1
+
+    int numerador = 2 * termo + 1;
+    int expoente = 1 << termo; // 2^termo usando bit shift
+    double denominador = fatorial(expoente);
+
+    return (numerador / denominador) + f06E2(termo - 1);
+}
+
+// Metodo 12
 void method_12(void)
 {
     // Identificacao
-    printf("%s\n", "\nMetodo 12\n");
+    printf("\nMetodo 12\n");
+
+    int n = 0;
+
+    // Leitura do valor de n
+    n=IO_readint("Digite o numero de termos: ");
+        
+    // Chamada da funcao
+    double resultado = f06E2(n - 1);
+
+    // Exibicao da resultado
+    printf("Resultado da expressao: %.10lf\n", resultado);
 
     // Encerramento
-    printf("%s\n", "\nApertar ENTER para continuar\n");
+    printf("\nApertar ENTER para continuar\n");
     getchar();
 }
 
