@@ -210,25 +210,31 @@ METODO 00
 bool method_02_auxiliar(void)
 {
     // Declaração de variáveis
-    bool condicional = false;
+    bool condicional = true;
     int quantidade = 0;
     char caractere_1 = 'a';
     char caractere_2 = 'b';
     char caractere_3 = 'c';
 
-    quantidade = IO_readint("Digite a quantidade de vezes para testar: ");
-    caractere_1 = IO_readchar("\nDigite a primeira letra: ");
-    caractere_2 = IO_readchar("\nDigite a segunda letra: ");
-    caractere_3 = IO_readchar("\nDigite a terceira letra: ");
 
-    while (quantidade > 0)
+    quantidade = IO_readint("Digite a quantidade de vezes para testar: ");
+
+    while (condicional)
     {
         quantidade = quantidade - 1;
+        condicional = quantidade;
+
+        caractere_1 = IO_readchar("\nDigite a primeira letra: ");
+        caractere_2 = IO_readchar("\nDigite a segunda letra: ");
+        caractere_3 = IO_readchar("\nDigite a terceira letra: ");
 
         if (caractere_1 < caractere_2 && caractere_2 < caractere_3)
         {
-            condicional = true;
-            printf("[Ordem crescente: %c < %c < %c]\n", caractere_1, caractere_2, caractere_3);
+            IO_print("\n[ESTA EM ORDEM CRESCENTE].\n");
+        }
+        else
+        {
+            IO_print("\n[NAO ESTA EM ORDEM CRESCENTE].\n");        
         }
     }
 
@@ -250,7 +256,7 @@ void method_02(void)
     printf("%s\n", "\nMetodo 02\n");
 
     // Chamada da funcao
-    bool method_02_auxiliar(condicional, quantidade, caractere_1, caractere_2, caractere_3);
+    method_02_auxiliar();
 
     // Encerramento
     printf("%s\n", "\nApertar ENTER para continuar\n");
@@ -268,6 +274,42 @@ void method_03(void)
 {
     // Identificacao
     printf("%s\n", "\nMetodo 03\n");
+
+    // Declaracao de Variaveis
+    int a=0;                        
+    int b=0;
+    int i=0;
+    int quantidade=0;
+    int *numeros=0;
+    int *numerosRejeitados=0;
+    // [a, b)
+
+    // Leitura dos limites
+    IO_print("Formatacao: [a,b)");
+    a=IO_readint("\nDigite o valor do limite inferior [FECHADO]: ");
+    b=IO_readint("\nDigite o valor do limite superior (ABERTO): ");
+
+    // Malloc para alocar outros 'n' termos
+    numeros= malloc(sizeof(int)*quantidade);
+    numerosRejeitados= malloc(sizeof(int)*quantidade);
+
+    for (i=0; i<quantidade; i=i+1)
+    {
+        numeros=IO_readint("Digite um numero para testar no intervalo: ");
+
+        if ( numeros >=a && numeros <b )
+        {
+            numeros[i]=numeros;
+        }
+        else
+        {
+            numerosRejeitados[i]= numeros;
+        }
+    }
+
+    // Mostrar os numeros
+    for (i=0; i<quantidade; i =)
+    printf("\nNumeros dentro do intervalo")
 
     // Encerramento
     printf("%s\n", "\nApertar ENTER para continuar\n");
