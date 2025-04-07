@@ -32,6 +32,8 @@ cd 1563147_Gabriel_Matos_Nogueira (Windows, Linux e macOS)
 // Declaracao de biblioteca(s)
 #include "io.h"
 
+#define PI 3.141592
+
 // Declaracao dos metodos utilizados
 void method_00();
 void method_01();
@@ -152,7 +154,7 @@ void method_00(void)
 /*
 ---------------------------------------------------------------------------------------------------
 METODO 01
--
+- Formula do comprimento da circuferencia = 2 * pi * raio
 ---------------------------------------------------------------------------------------------------
 */
 
@@ -161,6 +163,39 @@ void method_01(void)
     // identificacao
     printf("%s\n", "\nMetodo 01\n");
 
+    // Declaracao de variaveis
+    double raio = 0.0;
+    double divisoes = 0.0;
+    double comprimento = 0.0;
+
+    // Leitura das variaveis
+    raio = IO_readdouble("Digite o tamanho do raio da circuferencia: ");
+    raio = (double)raio;
+    divisoes = IO_readdouble("\nDigite o numero de divisoes do comprimento: ");
+    divisoes = (double)divisoes;
+
+    if (divisoes == 0.0)
+    {
+        IO_print("\nDivisao por 0 e' invalido.\n");
+    }
+
+    else if (divisoes < 0.0 || raio < 0.0)
+    {
+        // Operacoes
+        comprimento = ((2.0 * raio * PI) / divisoes) * (-1.0);
+
+        // Mostrar o valor do comprimento
+        printf("\nO valor do comprimento e: [%lf]", comprimento);
+    }
+    else
+    {
+        // Operacoes
+        comprimento = ((2.0 * raio * PI) / divisoes);
+
+        // Mostrar o valor do comprimento
+        printf("\nO valor do comprimento e: [%lf]", comprimento);
+    }
+
     // encerramento
     printf("%s\n", "\nApertar ENTER para continuar\n");
     getchar();
@@ -168,8 +203,44 @@ void method_01(void)
 
 /*
 ---------------------------------------------------------------------------------------------------
+METODO 00
+- Encerramento do programa
+---------------------------------------------------------------------------------------------------
+*/
+bool method_02_auxiliar(void)
+{
+    // Declaração de variáveis
+    bool condicional = false;
+    int quantidade = 0;
+    char caractere_1 = 'a';
+    char caractere_2 = 'b';
+    char caractere_3 = 'c';
+
+    quantidade = IO_readint("Digite a quantidade de vezes para testar: ");
+    caractere_1 = IO_readchar("\nDigite a primeira letra: ");
+    caractere_2 = IO_readchar("\nDigite a segunda letra: ");
+    caractere_3 = IO_readchar("\nDigite a terceira letra: ");
+
+    while (quantidade > 0)
+    {
+        quantidade = quantidade - 1;
+
+        if (caractere_1 < caractere_2 && caractere_2 < caractere_3)
+        {
+            condicional = true;
+            printf("[Ordem crescente: %c < %c < %c]\n", caractere_1, caractere_2, caractere_3);
+        }
+    }
+
+    return condicional;
+}   
+
+
+/*
+---------------------------------------------------------------------------------------------------
 METODO 02
--
+- Ler a quantidade de testes
+- Cada teste, ler tres caracteres
 ---------------------------------------------------------------------------------------------------
 */
 
@@ -178,7 +249,10 @@ void method_02(void)
     // Identificacao
     printf("%s\n", "\nMetodo 02\n");
 
-    // Encerrament
+    // Chamada da funcao
+    bool method_02_auxiliar(condicional, quantidade, caractere_1, caractere_2, caractere_3);
+
+    // Encerramento
     printf("%s\n", "\nApertar ENTER para continuar\n");
     getchar();
 }
