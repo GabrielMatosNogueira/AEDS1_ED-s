@@ -338,65 +338,59 @@ void method_04(void)
     printf("%s\n", "\nMetodo 04\n");
 
     // Declaracao de variaveis
-    char string[80]         = " ";
-    char alfaNumerico[80]   = " ";
-    char naoAlfanumerico[80]= " ";
-    int quantidade          = 0;
-    int contador            = 0;
-    int tamanho             = 0;
-    int i                   = 0;
+    char string[80] = " ";
+    char alfaNumerico[80] = " ";
+    char naoAlfanumerico[80] = " ";
+    int quantidade = 0;
+    int contador = 0;
+    int tamanho = 0;
+    int i = 0;
 
     // Mensagem para requisitar uma frase
-    IO_print("Digite uma frase: ");
+    printf("Digite uma frase: ");
 
     // Leitura da frase
     fgets(string, 79, stdin);
 
     // Ler a string usando seu tamanho
-    //quantidade=(strlen(string));
-    quantidade=22;
+    quantidade = (strlen(string));
 
-    //string[quantidade-1]='\0';
+    // Substitui o '\n' por '\0'    
+    string[quantidade - 1] = '\0';
 
-    string[quantidade]='\0';
+    printf("\nFrase: '%s'", string);
+    printf("\nNumero de caracteres: [%d]", quantidade - 1);
 
-    printf("\n[%c]", string[0]);
-    printf("\n[%s]", string);
-    printf("\n[%d]", quantidade-1);
-
-
-    /*// Loop para ler cada caractere da frase
-    for(i=0; i<quantidade; i=i+1)
+    // Loop para ler cada caractere da frase
+    for (i = 0; i < quantidade; i++)
     {
-        if (!(string[i]>=33 && string[i]<=47 && string[i]>=58 && string[i]<=64 && string[i]>=91 && string[i]<=96 && string[i]>=123 && string[i]<=127))
+        // Verifica se o caractere e alfanumerico
+        if ((string[i] >= 'a' && string[i] <= 'z') || (string[i] >= 'A' && string[i] <= 'Z') || (string[i] >= '0' && string[i] <= '9') || string[i] == ' ')
         {
-            alfaNumerico[i];
+            alfaNumerico[contador] = string[i];
+            contador=contador+1;
         }
         else
         {
-            naoAlfanumerico[i];
-        }
-        // Mostrar a quantidade de caracteres alfanumericos
-        for(i=0; i<quantidade; i=i+1)
-        {
-            printf("\nCaracteres alfanumericos: [%c] ",alfaNumerico[i]);
-        }
-
-        IO_print("\n-----------------------------------------");
-
-        for(i=0; i<quantidade; i=i+1)
-        {
-            printf("\nCaracteres nao alfanumericos: [%c] ",naoAlfanumerico[i]);
+            naoAlfanumerico[tamanho] = string[i];
+            tamanho=tamanho+1;
         }
     }
-    */
+
+    printf("\n\nQuantidade de alfanumericos: [%d]\n", contador);      
+    for(i=0; i<contador; i=i+1)
+    printf("[%d]. - [%c]\n", i+1, alfaNumerico[i]);                 // O indice comeca em 0, entao e menos uma unidade, entao incrementamos mais uma unidade no i
+
+    tamanho= tamanho-1;
+
+    printf("\n\nQuantidade de nao alfanumericos: [%d]\n", tamanho);     
+    for(i=0; i<tamanho; i=i+1)
+    printf("[%d]. - [%c]\n", i+1, naoAlfanumerico[i]);              // O indice comeca em 0, entao e menos uma unidade, entao incrementamos mais uma unidade no i
 
     // Encerramento
-    printf("%s\n", "\nApertar ENTER para continuar\n");
+    printf("\n\nApertar ENTER para continuar\n");
     getchar();
 }
-
-//         printf("%c",naoAlfanumerico[i]);
 
 /*
 ---------------------------------------------------------------------------------------------------
