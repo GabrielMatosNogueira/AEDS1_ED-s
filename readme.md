@@ -2,7 +2,6 @@
 
 ## 1. Informações do Autor
 - **Nome**: Gabriel Matos Nogueira
-- **Código de Identificação | PUC-MINAS**: 1563147
 
 ## 2. Estrutura de Pastas
 A organização do projeto segue uma estrutura de pastas bem definida para facilitar o acesso, visualização e manutenção dos arquivos.
