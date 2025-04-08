@@ -20,7 +20,7 @@
 ### 3.2 Ambiente de Desenvolvimento e Testes
 - **Sistema Operacional**: Linux Ubuntu 24.04.2 LTS
 - **Compilador**: `gcc`
-- **Versão do GCC**: `gcc` 13.2.0
+- **Versão do GCC**: `gcc 13.2.0`
 
 ## 4. Contato
 Caso haja dúvidas ou sugestões relacionadas ao projeto, entre em contato:
