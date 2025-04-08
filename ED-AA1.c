@@ -1,6 +1,6 @@
 /*
-Nome do Programa:   ED
-Data:               //2025
+Nome do Programa:   ED-AA1
+Data:               07/04/2025
 Nome:               Gabriel Matos Nogueira
 Codigo de Pessoa:   1563147
 Matricula:          870863
@@ -16,15 +16,15 @@ da sua maquina
 cd 1563147_Gabriel_Matos_Nogueira (Windows, Linux e macOS)
 
     2.1 - Compile o programa
-    Windows:    gcc -o  .c
-    Linux:      gcc -o  .c
-    macOS:      gcc -o  .c
+    Windows:    gcc -o ED-AA1 ED-AA1.c
+    Linux:      gcc -o ED-AA1 ED-AA1.c
+    macOS:      gcc -o ED-AA1 ED-AA1.c
 
 
     2.2 - Execute o programa
-    Windows:     ED
-    Linux:      ./ED
-    macOS:      ./
+    Windows:     ED-AA1
+    Linux:      ./ED-AA1
+    macOS:      ./ED-AA1
 
 ---------------------------------------------------------------------------------------------------
 */
