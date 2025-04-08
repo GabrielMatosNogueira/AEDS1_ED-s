@@ -2,7 +2,7 @@
 
 ## 1. Informações do Autor
 - **Nome**: Gabriel Matos Nogueira
-- 
+
 ## 2. Informações Acadêmicas
 
 ### 2.1 Disciplina
