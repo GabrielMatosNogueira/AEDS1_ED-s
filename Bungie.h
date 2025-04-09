@@ -21,28 +21,36 @@
 // EXIBITHION FUNCTIONS
 
 // ED-s identification
-void Iidentification (const char *ED)
+void Bidentification (const char *ED)
 {
     printf("\n- [%s]\n- Author: Gabriel Matos Nogueira\n- Registration: 870863\n\n", ED);
 }
 
-// Display on screen
-void Iprint(const char *phrase)
+// Display message on screen
+void Bprint(const char *phrase)
 {
     printf("%s", phrase);
 }
 
 // Display message with one integer value
-void IprintInt(const char *phrase, int number)
+void BprintInt(const char *phrase, int number)
 {
     printf("%s[%d]", phrase, number);
 }
 
+// Display message with one double value
+void BprintDouble(const char *phrase, double number)
+{
+    printf("%s[%lf]", phrase, number);
+}
+
+// Display methods options
+void BmethodsDisplay(cons)
 
 // READ DATA FUNCTIONS
 
 // Read integer value
-int Ireadint (int number)
+int Breadint (int number)
 {
     int scan=0;
     scanf("%d", &scan);
@@ -51,7 +59,7 @@ int Ireadint (int number)
 }
 
 // Read double value
-double Ireaddouble (double number)
+double Breaddouble (double number)
 {
     double scan=0.0;
     scanf("%lf", &scan);
@@ -61,7 +69,7 @@ double Ireaddouble (double number)
 
 // Read char value
 
-char Ireadchar (char character)
+char Breadchar (char character)
 {
     char letter=' ';
     scanf("%c", &letter);
