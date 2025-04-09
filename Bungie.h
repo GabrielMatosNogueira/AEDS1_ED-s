@@ -45,7 +45,7 @@ void BprintDouble(const char *phrase, double number)
 }
 
 // Display methods options
-void BmethodsDisplay(cons)
+//void BmethodsDisplay(cons)
 
 // READ DATA FUNCTIONS
 
