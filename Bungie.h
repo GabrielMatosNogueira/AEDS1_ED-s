@@ -1,0 +1,35 @@
+/*
+BUNGIE LIBRARY
+- Type: Input/Output console
+- Name: Bungie
+- @author GabrielMatosNogueira [Github]
+- @version  Bungie - v1.0-2025-01  (Version 1.0 - 2025/01)
+
+[RESPONSABLE CLEAN CODE, PLEASE CHECKOUT LIBRARY DOCUMENTATION]
+*/
+
+// Bibliotecas:
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdbool.h>
+#include <ctype.h>
+#include <math.h>
+#include <time.h>
+#include <time.h>
+
+// Exibithion functions
+
+// ED-s identification
+void Iidentification (const char *ED)
+{
+    printf("\n- [%s]\n- Author: Gabriel Matos Nogueira\n- Registration: 870863\n\n", ED);
+}
+
+// Read data functions
+void Ireadint (int number)
+{
+    int scannumber=0;
+    scanf("%d", &scannumber);
+    getchar()
+}
