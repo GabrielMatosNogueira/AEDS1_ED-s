@@ -1,35 +1,12 @@
 /*
 Nome do Programa:   ED-AA1
-Data:               07/04/2025
-Nome:               Gabriel Matos Nogueira
-Codigo de Pessoa:   1563147
+- Nome:               Gabriel Matos Nogueira
+- Codigo de Pessoa:   1563147
 Matricula:          870863
 Versao:             1.0
-
----------------------------------------------------------------------------------------------------
-
-Como executar o programa no terminal:
-1.0 - Certifique-se que o compilador GCC esteja instalado e presente nas variaveis de ambiente
-da sua maquina
-
-2.0 - Adentre a pasta para executar o programa:
-cd 1563147_Gabriel_Matos_Nogueira (Windows, Linux e macOS)
-
-    2.1 - Compile o programa
-    Windows:    gcc -o ED-AA1 ED-AA1.c
-    Linux:      gcc -o ED-AA1 ED-AA1.c
-    macOS:      gcc -o ED-AA1 ED-AA1.c
-
-
-    2.2 - Execute o programa
-    Windows:     ED-AA1
-    Linux:      ./ED-AA1
-    macOS:      ./ED-AA1
-
----------------------------------------------------------------------------------------------------
 */
 
-// Declaracao de biblioteca(s)
+// Bibliotecas:
 #include "io.h"
 
 #define PI 3.141592
