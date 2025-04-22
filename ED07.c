@@ -152,7 +152,8 @@ void method_00(void)
 /*
 ---------------------------------------------------------------------------------------------------
 METODO 01
--
+- Ler um valor inteiro do teclado que representa quantidade de numeros
+- Gravar a quantidade em números múltiplos de 4
 ---------------------------------------------------------------------------------------------------
 */
 
@@ -161,7 +162,24 @@ void method_01(void)
     // identificacao
     printf("%s\n", "\nMetodo 01\n");
 
-    // 
+    // Declaracao de variaveis
+    int quantidade=0;
+    char nomeArq[]="ED07.txt";
+    FILE *arq=fopen(nomeArq,"w");
+    int i=0;
+    int multiplo=0;
+
+    // Ler a quantidade de vezes
+    quantidade=IO_readint("Digite a quantidade de multiplos de 4: ");
+
+    // Elaboracao da logica de multiplos de 4
+    for (i=0; i<quantidade; i= i+1)
+    {
+        multiplo= multiplo+4;
+        fprintf(arq, "%d\n", multiplo);
+    }
+
+    fclose(arq);
 
     // encerramento
     printf("%s\n", "\nApertar ENTER para continuar\n");
@@ -180,7 +198,23 @@ void method_02(void)
     // Identificacao
     printf("%s\n", "\nMetodo 02\n");
 
-    // Encerrament
+    // Declaracao de variaveis
+    int quantidade=0;
+    int multiplo=0;
+    int i=0;
+    char nomeArq[]="ED07_02.txt";
+    FILE *arq=fopen(nomeArq,"wt");
+
+    // Leitura da quantidade
+    quantidade=IO_readint("Digite a quantidade de multiplos de 15: ");
+
+    // Logica de implementacao
+    for(i=30*quantidade; i>quantidade; i=i-30)
+    {
+        printf("\n%d", quantidade);
+    }
+
+    // Encerramento
     printf("%s\n", "\nApertar ENTER para continuar\n");
     getchar();
 }
