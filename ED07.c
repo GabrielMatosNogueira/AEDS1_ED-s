@@ -255,12 +255,13 @@ void method_03(void)
     quantidade=IO_readint("\nDigite a quantidade de numeros multiplos de 3: ");
 
     fprintf(arq, "\nQUANTIDADE: [%d]", quantidade);
+    //printf("\n[%d]\n", 1);
 
-    for(i=0; i<quantidade; i=i+1)
+    for(i=1; i<=quantidade; i=i+1)
     {
         printf("[%d]\n", multiplo);
         fprintf(arq, "[%d]. %d", i, multiplo);
-        multiplo=multiplo+3;
+        multiplo=multiplo*3;
     }
 
     fclose(arq);
