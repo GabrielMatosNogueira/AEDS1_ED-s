@@ -1,5 +1,5 @@
-FUNCTION VOID BmethodsDisplay:
-Shall recive one number (number of the ID in the second array position)
-
-void BmethodsDisplay()
-
+CLASS'S NOTES
+---------------------
+04/23/2025 - 
+* Automatização de entrada de resultados
+* FORMATAÇÃO: ./programa < input.txt
