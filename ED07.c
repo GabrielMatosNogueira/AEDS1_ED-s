@@ -1,6 +1,6 @@
 /*
-Nome do Programa:   ED
-Data:               //2025
+Nome do Programa:   ED07
+Data:               04/23/2025
 Nome:               Gabriel Matos Nogueira
 Codigo de Pessoa:   1563147
 Matricula:          870863
@@ -16,15 +16,15 @@ da sua maquina
 cd 1563147_Gabriel_Matos_Nogueira (Windows, Linux e macOS)
 
     2.1 - Compile o programa
-    Windows:    gcc -o  .c
-    Linux:      gcc -o  .c
-    macOS:      gcc -o  .c
+    Windows:    gcc -o ED07 ED07.c
+    Linux:      gcc -o ED07 ED07.c
+    macOS:      gcc -o ED07 ED07.c
 
 
     2.2 - Execute o programa
-    Windows:     ED
-    Linux:      ./ED
-    macOS:      ./
+    Windows:     ED07
+    Linux:      ./ED07
+    macOS:      ./ED07
 
 ---------------------------------------------------------------------------------------------------
 */
@@ -282,6 +282,26 @@ void method_04(void)
 {
     // Identificacao
     printf("%s\n", "\nMetodo 04\n");
+
+    int quantidade=0;
+    double multiplo=1.0;
+    int i=0;
+    char nomeArq[]="ED07_02.txt";
+    FILE *arq=fopen(nomeArq,"wt");
+
+    quantidade=IO_readint("\nDigite a quantidade de numeros multiplos de 3: ");
+
+    fprintf(arq, "\nQUANTIDADE: [%d]", quantidade);
+    multiplo=3.0*(double)quantidade;
+
+    for(i=1; i<=quantidade; i=i+1)
+    {
+        printf("[%lf]\n", multiplo);
+        fprintf(arq, "[%d]. %lf", i, multiplo);
+        multiplo=multiplo/3.0;
+    }
+
+    fclose(arq);
 
     // Encerramento
     printf("%s\n", "\nApertar ENTER para continuar\n");
