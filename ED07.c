@@ -200,7 +200,8 @@ void method_02(void)
 
     // Declaracao de variaveis
     int quantidade=0;
-    int multiplo=0;
+    //int *memoria=0;
+    int multiplo=1;
     int i=0;
     char nomeArq[]="ED07_02.txt";
     FILE *arq=fopen(nomeArq,"wt");
@@ -208,11 +209,25 @@ void method_02(void)
     // Leitura da quantidade
     quantidade=IO_readint("Digite a quantidade de multiplos de 15: ");
 
+    // Alocacao de memoria
+    //memoria=malloc(quantidade*sizeof(int));
+
+    // Salvar a quantidade de multiplos no arquivo
+    fprintf(arq, "[%d]\n", quantidade);
+
+    // Definicao do ultimo termo da multiplicacao
+    multiplo=15*quantidade;
+
     // Logica de implementacao
-    for(i=30*quantidade; i>quantidade; i=i-30)
+    for(i=0; i<quantidade; i=i+1)
     {
-        printf("\n%d", quantidade);
+        printf("[%d]\n", multiplo);
+        fprintf(arq, "\n[%d]. %d", i, multiplo);
+        multiplo=multiplo-15;
     }
+
+    fclose(arq);
+    //free(memoria);
 
     // Encerramento
     printf("%s\n", "\nApertar ENTER para continuar\n");
@@ -230,6 +245,25 @@ void method_03(void)
 {
     // Identificacao
     printf("%s\n", "\nMetodo 03\n");
+
+    int quantidade=0;
+    int multiplo=1;
+    int i=0;
+    char nomeArq[]="ED07_02.txt";
+    FILE *arq=fopen(nomeArq,"wt");
+
+    quantidade=IO_readint("\nDigite a quantidade de numeros multiplos de 3: ");
+
+    fprintf(arq, "\nQUANTIDADE: [%d]", quantidade);
+
+    for(i=0; i<quantidade; i=i+1)
+    {
+        printf("[%d]\n", multiplo);
+        fprintf(arq, "[%d]. %d", i, multiplo);
+        multiplo=multiplo+3;
+    }
+
+    fclose(arq);
 
     // Encerramento
     printf("%s\n", "\nApertar ENTER para continuar\n");
