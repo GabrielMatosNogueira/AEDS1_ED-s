@@ -284,7 +284,7 @@ void method_04(void)
     printf("%s\n", "\nMetodo 04\n");
 
     int quantidade=0;
-    double multiplo=1.0;
+    int multiplo=1;
     int i=0;
     char nomeArq[]="ED07_02.txt";
     FILE *arq=fopen(nomeArq,"wt");
@@ -292,12 +292,12 @@ void method_04(void)
     quantidade=IO_readint("\nDigite a quantidade de numeros multiplos de 3: ");
 
     fprintf(arq, "\nQUANTIDADE: [%d]", quantidade);
-    multiplo=3.0*(double)quantidade;
+    multiplo=pow(3, quantidade-1);
 
     for(i=1; i<=quantidade; i=i+1)
     {
-        printf("[%lf]\n", multiplo);
-        fprintf(arq, "[%d]. %lf", i, multiplo);
+        printf("[1/%d]\n", multiplo);
+        fprintf(arq, "\n[%d]. 1/%d", i, multiplo);
         multiplo=multiplo/3.0;
     }
 
