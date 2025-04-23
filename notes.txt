@@ -1,5 +1,11 @@
+--------------------------------------------------------------------------------------------------------
 CLASS'S NOTES
----------------------
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 04/23/2025 - 
 * Automatização de entrada de resultados
-* FORMATAÇÃO: ./programa < input.txt
+* FORMATAÇÃO: ./programa < input.txt > output.txt
+                   |           |            |
+                   |           |             - Saída de dados do console para uma arquivo do tipo texto output
+                   |           -- Entrada de dados previamente inseridos em um arquivo do tipo texto input
+                   --- Execucacao do programa previamente compilado
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
