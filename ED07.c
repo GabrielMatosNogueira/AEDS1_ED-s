@@ -322,9 +322,10 @@ void method_05(void)
 
     // Declaracao de variaveis
     int n=0;
-    double x=1.0;
     int i=0;
-    int impar=0;
+    int x=1;
+    double impar=1.0;
+    double valor=1.0;
     char nomeArq[]="ED07_02.txt";
     FILE *arq=fopen(nomeArq,"wt");
 
@@ -332,15 +333,14 @@ void method_05(void)
     x=IO_readdouble("Digite um numero a ser elevado: ");
     n=IO_readint("\nDigite a quantidade de vezes: ");
 
+    printf("\nNUMERO: [%d]", x);
     printf("\nQUANTIDADE: [%d]", n);
-    printf("\nNUMERO: [%.2lf]", x);
-
 
     for(i=0; i<n; i=i+1)
     {
-        printf("\n\n[1/%.1lf]", x);
-        impar=impar+2;
-        x=pow(x,impar);
+        printf("[1/%.2lf]\n", valor, impar);
+        impar=impar+2.0;
+        valor=pow(x,impar);
     }
 
     // Encerramento
