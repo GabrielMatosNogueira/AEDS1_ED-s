@@ -172,10 +172,6 @@ void lerPares(int n, int *array)
             IO_print("Numero digitado nao e par ou nao e' positivo!\n");
             i = i - 1;
         }
-        else
-        {
-            IO_print("Numero valido, digite o proximo numero\n");
-        }
     }
 
     for (i = 0; i < n; i = i + 1)
@@ -201,7 +197,6 @@ void method_01(void)
     // Declaracao de variaveis 1
     int *array=0;
     int n=0;
-    char answer='a';
 
     // Leitura do tamanho do array
     n=IO_readint("Digite o tamanho de n: ");
@@ -224,6 +219,30 @@ void method_01(void)
 
 /*
 ---------------------------------------------------------------------------------------------------
+METODO gravarParesPositivos
+- Ler valores inteiros dentro de um arquivo e armazena-los no array
+- Valores impares e negativos são descartados
+- Guardar no arquivo primeiro o tamanho depois os elementos distribuidos linha por linha
+---------------------------------------------------------------------------------------------------
+*/
+
+void gravarParesPositivos(int n, int *array)
+{
+    // Identificacao
+    IO_start("Metodo 02");
+    
+    // Alocacao dinamica de memoria
+    array=(int*)malloc(sizeof(int)*n);
+
+    // 
+
+
+    // Encerrament
+    IO_end();
+}
+
+/*
+---------------------------------------------------------------------------------------------------
 METODO 02
 -
 ---------------------------------------------------------------------------------------------------
@@ -233,6 +252,10 @@ void method_02(void)
 {
     // Identificacao
     IO_start("Metodo 02");
+
+    // Declaracao de Variaveis
+    FILE *arq=fopen("gravarParesPositivos.txt","wt");
+    int *array=0;
 
     // Encerrament
     IO_end();
