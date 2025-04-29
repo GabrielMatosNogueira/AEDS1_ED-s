@@ -52,7 +52,8 @@ int main(void)
 {
     // armazenar a opcao do usuario
     int opcao = 0;
-    IO_id("\n\tOpcoes de Metodos:");
+    IO_id("ED");
+    IO_print("\n\tOpcoes de Metodos:");
 
     // Menu de opcoes do usuario
     do
@@ -139,14 +140,10 @@ METODO 00
 void method_00(void)
 {
     // Identificacao
-    printf("%s\n", "\nMetodo 00\n");
+    IO_start("Metodo 00");
 
     // Mensagem de encerramento
     IO_print("ENCERRANDO O PROGRAMA...\n");
-
-    // Encerramento
-    printf("%s\n", "\nApertar ENTER para continuar\n");
-    getchar();
 }
 
 /*
@@ -159,11 +156,10 @@ METODO 01
 void method_01(void)
 {
     // identificacao
-    printf("%s\n", "\nMetodo 01\n");
+    IO_start("Metodo 01");
 
     // encerramento
-    printf("%s\n", "\nApertar ENTER para continuar\n");
-    getchar();
+    IO_end();
 }
 
 /*
@@ -176,11 +172,10 @@ METODO 02
 void method_02(void)
 {
     // Identificacao
-    printf("%s\n", "\nMetodo 02\n");
+    IO_start("Metodo 02");
 
     // Encerrament
-    printf("%s\n", "\nApertar ENTER para continuar\n");
-    getchar();
+    IO_end();
 }
 
 /*
@@ -193,11 +188,10 @@ METODO 03
 void method_03(void)
 {
     // Identificacao
-    printf("%s\n", "\nMetodo 03\n");
+    IO_start("Metodo 03");
 
     // Encerramento
-    printf("%s\n", "\nApertar ENTER para continuar\n");
-    getchar();
+    IO_end();
 }
 
 /*
@@ -210,11 +204,10 @@ METODO 04
 void method_04(void)
 {
     // Identificacao
-    printf("%s\n", "\nMetodo 04\n");
+    IO_start("Metodo 04");
 
     // Encerramento
-    printf("%s\n", "\nApertar ENTER para continuar\n");
-    getchar();
+    IO_end();
 }
 
 /*
@@ -227,11 +220,10 @@ METODO 05
 void method_05(void)
 {
     // Identificacao
-    printf("%s\n", "\nMetodo 05\n");
+    IO_start("Metodo 05");
 
     // Encerramento
-    printf("%s\n", "\nApertar ENTER para continuar\n");
-    getchar();
+    IO_end();
 }
 
 /*
@@ -244,11 +236,10 @@ METODO 06
 void method_06(void)
 {
     // Identificacao
-    printf("%s\n", "\nMetodo 06\n");
+    IO_start("Metodo 06");
 
     // Encerramento
-    printf("%s\n", "\nApertar ENTER para continuar\n");
-    getchar();
+    IO_end();
 }
 
 /*
@@ -261,11 +252,10 @@ METODO 07
 void method_07(void)
 {
     // Identificacao
-    printf("%s\n", "\nMetodo 07\n");
+    IO_start("Metodo 07");
 
     // Encerramento
-    printf("%s\n", "\nApertar ENTER para continuar\n");
-    getchar();
+    IO_end();
 }
 
 /*
@@ -278,11 +268,10 @@ METODO 08
 void method_08(void)
 {
     // Identificacao
-    printf("%s\n", "\nMetodo 08\n");
+    IO_start("Metodo 08");
 
     // Encerramento
-    printf("%s\n", "\nApertar ENTER para continuar\n");
-    getchar();
+    IO_end();
 }
 
 /*
@@ -295,11 +284,10 @@ METODO 09
 void method_09(void)
 {
     // Identificacao
-    printf("%s\n", "\nMetodo 09\n");
+    IO_start("Metodo 09");
 
     // Encerramento
-    printf("%s\n", "\nApertar ENTER para continuar\n");
-    getchar();
+    IO_end();
 }
 
 /*
@@ -312,11 +300,10 @@ METODO 10
 void method_10(void)
 {
     // Identificacao
-    printf("%s\n", "\nMetodo 10\n");
+    IO_start("Metodo 10");
 
     // Encerramento
-    printf("%s\n", "\nApertar ENTER para continuar\n");
-    getchar();
+    IO_end();
 }
 
 /*
@@ -329,11 +316,10 @@ METODO 11
 void method_11(void)
 {
     // Identificacao
-    printf("%s\n", "\nMetodo 11\n");
+    IO_start("Metodo 11");
 
     // Encerramento
-    printf("%s\n", "\nApertar ENTER para continuar\n");
-    getchar();
+    IO_end();
 }
 
 /*
@@ -346,11 +332,10 @@ METODO 12
 void method_12(void)
 {
     // Identificacao
-    printf("%s\n", "\nMetodo 12\n");
+    IO_start("\nMetodo 12\n");
 
     // Encerramento
-    printf("%s\n", "\nApertar ENTER para continuar\n");
-    getchar();
+    IO_end();
 }
 
 /*-------------------------------------------------------------------------------------------------
