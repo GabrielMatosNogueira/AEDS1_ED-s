@@ -154,6 +154,28 @@ void IO_id ( const char * const text )
 } // fim IO_id ( )
 
 /**
+    Metodo para iniciar o programa e identificar o metodo.
+    @param text - mensagem a ser exibida
+ */
+
+void IO_start ( const char *text )
+{
+    IO_printf ( "\n%s\n", text);
+
+} // fim IO_start ( )
+
+/**
+    Metodo para finalizar o programa.
+    @param text - mensagem a ser exibida
+ */
+
+void IO_end ( void )
+{
+    IO_printf ( "\n%s","Aperte ENTER para encerrar o programa");
+    getchar( );
+} // fim IO_end ( )
+
+/**
     Funcao para ler valor inteiro do teclado.
     @return valor lido
     @param  text - mensagem a ser exibida antes da leitura
