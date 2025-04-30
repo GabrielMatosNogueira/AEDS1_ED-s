@@ -32,6 +32,9 @@ cd 1563147_Gabriel_Matos_Nogueira (Windows, Linux e macOS)
 // Declaracao de biblioteca(s)
 #include "io.h"
 
+// Definicao do tamanho maximo de um array
+#define MAX 20
+
 // Declaracao dos metodos utilizados
 void method_00();
 void method_01();
@@ -178,8 +181,6 @@ void lerPares(int n, int *array)
     {
         printf("\n[%d]", array[i]);
     }
-
-    IO_end();
 }
 
 /*
@@ -220,31 +221,57 @@ void method_01(void)
 /*
 ---------------------------------------------------------------------------------------------------
 METODO gravarParesPositivos
-- Ler valores inteiros dentro de um arquivo e armazena-los no array
-- Valores impares e negativos são descartados
-- Guardar no arquivo primeiro o tamanho depois os elementos distribuidos linha por linha
 ---------------------------------------------------------------------------------------------------
 */
 
-void gravarParesPositivos(int n, int *array)
+void gravarParesPositivos(char *filename, int *array)
 {
-    // Identificacao
-    IO_start("Metodo 02");
-    
-    // Alocacao dinamica de memoria
-    array=(int*)malloc(sizeof(int)*n);
+    // Declaracao de variaveis
+    FILE *arquivo = fopen(filename, "r");
+    int valorLido = 0;
+    int n = 0;
+    int i = 0;
 
-    // 
+    // Verifica se o arquivo foi aberto com sucesso
+    if (arquivo == NULL)
+    {
+        printf("Erro ao abrir o arquivo.\n");
+        return;
+    }
 
+    // Le os numeros do arquivo
+    while (fscanf(arquivo, "%d", &n) != EOF)
+    {
+        // Verifica se o numero e' par e positivo
+        if (n < 0 || n % 2 != 0)
+        {
+            printf("\nO numero %d e' impar ou negativo.\n", n);
+        }
+        else
+        {
+            array[i] = n;
+            i=i+1;
+        }
+    }
 
-    // Encerrament
-    IO_end();
+    // Fecha o arquivo
+    fclose(arquivo);
+
+    // Exibe os numeros armazenados no array
+    printf("\nNumeros pares e positivos lidos do arquivo:\n");
+    for (int j = 0; j < i; j++)
+    {
+        printf("%d\n", array[j]);
+    }
 }
 
 /*
 ---------------------------------------------------------------------------------------------------
 METODO 02
--
+- Criar um arquivo e inserir o tamanho do array na primeira linha e nas demais, numeros inteiros
+separados por linha
+- Ler e armazenar os numeros dentro de um arranjo
+- Filtrar os valores impares e negativos
 ---------------------------------------------------------------------------------------------------
 */
 
@@ -254,10 +281,13 @@ void method_02(void)
     IO_start("Metodo 02");
 
     // Declaracao de Variaveis
-    FILE *arq=fopen("gravarParesPositivos.txt","wt");
-    int *array=0;
+    int array[MAX];
+    char *filename="ED08_method02.txt";
 
-    // Encerrament
+    // chamada do metodo
+    gravarParesPositivos(filename, array);
+    
+    // Encerramento
     IO_end();
 }
 
