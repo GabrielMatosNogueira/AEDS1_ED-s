@@ -147,6 +147,9 @@ void method_00(void)
 
     // Mensagem de encerramento
     IO_print("ENCERRANDO O PROGRAMA...\n");
+
+    // Encerrando o programa
+    IO_end();
 }
 
 /*
@@ -293,8 +296,50 @@ void method_02(void)
 
 /*
 ---------------------------------------------------------------------------------------------------
+METODO gerarInt
+---------------------------------------------------------------------------------------------------
+*/
+
+void gerarInt(int limiteInferior, int limiteSuperior)
+{
+    // Declaracao de variaveis
+    int quantidade=0;
+    int i=0;
+    int numero=0;
+    char nome[]="gerarInt.txt";
+    FILE *arq=fopen(nome, "wt");
+
+    // Leitura da quantidade de numeros randomicos
+    quantidade=IO_readint("\nDigite a quantidade de numeros randomicos: ");
+
+    fprintf(arq, "%d\n\n", quantidade);
+
+    srand(time(NULL));
+
+    for(i=0; i<quantidade; i=i+1)
+    {
+        numero=rand() % 100;
+        if(numero>=limiteInferior && numero<=limiteSuperior)
+        {
+            fprintf(arq, "%d\n", numero);
+            printf("%d\n", numero);
+        }
+        else
+        {
+            i=i-1;
+        }
+    }
+    fclose(arq);
+}
+
+/*
+---------------------------------------------------------------------------------------------------
 METODO 03
--
+- Delimitar dois intervalos abertos, limite inferior e superior e passar para outra função
+- Gerar um número aleatório DENTRO desse intervalo 
+- Ler a quantidade de numeros randômicos a serem gerados e amarzena-los em um array
+- Passar o array linha a linha para dentro de um arquivo, sendo o primeiro elemento dentro do arquivo 
+a quantidade de numeros
 ---------------------------------------------------------------------------------------------------
 */
 
@@ -303,14 +348,72 @@ void method_03(void)
     // Identificacao
     IO_start("Metodo 03");
 
+    // Declaracao de variaveis
+    int limiteInferior=0;
+    int limiteSuperior=0;
+
+    // Leitura dos limites
+    limiteInferior=IO_readint("\nDigite o limite inferior: ");
+    limiteSuperior=IO_readint("\nDigite o limite superior: ");
+
+    // Passagem de parametros para a funcao
+    gerarInt(limiteInferior,limiteSuperior);
+
     // Encerramento
     IO_end();
 }
 
 /*
 ---------------------------------------------------------------------------------------------------
-METODO 04
+METODO lerArquivo
 -
+---------------------------------------------------------------------------------------------------
+*/
+
+void lerArquivo(char *filename,int *array)
+{
+    // Identificacao
+    IO_start("Metodo lerArquivo");
+
+    // Declarar variaveis
+    FILE *arq=fopen(filename, "wt");
+    int numero=0;
+    int array[]=0;
+    int i=0;
+
+    do
+    {
+       fscanf(arq, "%d", array[i]);
+       i=i+1;
+    } while (numero==EOF);
+    
+    acharMenorPar(filename, array);
+
+}
+
+/*
+---------------------------------------------------------------------------------------------------
+METODO arranjo
+-
+---------------------------------------------------------------------------------------------------
+*/
+
+void acharMenorPar(int n, int* arranjo)
+{
+    // Identificacao
+    IO_start("Metodo arrajo");
+
+    // Declaracao de variaveis
+    int a=0;
+    int b=0;
+
+}
+
+/*
+---------------------------------------------------------------------------------------------------
+METODO 04
+- Criar uma funcao lerArquivo e acharMenorPar e aplicar respectivamente sobre, arranjo e menor
+-  
 ---------------------------------------------------------------------------------------------------
 */
 
@@ -318,6 +421,13 @@ void method_04(void)
 {
     // Identificacao
     IO_start("Metodo 04");
+
+    // Declaracao de variaveis
+    int array[MAX]=0;
+    char *filename="method0804.txt";
+
+    // Chamar a funcao
+    lerArquivo(filename, array);
 
     // Encerramento
     IO_end();
