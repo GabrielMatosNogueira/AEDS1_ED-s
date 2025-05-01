@@ -33,7 +33,7 @@ cd 1563147_Gabriel_Matos_Nogueira (Windows, Linux e macOS)
 #include "io.h"
 
 // Definicao do tamanho maximo de um array
-#define MAX 20
+#define MAX 100
 
 // Declaracao dos metodos utilizados
 void method_00();
@@ -262,7 +262,7 @@ void gravarParesPositivos(char *filename, int *array)
 
     // Exibe os numeros armazenados no array
     printf("\nNumeros pares e positivos lidos do arquivo:\n");
-    for (int j = 0; j < i; j++)
+    for (int j = 0; j < i; j=j+1)
     {
         printf("%d\n", array[j]);
     }
@@ -366,7 +366,6 @@ void method_03(void)
 /*
 ---------------------------------------------------------------------------------------------------
 METODO lerArquivo
--
 ---------------------------------------------------------------------------------------------------
 */
 
@@ -376,44 +375,46 @@ void lerArquivo(char *filename,int *array)
     IO_start("Metodo lerArquivo");
 
     // Declarar variaveis
-    FILE *arq=fopen(filename, "wt");
-    int numero=0;
-    int array[]=0;
+    FILE *arq=fopen(filename, "r");
+    int leitor=0;
     int i=0;
 
     do
     {
-       fscanf(arq, "%d", array[i]);
-       i=i+1;
-    } while (numero==EOF);
-    
-    acharMenorPar(filename, array);
+        fscanf(arq, "%d", &array[i]);
+        i=i+1;
+    } while (i<100);
 
+    for(i=0; i<100; i=i+1)
+    {
+        printf("%d\n",array[i]);
+    }
 }
 
 /*
 ---------------------------------------------------------------------------------------------------
 METODO arranjo
--
 ---------------------------------------------------------------------------------------------------
 */
 
-void acharMenorPar(int n, int* arranjo)
+int acharMenorPar(char *filename, int *array)
 {
     // Identificacao
     IO_start("Metodo arrajo");
 
     // Declaracao de variaveis
-    int a=0;
-    int b=0;
-
+    int menor=0;
+    int maior=0;
+    int temp=0;
+    FILE *arq=fopen(filename, "r");
+    
+    return (menor);
 }
 
 /*
 ---------------------------------------------------------------------------------------------------
 METODO 04
 - Criar uma funcao lerArquivo e acharMenorPar e aplicar respectivamente sobre, arranjo e menor
--  
 ---------------------------------------------------------------------------------------------------
 */
 
@@ -423,11 +424,15 @@ void method_04(void)
     IO_start("Metodo 04");
 
     // Declaracao de variaveis
-    int array[MAX]=0;
+    int array[MAX];
     char *filename="method0804.txt";
+    FILE *arq=fopen(filename, "r"); // O menor valor par da lista e' -932
+    int menor=0;
+    int i=0;
 
     // Chamar a funcao
     lerArquivo(filename, array);
+    menor=acharMenorPar(filename, array);
 
     // Encerramento
     IO_end();
