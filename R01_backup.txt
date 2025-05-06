@@ -1,0 +1,29 @@
+/*void exercicio01_backup (void)
+{
+    IO_id("Exercicio 01");
+
+    int quantidade=0;
+    int array[1]=0;
+    int soma_impares=0;
+    int soma_pares=0;
+    int i=0;
+
+    quantidade=IO_readint("Digite a quantidade de numeros inteiros para o array: ");
+
+    array[quantidade];
+
+    for (i=0; i<quantidade; i=i+1)
+    {
+        array[i]=IO_readint("\nDigite o numero desejado: ");
+        if(array[i]%2==0)
+        {
+            soma_pares=soma_pares+1;
+        }
+        else
+        {
+            soma_impares=soma_impares+1;
+        }
+    }
+    
+    IO_end();
+}*/
