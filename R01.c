@@ -324,10 +324,14 @@ void no_intervalo(int n, double limite_inferior, double limite_superior, double 
         }
     }
 
+    // Prevensao do denominador ser igual a zero
+
     if(quantidade_inferior!=0)
     media_inferior = soma_inferior / quantidade_inferior;
+
     if(quantidade_entre_intervalos!=0)
     media_entre_intervalos = soma_entre_intervalos / quantidade_entre_intervalos;
+
     if(quantidade_superior!=0)
     media_superior = soma_superior / quantidade_superior;
 
@@ -420,62 +424,158 @@ void exercicio06(void)
     } while (array[i] != -1);
 }
 
-void no_intervalo_07(int a, int b, int valor)
+void no_intervalo_07(double a, double b, int tamanho, double *array)
 {
-    int quantidade=0;
-    double porcentagem_entre=0.0;
-    double porcentagem_acima=0.0;
-    double porcentagem_abaixo=0.0;
+    IO_print("\nNo_intervalo_07\n");
 
-    if(!(valor==0))
+    int dentro = 0;
+    int acima = 0;
+    int abaixo = 0;
+    int total = tamanho;
+
+    for (int i = 0; i < tamanho; i++)
     {
-        if(valor>a && valor<b)
+        if (array[i] > a && array[i] < b)
         {
-            porcentagem_entre=porcentagem_entre+1.0;
-            quantidade=quantidade+1;
+            dentro=dentro+1;
         }
-        if(valor>b)
+        else if (array[i] > b)
         {
-            porcentagem_acima=porcentagem_acima+1.0;
-            quantidade=quantidade+1;
+            acima=acima+1;
         }
-        if(valor<a)
+        else if (array[i] < a)
         {
-            porcentagem_abaixo=porcentagem_abaixo+1.0;
-            quantidade=quantidade+1;
+            abaixo=abaixo+1;
         }
     }
 
-    porcentagem_abaix
-    printf("\n%.1lf valores esta no intervalo entre ]%d,%d[", porcentagem_acima, a,b);
-    printf("\n%.1lf valores esta no intervalo entre ]%d,%d[", porcentagem_acima, a,b);
-    printf("\n%.1lf valores esta no intervalo entre ]%d,%d[", porcentagem_acima, a,b);
+    if (total > 0)
+    {
+        double perc_acima = 100.0 * acima / total;
+        double perc_abaixo = 100.0 * abaixo / total;
+
+        IO_printf("Valores dentro do intervalo aberto ]%.2lf : %.2lf[: %d\n", a, b, dentro);
+        IO_printf("Percentual acima do intervalo: %.2lf%%\n", perc_acima);
+        IO_printf("Percentual abaixo do intervalo: %.2lf%%\n", perc_abaixo);
+    }
+    else
+    {
+        IO_print("Nenhum valor válido foi informado.\n");
+    }
 }
+
 
 void exercicio07(void)
 {
     IO_print("\nExercicio07\n");
 
-    int a=0;
-    int b=0;
-    int i=0;
-    double *array;
+    double a = 0.0;
+    double b = 0.0;
+    int i = 0;
+    int tamanho = 0;
+    double *array = NULL;
+    double valor = 0.0;
 
-    a=IO_readint("\nDigite um valor para a: ");
-    b=IO_readint("\nDigite um valor para b: ");
+    a = IO_readdouble("\nDigite o valor real de a: ");
+    b = IO_readdouble("\nDigite o valor real de b: ");
+
+    // Garante que a < b
+    if (a > b)
+    {
+        double temp = a;
+        a = b;
+        b = temp;
+    }
 
     do
     {
-        i=i+1;
-        array[i]=IO_readint("\nDigite um valor para continuar ou digite -1: ");
-        array = realloc(array, (i+i) * sizeof(int));
-        no_intervalo_07(a,b,array[i]);
+        valor = IO_readdouble("\nDigite um valor (0 para terminar): ");
+        if (valor != 0.0)
+        {
+            array = (double *) realloc(array, (i + 1) * sizeof(double));
+            if (array == NULL)
+            {
+                IO_print("Erro de alocação de memória.\n");
+                return;
+            }
+            array[i] = valor;
+            i=i+1;
+        }
+    } while (valor != 0.0);
 
-    } while (array[i] != 0);
+    tamanho = i;
+
+    no_intervalo_07(a, b, tamanho, array);
+
+    free(array);
+}
+
+void maior(int x, int y, int z)
+{
+
+}
+
+void menor(int x, int y, int z)
+{
+
+}
+
+void crescente(int x, int y, int z)
+{
+
+}
+
+void decrescente(int x, int y, int z)
+{
+    
 }
 
 void exercicio08(void)
 {
+    IO_print("\nexercicio08");
+
+    double x=0.0;
+    double y=0.0;
+    double z=0.0;
+
+    double a=0.0;                   // Armazena o menor valor
+    double b=0.0;                   // Armazena o maior valor
+    double variavel_temporaria=0.0; // Permite a troca de dados
+
+
+    x=IO_readdouble("\nDigite um valor seu primeiro numero: ");
+    y=IO_readdouble("\nDigite um valor para seu segundo numero: ");
+    z=IO_readdouble("\nDigite um valor para seu terceiro numero: ");
+
+    if(x==y && x==z)
+    {
+        IO_print("\n\nTodos os numeros sao iguais.\n");
+    }
+
+    else
+    {
+        if(x>y && y>z)
+        {
+            b=z;
+            a=x;
+            IO_print("\n\nOs numeroes estao em ordem decrescente.");
+            printf("O maior valor e' %.2lf e o menor valor e' %.2lf", b,x);
+        }
+
+        if(x<y && y<z)
+        {
+            b=z;
+            a=x;
+            IO_print("\n\nOs numeroes estao em ordem crescente.\n");
+            printf("O maior valor e' %.2lf e o menor valor e' %.2lf", b,x);
+        }
+        else
+        {
+            IO_print("\n\nNumeros nao estao em ordem.\n");
+        }
+    }
+
+    IO_end();
 }
 
 void exercicio09(void)
