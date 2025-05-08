@@ -27,3 +27,64 @@
     
     IO_end();
 }*/
+
+void no_intervalo_07(int a, int b, int valor)
+{
+    int quantidade=0;
+    double porcentagem_entre=0.0;
+    double porcentagem_acima=0.0;
+    double porcentagem_abaixo=0.0;
+
+    if(!(valor==0))
+    {
+        if(valor>a && valor<b)
+        {
+            porcentagem_entre=porcentagem_entre+1.0;
+            quantidade=quantidade+1;
+        }
+        if(valor>b)
+        {
+            porcentagem_acima=porcentagem_acima+1.0;
+            quantidade=quantidade+1;
+        }
+        if(valor<a)
+        {
+            porcentagem_abaixo=porcentagem_abaixo+1.0;
+            quantidade=quantidade+1;
+        }
+    }
+
+    printf("\n%.1lf valores esta no intervalo entre ]%d,%d[", porcentagem_entre, a,b);
+    printf("\n%.1lf valores esta no intervalo entre ]%d,%d[", porcentagem_acima, a,b);
+    printf("\n%.1lf valores esta no intervalo entre ]%d,%d[", porcentagem_abaixo, a,b);
+
+    porcentagem_entre=porcentagem_entre/quantidade;
+    porcentagem_acima=porcentagem_acima/quantidade;
+    porcentagem_abaixo=porcentagem_abaixo/quantidade;
+    
+    printf("\nA media dos valores entre os intervalos e' ]%d,%d[", porcentagem_entre, a,b);
+    printf("\nA media dos valores acima dos intervalos e' ]%d,%d[", porcentagem_acima, a,b);
+    printf("\nA media dos valores abaixo dos intervalos e' ]%d,%d[", porcentagem_abaixo, a,b);
+}
+
+void exercicio07(void)
+{
+    IO_print("\nExercicio07\n");
+
+    int a=0;
+    int b=0;
+    int i=0;
+    double *array;
+
+    a=IO_readint("\nDigite um valor para a: ");
+    b=IO_readint("\nDigite um valor para b: ");
+
+    do
+    {
+        i=i+1;
+        array[i]=IO_readint("\nDigite um valor para continuar ou digite -1: ");
+        array = realloc(array, (i+i) * sizeof(int));
+        no_intervalo_07(a,b,array[i]);
+
+    } while (array[i] != 0);
+}
