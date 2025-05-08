@@ -28,34 +28,34 @@ int main(void)
         case 1:
             exercicio01();
             break;
-
         case 2:
             exercicio02();
             break;
-
         case 3:
             exercicio03();
-
+            break;
         case 4:
             exercicio04();
-
+            break;
         case 5:
             exercicio05();
-
+            break;
         case 6:
             exercicio06();
-
+            break;
         case 7:
             exercicio07();
-
+            break;
         case 8:
             exercicio08();
-
+            break;
         case 9:
             exercicio09();
-
+            break;
         case 10:
             exercicio10();
+            break;
+
         default:
             break;
         }
@@ -128,7 +128,7 @@ bool primo(int valor)
     bool resultado = true;
     int i = 0;
 
-    if (valor <= 1)
+    if (valor <= 1 || valor%2==0)
     {
         resultado = false;
     }
@@ -149,143 +149,143 @@ bool primo(int valor)
 
 void exercicio02(void)
 {
-    {
-        IO_print("\nExercicio 02\n\n");
+    IO_print("\nExercicio 02\n\n");
 
-        int quantidade = 0;
-        int soma_impares = 0;
-        int soma_pares = 0;
-        int i = 0;
-        int *array;
-
-        quantidade = IO_readint("Digite a quantidade de numeros inteiros para o arranjo: ");
-
-        array = (int *)malloc(quantidade * sizeof(int));
-
-        for (i = 0; i < quantidade; i = i + 1)
-        {
-            array[i] = IO_readint("\nDigite o numero desejado: ");
-
-            if (primo(array[i]))
-            {
-                printf("%d e' primo\n", array[i]);
-            }
-            else
-            {
-                printf("%d nao e' primo", array[i]);
-            }
-        }
-
-        IO_end();
-    }
-}
-
-bool testar_simbolo_logico(char frase[], int tamanho)
-{
+    int quantidade = 0;
+    int soma_impares = 0;
+    int soma_pares = 0;
     int i = 0;
-    bool teste_simbolo_logico = false;
+    int *array;
 
-    for (i = 0; i < tamanho; i = i + 1)
+    quantidade = IO_readint("Digite a quantidade de numeros inteiros para o arranjo: ");
+
+    array = (int *)malloc(quantidade * sizeof(int));
+
+    for (i = 0; i < quantidade; i = i + 1)
     {
-        if (frase[i] == '|' || frase[i] == '&' || frase[i] == '!')
+        array[i] = IO_readint("\nDigite o numero desejado: ");
+
+        if (primo(array[i]))
         {
-            teste_simbolo_logico = true;
-            return teste_simbolo_logico;
+            printf("%d e' primo\n", array[i]);
+        }
+        else
+        {
+            printf("%d nao e' primo", array[i]);
         }
     }
 
-    return teste_simbolo_logico;
+    IO_end();
 }
 
-bool testar_simbolo_aritmetico(char frase[], int tamanho)
+bool testar_simbolo_logico(char simbolo)
 {
-    int i = 0;
-    bool teste_simbolo_aritmetico = false;
-
-    for (i = 0; i < tamanho; i = i + 1)
-    {
-        if (frase[i] == '+' || frase[i] == '-' || frase[i] == '*' || frase[i] == '/' || frase[i] == '%')
-        {
-            teste_simbolo_aritmetico = true;
-            return teste_simbolo_aritmetico;
-        }
-    }
-
-    return teste_simbolo_aritmetico;
+    return (simbolo == '|' || simbolo == '&' || simbolo == '!');
 }
 
-bool testar_simbolo_relacional(char frase[], int tamanho)
+bool testar_simbolo_aritmetico(char simbolo)
 {
-    int i = 0;
-    bool teste_simbolo_relacional = false;
-
-    for (i = 0; i < tamanho; i = i + 1)
-    {
-        if (frase[i] == '>' || frase[i] == '<' || frase[i] == '=')
-        {
-            teste_simbolo_relacional = true;
-            return teste_simbolo_relacional;
-        }
-    }
-
-    return teste_simbolo_relacional;
+    return (simbolo == '+' || simbolo == '-' || simbolo == '*' || simbolo == '/' || simbolo == '%');
 }
 
-bool testar_simbolo_separadores(char frase[], int tamanho)
+bool testar_simbolo_relacional(char simbolo)
 {
-    int i = 0;
-    bool teste_simbolo_separadores = false;
-
-    for (i = 0; i < tamanho; i = i + 1)
-    {
-        if (frase[i] == ' ' || frase[i] == '.' || frase[i] == ',' || frase[i] == ';' || frase[i] == ':' || frase[i] == '_')
-        {
-            teste_simbolo_separadores = true;
-            return teste_simbolo_separadores;
-        }
-    }
-
-    return teste_simbolo_separadores;
+    return (simbolo == '>' || simbolo == '<' || simbolo == '=');
 }
 
-void exercicio03(void) // Revisar a tres
+bool testar_separador(char simbolo)
+{
+    return (simbolo == ' ' || simbolo == '.' || simbolo == ',' || simbolo == ';' || simbolo == ':' || simbolo == '_');
+}
+
+bool testar_letra_maiuscula(char simbolo)
+{
+    return (simbolo >= 'A' && simbolo <= 'Z');
+}
+
+bool testar_letra_minuscula(char simbolo)
+{
+    return (simbolo >= 'a' && simbolo <= 'z');
+}
+
+bool testar_digito(char simbolo)
+{
+    return (simbolo >= '0' && simbolo <= '9');
+}
+
+void exercicio03(void)
 {
     IO_print("\nExercicio 03\n\n");
 
-    char *frase = " ";
-    int tamanho = 0;
-    int opcao = 0;
-    int resposta = 0;
+    chars frase = IO_readstring("Digite a cadeia de caracteres desejada: ");
+    int tamanho = IO_length(frase);
 
-    frase = IO_readstring("Digite a frase desejada: ");
-    tamanho = strlen(frase);
-
-    do
+    for (int i = 0; i < tamanho; i = i + 1)
     {
-        IO_print("\n01- testar_simbolo_logico\n02- testar_simbolo_aritmetico\n03- testar_simbolo_relacional\n");
-        opcao = IO_readint("Digite uma opcao: ");
-        switch (opcao)
+        char simbolo = IO_charAt(frase, i);
+        chars tipo = IO_new_chars(20);
+
+        if (testar_simbolo_logico(simbolo))
         {
-        case 1:
-            resposta = testar_simbolo_logico(frase, tamanho);
-            break;
-
-        case 2:
-            resposta = testar_simbolo_aritmetico(frase, tamanho);
-            break;
-
-        case 3:
-            resposta = testar_simbolo_relacional(frase, tamanho);
-            break;
-
-        default:
-            break;
+            strcpy(tipo, "logico");
         }
-    } while (opcao != 0);
+        else if (testar_simbolo_aritmetico(simbolo))
+        {
+            strcpy(tipo, "aritmetico");
+        }
+        else if (testar_simbolo_relacional(simbolo))
+        {
+            strcpy(tipo, "relacional");
+        }
+        else if (testar_separador(simbolo))
+        {
+            strcpy(tipo, "separador");
+        }
+        else
+        {
+            strcpy(tipo, "outro");
+        }
+        IO_printf("Simbolo: %c, Tipo: %s\n", simbolo, tipo);
+        free(tipo);
+    }
+
+    free(frase);
+    IO_end();
 }
 
-void exercicio04(void)
+void exercicio04()
 {
+    IO_print("\nExercicio 04\n\n");
+    chars cadeia = IO_readln("Digite uma cadeia de caracteres para analise: ");
+    int i = 0;
+    int maiusculas = 0;
+    int minusculas = 0;
+    int digitos = 0;
+    int operadores = 0;
+    int separadores = 0;
+
+    while (IO_charAt(cadeia, i) != EOS)
+    {
+        char simbolo = IO_charAt(cadeia, i);
+        if (testar_letra_maiuscula(simbolo))
+            maiusculas++;
+        else if (testar_letra_minuscula(simbolo))
+            minusculas++;
+        else if (testar_digito(simbolo))
+            digitos++;
+        else if (testar_simbolo_logico(simbolo) || testar_simbolo_aritmetico(simbolo) || testar_simbolo_relacional(simbolo))
+            operadores++;
+        else if (testar_separador(simbolo))
+            separadores++;
+        i++;
+    }
+    free(cadeia);
+
+    printf("\nLetras maiusculas: %d", maiusculas);
+    printf("\nLetras minusculas: %d", minusculas);
+    printf("\nDigitos numericos: %d", digitos);
+    printf("\nOperadores: %d", operadores);
+    printf("\nSeparadores: %d", separadores);
 }
 
 void no_intervalo(int n, double limite_inferior, double limite_superior, double *array)
@@ -326,18 +326,20 @@ void no_intervalo(int n, double limite_inferior, double limite_superior, double 
 
     // Prevensao do denominador ser igual a zero
 
-    if(quantidade_inferior!=0)
-    media_inferior = soma_inferior / quantidade_inferior;
+    if (quantidade_inferior != 0)
+        media_inferior = soma_inferior / quantidade_inferior;
 
-    if(quantidade_entre_intervalos!=0)
-    media_entre_intervalos = soma_entre_intervalos / quantidade_entre_intervalos;
+    if (quantidade_entre_intervalos != 0)
+        media_entre_intervalos = soma_entre_intervalos / quantidade_entre_intervalos;
 
-    if(quantidade_superior!=0)
-    media_superior = soma_superior / quantidade_superior;
+    if (quantidade_superior != 0)
+        media_superior = soma_superior / quantidade_superior;
 
     printf("\nMedia dos elementos inferiores a -21.75: %lf", media_inferior);
     printf("\nMedia dos elementos entre -21.75 e 71.25: %lf", media_entre_intervalos);
     printf("\nMedia dos elementos inferiores a 71.25: %lf", media_superior);
+
+    IO_end();
 }
 
 void exercicio05(void)
@@ -379,14 +381,14 @@ void exercicio05(void)
 
 void soma_inversos_dos_cubos(int a, int b, int valor)
 {
-    int i=0;
-    double resultado=0.0;
+    int i = 0;
+    double resultado = 0.0;
 
-    if (valor>a && valor<b)
+    if (valor > a && valor < b)
     {
-        if(!(valor%3==0))
+        if (!(valor % 3 == 0))
         {
-            resultado=pow(valor,3);
+            resultado = pow(valor, 3);
             printf("\nO valor de 1/(%d)^3 = %.2lf", valor, resultado);
         }
         else
@@ -398,29 +400,28 @@ void soma_inversos_dos_cubos(int a, int b, int valor)
     {
         printf("\nO valor %d nao esta no intervalo ]%d,%d[\n", valor, a, b);
     }
-    
 }
 
 void exercicio06(void)
 {
     IO_print("\nExercicio06");
 
-    int a=0;
-    int b=0;
-    int i=0;
+    int a = 0;
+    int b = 0;
+    int i = 0;
     int *array;
 
-    array=(int *)malloc(sizeof(int));
+    array = (int *)malloc(sizeof(int));
 
-    a=IO_readint("\nDigite um valor para a: ");
-    b=IO_readint("\nDigite um valor para b: ");
+    a = IO_readint("\nDigite um valor para a: ");
+    b = IO_readint("\nDigite um valor para b: ");
 
     do
     {
-        i=i+1;
-        array[i]=IO_readint("\nDigite um valor para continuar ou digite -1: ");
-        array = realloc(array, (i+i) * sizeof(int));
-        soma_inversos_dos_cubos(a,b,array[i]);
+        i = i + 1;
+        array[i] = IO_readint("\nDigite um valor para continuar ou digite -1: ");
+        array = realloc(array, (i + i) * sizeof(int));
+        soma_inversos_dos_cubos(a, b, array[i]);
     } while (array[i] != -1);
 }
 
@@ -437,15 +438,15 @@ void no_intervalo_07(double a, double b, int tamanho, double *array)
     {
         if (array[i] > a && array[i] < b)
         {
-            dentro=dentro+1;
+            dentro = dentro + 1;
         }
         else if (array[i] > b)
         {
-            acima=acima+1;
+            acima = acima + 1;
         }
         else if (array[i] < a)
         {
-            abaixo=abaixo+1;
+            abaixo = abaixo + 1;
         }
     }
 
@@ -463,7 +464,6 @@ void no_intervalo_07(double a, double b, int tamanho, double *array)
         IO_print("Nenhum valor válido foi informado.\n");
     }
 }
-
 
 void exercicio07(void)
 {
@@ -492,14 +492,14 @@ void exercicio07(void)
         valor = IO_readdouble("\nDigite um valor (0 para terminar): ");
         if (valor != 0.0)
         {
-            array = (double *) realloc(array, (i + 1) * sizeof(double));
+            array = (double *)realloc(array, (i + 1) * sizeof(double));
             if (array == NULL)
             {
                 IO_print("Erro de alocação de memória.\n");
                 return;
             }
             array[i] = valor;
-            i=i+1;
+            i = i + 1;
         }
     } while (valor != 0.0);
 
@@ -510,78 +510,221 @@ void exercicio07(void)
     free(array);
 }
 
-void maior(int x, int y, int z)
+void maior(double x, double y, double z)
 {
+    double max = x;
+    if (y > max)
+        max = y;
+    if (z > max)
+        max = z;
 
+    printf("\nO maior valor e: %.2lf\n", max);
 }
 
-void menor(int x, int y, int z)
+void menor(double x, double y, double z)
 {
+    double min = x;
+    if (y < min)
+        min = y;
+    if (z < min)
+        min = z;
 
+    printf("O menor valor e: %.2lf\n", min);
 }
 
-void crescente(int x, int y, int z)
+void crescente(double x, double y, double z)
 {
-
+    if (x < y && y < z)
+    {
+        IO_print("Os numeros estao em ordem crescente.\n");
+    }
+    else
+    {
+        IO_print("Os numeros nao estao em ordem crescente.\n");
+    }
 }
 
-void decrescente(int x, int y, int z)
+void decrescente(double x, double y, double z)
 {
-    
+    if (x > y && y > z)
+    {
+        IO_print("Os numeros estao em ordem decrescente.\n");
+    }
+    else
+    {
+        IO_print("Os numeros nao estao em ordem decrescente.\n");
+    }
 }
 
 void exercicio08(void)
 {
     IO_print("\nexercicio08");
 
-    double x=0.0;
-    double y=0.0;
-    double z=0.0;
+    double x = IO_readdouble("\nDigite um valor para o primeiro numero: ");
+    double y = IO_readdouble("\nDigite um valor para o segundo numero: ");
+    double z = IO_readdouble("\nDigite um valor para o terceiro numero: ");
 
-    double a=0.0;                   // Armazena o menor valor
-    double b=0.0;                   // Armazena o maior valor
-    double variavel_temporaria=0.0; // Permite a troca de dados
-
-
-    x=IO_readdouble("\nDigite um valor seu primeiro numero: ");
-    y=IO_readdouble("\nDigite um valor para seu segundo numero: ");
-    z=IO_readdouble("\nDigite um valor para seu terceiro numero: ");
-
-    if(x==y && x==z)
+    if (x == y && y == z)
     {
-        IO_print("\n\nTodos os numeros sao iguais.\n");
+        IO_print("\nTodos os numeros sao iguais.\n");
     }
-
     else
     {
-        if(x>y && y>z)
-        {
-            b=z;
-            a=x;
-            IO_print("\n\nOs numeroes estao em ordem decrescente.");
-            printf("O maior valor e' %.2lf e o menor valor e' %.2lf", b,x);
-        }
-
-        if(x<y && y<z)
-        {
-            b=z;
-            a=x;
-            IO_print("\n\nOs numeroes estao em ordem crescente.\n");
-            printf("O maior valor e' %.2lf e o menor valor e' %.2lf", b,x);
-        }
-        else
-        {
-            IO_print("\n\nNumeros nao estao em ordem.\n");
-        }
+        maior(x, y, z);
+        menor(x, y, z);
+        crescente(x, y, z);
+        decrescente(x, y, z);
     }
 
     IO_end();
 }
 
-void exercicio09(void)
+int sucessor_09(char a, char b)
 {
+    return (b == a + 1);
 }
 
-void exercicio10(void)
+int crescente_09(char x, char y, char z)
 {
+    return (x < y && y < z);
+}
+
+int decrescente_09(char x, char y, char z)
+{
+    return (x > y && y > z);
+}
+
+char lerCaractereValido_09(char *mensagem)
+{
+    char c = '\0';
+
+    do
+    {
+        c = IO_readchar(mensagem);
+    } while (c < 32 || c > 126);
+
+    return c;
+}
+
+void exercicio09(void)
+{
+    char x = '\0';
+    char y = '\0';
+    char z = '\0';
+
+    int r1 = 0;
+    int r2 = 0;
+    int r3 = 0;
+
+    IO_print("\nexercicio09");
+
+    x = lerCaractereValido_09("\nDigite o primeiro caractere: ");
+    y = lerCaractereValido_09("Digite o segundo caractere: ");
+    z = lerCaractereValido_09("Digite o terceiro caractere: ");
+
+    r1 = crescente_09(x, y, z);
+    r2 = decrescente_09(x, y, z);
+    r3 = sucessor_09(x, y);
+
+    if (r1)
+    {
+        IO_print("\nOs caracteres estao em ordem crescente.\n");
+    }
+    else if (r2)
+    {
+        IO_print("\nOs caracteres estao em ordem decrescente.\n");
+    }
+    else
+    {
+        IO_print("\nOs caracteres nao estao em ordem crescente nem decrescente.\n");
+    }
+
+    if (r3)
+    {
+        IO_print("O segundo caractere e sucessor direto do primeiro.\n");
+    }
+    else
+    {
+        IO_print("O segundo caractere NAO e sucessor direto do primeiro.\n");
+    }
+
+    IO_end();
+}
+
+int compararCadeias(const char *s1, const char *s2)
+{
+    return strcmp(s1, s2);
+}
+
+void determinarMenorEMaior(char *x, char *y, char *z, char **menor, char **maior)
+{
+    if (compararCadeias(x, y) < 0 && compararCadeias(x, z) < 0)
+    {
+        *menor = x;
+    }
+    else if (compararCadeias(y, x) < 0 && compararCadeias(y, z) < 0)
+    {
+        *menor = y;
+    }
+    else
+    {
+        *menor = z;
+    }
+
+    if (compararCadeias(x, y) > 0 && compararCadeias(x, z) > 0)
+    {
+        *maior = x;
+    }
+    else if (compararCadeias(y, x) > 0 && compararCadeias(y, z) > 0)
+    {
+        *maior = y;
+    }
+    else
+    {
+        *maior = z;
+    }
+}
+
+void exercicio10()
+{
+    char *x = NULL;
+    char *y = NULL;
+    char *z = NULL;
+
+    int compXY = 0;
+    int compXZ = 0;
+    int compYZ = 0;
+
+    char *menor = NULL;
+    char *maior = NULL;
+
+    x = IO_readstring("Digite a primeira cadeia: ");
+    y = IO_readstring("Digite a segunda cadeia: ");
+    z = IO_readstring("Digite a terceira cadeia: ");
+
+    compXY = compararCadeias(x, y);
+    compXZ = compararCadeias(x, z);
+    compYZ = compararCadeias(y, z);
+
+    if (compXY <= 0 && compXZ <= 0 && compYZ <= 0)
+    {
+        IO_println("As cadeias estao em ordem alfabetica crescente.");
+    }
+    else if (compXY >= 0 && compXZ >= 0 && compYZ >= 0)
+    {
+        IO_println("As cadeias estao em ordem alfabetica decrescente.");
+    }
+    else
+    {
+        IO_println("As cadeias nao estao em ordem alfabetica.");
+        determinarMenorEMaior(x, y, z, &menor, &maior);
+        IO_printf("A menor cadeia e: %s\n", menor);
+        IO_printf("A maior cadeia e: %s\n", maior);
+    }
+
+    free(x);
+    free(y);
+    free(z);
+
+    IO_end();
 }
