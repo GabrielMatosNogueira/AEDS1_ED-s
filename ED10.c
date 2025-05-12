@@ -33,19 +33,22 @@ cd 1563147_Gabriel_Matos_Nogueira (Windows, Linux e macOS)
 #include "io.h"
 
 // Declaracao dos metodos utilizados
-void method_00();
-void method_01();
-void method_02();
-void method_03();
-void method_04();
-void method_05();
-void method_06();
-void method_07();
-void method_08();
-void method_09();
-void method_10();
-void method_11();
-void method_12();
+void method_00(void);
+void method_1011(void);
+void method_1012(void);
+void method_1013(void);
+void method_1014(void);
+void method_1015(void);
+void method_1016(void);
+void method_1017(void);
+void method_1018(void);
+void method_1019(void);
+void method_1020(void);
+void _10E1(void);
+void _10E2(void);
+int RandomIntGenerate(int limite_Inferior, int limite_Superior);
+void readArrayFromFile(int quantidade, char *nome_do_arquivo);
+void arraySearch(int quantidade, int valor, char *nome_do_arquivo, int *array);
 
 // Funcao Principal
 int main(void)
@@ -120,11 +123,11 @@ int main(void)
             break;
 
         case 11:
-            method_10E1();
+            _10E1();
             break;
 
         case 12:
-            method_10E2();
+            _10E2();
             break;
         }
     } while (opcao != 0);
@@ -148,8 +151,30 @@ void method_00(void)
 
 /*
 ---------------------------------------------------------------------------------------------------
+METODO RandomIntGenerate
+
+- Faz a divisao por 100 para garantir um numero aleatorio que respeite os limites da declaracao inteira
+---------------------------------------------------------------------------------------------------
+*/
+
+int RandomIntGenerate(int limite_Inferior, int limite_Superior)
+{
+    return (rand() % (limite_Superior - limite_Inferior + 1)) + limite_Inferior;
+}
+
+/*
+---------------------------------------------------------------------------------------------------
 METODO 01
--
+---------------------------------------------------------------------------------------------------
+gerar um valor inteiro aleatoriamente dentro de um intervalo,
+cujos limites de início e de fim serão recebidos como parâmetros.
+Para para testar, ler os limites do intervalo do teclado;
+ler a quantidade de elementos ( N ) a serem gerados;
+gerar essa quantidade ( N ) de valores aleatórios
+dentro do intervalo e armazená-los em arranjo;
+gravá-los, um por linha, em um arquivo ("DADOS.TXT").
+A primeira linha do arquivo deverá informar a quantidade
+de números aleatórios ( N ) que serão gravados em seguid
 ---------------------------------------------------------------------------------------------------
 */
 
@@ -158,8 +183,117 @@ void method_1011(void)
     // identificacao
     IO_start("\nMetodo 1011\n");
 
+    // Declaracao de variaveis
+    int limite_Inferior = 0;
+    int limite_Superior = 0;
+    int quantidade_Repeticoes = 0;
+    int i = 0;
+    int *arranjo_de_Inteiros = NULL;
+
+    char *nome_do_Arquivo = "method_1011.txt";
+    FILE *method_1011 = fopen(nome_do_Arquivo, "wt");
+
+    limite_Inferior = IO_readint("\nDigite o valor do limite inferior: ");
+    limite_Inferior = IO_readint("\nDigite o valor do limite superior: ");
+
+    quantidade_Repeticoes = IO_readint("\nDigite a quantidade de numeros aleatorios que deseja gerar: ");
+
+    if (method_1011 != NULL)
+    {
+        // Checagem de pre-condicao de existencia de um intervalo
+        if (!(limite_Inferior < limite_Superior))
+        {
+            // Alocacao na memoria de acordo com a quantidade digitada
+            arranjo_de_Inteiros = (int *)malloc(quantidade_Repeticoes * sizeof(int));
+
+            if (arranjo_de_Inteiros != NULL)
+            {
+                fprintf(method_1011, "Repeticoes requisitadas: %d\n", quantidade_Repeticoes);
+                for (i = 0; i < quantidade_Repeticoes; i = i + 1)
+                {
+                    arranjo_de_Inteiros[i] = RandomIntGenerate(limite_Inferior, limite_Superior);
+                    fprintf(method_1011, "%d\n", arranjo_de_Inteiros[i]);
+                }
+                IO_print("\nGravacao concluida");
+            }
+
+            else
+            {
+                IO_print("Erro ao alocar a memoria");
+            }
+        }
+
+        else
+        {
+            IO_print("\nIntervalo invalido, limite inferior e maior que limite superior.");
+        }
+    }
+
+    else
+    {
+        IO_print("\nErro ao tentar abrir o arquivo.");
+    }
+
+    free(arranjo_de_Inteiros);
+    fclose(method_1011);
+
     // encerramento
     IO_end();
+}
+
+/*
+---------------------------------------------------------------------------------------------------
+METODO readArrayFromFile
+---------------------------------------------------------------------------------------------------
+*/
+
+void ReadArrayFromFile(int quantidade, int valor, char *nome_do_arquivo)
+{
+    int i=0;
+    int *array_Int=NULL;
+
+    FILE *method_1012=fopen(nome_do_arquivo, "rd");
+    array_Int=(int*)malloc(quantidade*sizeof(int));
+
+    if (nome_do_arquivo=NULL)
+    {
+        IO_print("\nNao foi possivel carregar o nome do arquivo");
+    }
+    
+    if(nome_do_arquivo=NULL)
+    {
+        IO_print("\nNao foi possivel carregar o nome do arquivo");
+    }
+
+
+    for(i=0; i<quantidade; i=i+1)
+    {
+        fscanf(method_1012, "%d", array_Int[i]);
+    }
+
+    arraySearch(valor, quantidade, nome_do_arquivo, array_Int);
+}
+
+/*
+---------------------------------------------------------------------------------------------------
+METODO arraySearch
+---------------------------------------------------------------------------------------------------
+*/
+
+void arraySearch(int valor, int quantidade, char *nome_do_arquivo, int *array)
+{
+    int i=0;
+
+    if(array!=NULL)
+    {
+        for(i=0; i<quantidade; i=i+1)
+        {
+            if(array[i]==valor)
+            {
+                printf("\nValor encontrado na posicao: %d", i);
+            }
+        }
+    }
 }
 
 /*
@@ -172,9 +306,50 @@ METODO 02
 void method_1012(void)
 {
     // Identificacao
-    IO_start("\nMetodo 1012\n");
+    IO_print("\nmethod_1012\n");
 
-    // Encerrament
+    int quantidade = 0;
+    int *array_for_int = NULL;
+    int valor = 0;
+    int i = 0;
+
+    char *nome_do_Arquivo = "method_1012.txt";
+    FILE *method_1012=fopen(nome_do_Arquivo, "wt");
+
+    valor = IO_readint("\nDigite o valor que quer procurar no arquivo: ");
+    quantidade = IO_readint("\nDigite a quantidade de numeros aleatorios para preencher o arquivo: ");
+
+    array_for_int = (int *)malloc(quantidade * sizeof(int));
+
+    if (array_for_int != NULL)
+    {
+        if (!(quantidade <= 0))
+        {
+            for (i = 0; i < quantidade; i = i + 1)
+            {
+                fprintf(method_1012, "%d\n", rand()%1000);
+            }
+
+            IO_print("\nNumeros aleatorios gerados");
+
+            ReadArrayFromFile(valor, quantidade, nome_do_Arquivo);
+        }
+
+        else
+        {
+            IO_print("\nNao e possivel alocar espaco negativo ou nulo");
+        }
+    }
+    
+    else
+    {
+        IO_print("\nNao foi possivel alocar memoria no programa");
+    }
+    
+    free(array_for_int);
+    fclose(method_1012);
+
+    // Encerramento
     IO_end();
 }
 
