@@ -249,29 +249,47 @@ METODO readArrayFromFile
 
 void ReadArrayFromFile(int quantidade, int valor, char *nome_do_arquivo)
 {
-    int i=0;
-    int *array_Int=NULL;
+    IO_print("\n\nReadArrayFromFile");
 
-    FILE *method_1012=fopen(nome_do_arquivo, "rd");
-    array_Int=(int*)malloc(quantidade*sizeof(int));
+    int i = 0;
+    int *array_Int = NULL;
+    FILE *method_1012 = NULL;
 
-    if (nome_do_arquivo=NULL)
+    if (nome_do_arquivo != NULL)
     {
-        IO_print("\nNao foi possivel carregar o nome do arquivo");
+        method_1012 = fopen(nome_do_arquivo, "r");
+
+        if (method_1012 != NULL)
+        {
+            array_Int = (int *)malloc(quantidade * sizeof(int));
+
+            if (array_Int != NULL)
+            {
+                for (i = 0; i < quantidade; i = i + 1)
+                {
+                    fscanf(method_1012, "%d", &array_Int[i]);
+                }
+
+                arraySearch(valor, quantidade, nome_do_arquivo, array_Int);
+
+                free(array_Int);
+            }
+            else
+            {
+                IO_print("\nNao foi possivel alocar memoria");
+            }
+
+            fclose(method_1012);
+        }
+        else
+        {
+            IO_print("\nNao foi possivel abrir o arquivo");
+        }
     }
-    
-    if(nome_do_arquivo=NULL)
+    else
     {
-        IO_print("\nNao foi possivel carregar o nome do arquivo");
+        IO_print("\nNome do arquivo invalido");
     }
-
-
-    for(i=0; i<quantidade; i=i+1)
-    {
-        fscanf(method_1012, "%d", array_Int[i]);
-    }
-
-    arraySearch(valor, quantidade, nome_do_arquivo, array_Int);
 }
 
 /*
@@ -282,16 +300,23 @@ METODO arraySearch
 
 void arraySearch(int valor, int quantidade, char *nome_do_arquivo, int *array)
 {
-    int i=0;
+    int i = 0;
+    int encontrou = 0;
 
-    if(array!=NULL)
+    if (array != NULL)
     {
-        for(i=0; i<quantidade; i=i+1)
+        for (i = 0; i < quantidade; i = i + 1)
         {
-            if(array[i]==valor)
+            if (array[i] == valor)
             {
                 printf("\nValor encontrado na posicao: %d", i);
+                encontrou = 1;
             }
+        }
+
+        if (encontrou == 0)
+        {
+            printf("\nValor nao encontrado no array.");
         }
     }
 }
@@ -305,52 +330,50 @@ METODO 02
 
 void method_1012(void)
 {
-    // Identificacao
+
     IO_print("\nmethod_1012\n");
 
     int quantidade = 0;
-    int *array_for_int = NULL;
     int valor = 0;
     int i = 0;
-
     char *nome_do_Arquivo = "method_1012.txt";
-    FILE *method_1012=fopen(nome_do_Arquivo, "wt");
+    FILE *method_1012 = NULL;
 
     valor = IO_readint("\nDigite o valor que quer procurar no arquivo: ");
     quantidade = IO_readint("\nDigite a quantidade de numeros aleatorios para preencher o arquivo: ");
 
-    array_for_int = (int *)malloc(quantidade * sizeof(int));
+    method_1012 = fopen(nome_do_Arquivo, "wt");
 
-    if (array_for_int != NULL)
+    if (method_1012 != NULL)
     {
-        if (!(quantidade <= 0))
+        if (quantidade > 0)
         {
             for (i = 0; i < quantidade; i = i + 1)
             {
-                fprintf(method_1012, "%d\n", rand()%1000);
+                fprintf(method_1012, "%d\n", rand() % 1000);
             }
 
             IO_print("\nNumeros aleatorios gerados");
-
-            ReadArrayFromFile(valor, quantidade, nome_do_Arquivo);
         }
-
         else
         {
-            IO_print("\nNao e possivel alocar espaco negativo ou nulo");
+            IO_print("\nQuantidade invalida (menor ou igual a 0)");
         }
+
+        fclose(method_1012);
     }
-    
     else
     {
-        IO_print("\nNao foi possivel alocar memoria no programa");
+        IO_print("\nNao foi possivel criar o arquivo");
     }
-    
-    free(array_for_int);
-    fclose(method_1012);
 
-    // Encerramento
+    if (quantidade > 0)
+    {
+        ReadArrayFromFile(quantidade, valor, nome_do_Arquivo);
+    }
+
     IO_end();
+
 }
 
 /*
