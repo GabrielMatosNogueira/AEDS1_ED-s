@@ -80,51 +80,51 @@ int main(void)
             break;
 
         case 1:
-            method_01();
+            method_1011();
             break;
 
         case 2:
-            method_02();
+            method_1012();
             break;
 
         case 3:
-            method_03();
+            method_1013();
             break;
 
         case 4:
-            method_04();
+            method_1014();
             break;
 
         case 5:
-            method_05();
+            method_1015();
             break;
 
         case 6:
-            method_06();
+            method_1016();
             break;
 
         case 7:
-            method_07();
+            method_1017();
             break;
 
         case 8:
-            method_08();
+            method_1018();
             break;
 
         case 9:
-            method_09();
+            method_1019();
             break;
 
         case 10:
-            method_10();
+            method_1020();
             break;
 
         case 11:
-            method_11();
+            method_10E1();
             break;
 
         case 12:
-            method_12();
+            method_10E2();
             break;
         }
     } while (opcao != 0);
@@ -153,7 +153,7 @@ METODO 01
 ---------------------------------------------------------------------------------------------------
 */
 
-void method_01(void)
+void method_1011(void)
 {
     // identificacao
     IO_start("\nMetodo 1011\n");
@@ -169,10 +169,10 @@ METODO 02
 ---------------------------------------------------------------------------------------------------
 */
 
-void method_02(void)
+void method_1012(void)
 {
     // Identificacao
-    IO_start("\nMetodo 02\n");
+    IO_start("\nMetodo 1012\n");
 
     // Encerrament
     IO_end();
@@ -185,10 +185,10 @@ METODO 03
 ---------------------------------------------------------------------------------------------------
 */
 
-void method_03(void)
+void method_1013(void)
 {
     // Identificacao
-    IO_start("\nMetodo 03\n");
+    IO_start("\nMetodo 1013\n");
 
     // Encerramento
     IO_end();
@@ -201,10 +201,10 @@ METODO 04
 ---------------------------------------------------------------------------------------------------
 */
 
-void method_04(void)
+void method_1014(void)
 {
     // Identificacao
-    IO_start("\nMetodo 04\n");
+    IO_start("\nMetodo 1014\n");
 
     // Encerramento
     IO_end();
@@ -217,10 +217,10 @@ METODO 05
 ---------------------------------------------------------------------------------------------------
 */
 
-void method_05(void)
+void method_1015(void)
 {
     // Identificacao
-    IO_start("\nMetodo 05\n");
+    IO_start("\nMetodo 1015\n");
 
     // Encerramento
     IO_end();
@@ -233,10 +233,10 @@ METODO 06
 ---------------------------------------------------------------------------------------------------
 */
 
-void method_06(void)
+void method_1016(void)
 {
     // Identificacao
-    IO_start("\nMetodo 06\n");
+    IO_start("\nMetodo 1016\n");
 
     // Encerramento
     IO_end();
@@ -249,10 +249,10 @@ METODO 07
 ---------------------------------------------------------------------------------------------------
 */
 
-void method_07(void)
+void method_1017(void)
 {
     // Identificacao
-    IO_start("\nMetodo 07\n");
+    IO_start("\nMetodo 1017\n");
 
     // Encerramento
     IO_end();
@@ -265,10 +265,10 @@ METODO 08
 ---------------------------------------------------------------------------------------------------
 */
 
-void method_08(void)
+void method_1018(void)
 {
     // Identificacao
-    IO_start("\nMetodo 08\n");
+    IO_start("\nMetodo 1018\n");
 
     // Encerramento
     IO_end();
@@ -281,10 +281,10 @@ METODO 09
 ---------------------------------------------------------------------------------------------------
 */
 
-void method_09(void)
+void method_1019(void)
 {
     // Identificacao
-    IO_start("\nMetodo 09\n");
+    IO_start("\nMetodo 1019\n");
 
     // Encerramento
     IO_end();
@@ -297,10 +297,10 @@ METODO 10
 ---------------------------------------------------------------------------------------------------
 */
 
-void method_10(void)
+void method_1020(void)
 {
     // Identificacao
-    IO_start("\nMetodo 10\n");
+    IO_start("\nMetodo 1020\n");
 
     // Encerramento
     IO_end();
@@ -313,10 +313,10 @@ METODO 11
 ---------------------------------------------------------------------------------------------------
 */
 
-void method_11(void)
+void _10E1(void)
 {
     // Identificacao
-    IO_start("\nXXXX\n");
+    IO_start("\n10E1\n");
 
     // Encerramento
     IO_end();
@@ -329,10 +329,10 @@ METODO 12
 ---------------------------------------------------------------------------------------------------
 */
 
-void method_12(void)
+void _10E2(void)
 {
     // Identificacao
-    IO_start("\nXXXX\n");
+    IO_start("\n10E2\n");
 
     // Encerramento
     IO_end();
