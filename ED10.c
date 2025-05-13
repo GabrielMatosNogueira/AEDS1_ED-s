@@ -309,7 +309,7 @@ void arraySearch(int valor, int quantidade, char *nome_do_arquivo, int *array)
         {
             if (array[i] == valor)
             {
-                printf("\nValor encontrado na posicao: %d", i);
+                printf("\nValor encontrado na linha/posicao: %d\n", i+1);
                 encontrou = 1;
             }
         }
@@ -378,8 +378,40 @@ void method_1012(void)
 
 /*
 ---------------------------------------------------------------------------------------------------
-METODO 03
+METODO readArrayFromFile
 -
+---------------------------------------------------------------------------------------------------
+*/
+
+void readArrayFromFile(void)
+{
+    // Identificacao
+    IO_start("\nMetodo 1013\n");
+
+    // Encerramento
+    IO_end();
+}
+
+/*
+---------------------------------------------------------------------------------------------------
+METODO arrayCompare
+-
+---------------------------------------------------------------------------------------------------
+*/
+
+void arrayCompare(void)
+{
+    // Identificacao
+    IO_start("\nMetodo 1013\n");
+
+    // Encerramento
+    IO_end();
+}
+
+/*
+---------------------------------------------------------------------------------------------------
+METODO 03
+- Funcao que es
 ---------------------------------------------------------------------------------------------------
 */
 
@@ -387,6 +419,25 @@ void method_1013(void)
 {
     // Identificacao
     IO_start("\nMetodo 1013\n");
+
+    // Declaracao de variaveis
+    int tamanho_string=0;
+    char *nome_do_arquivo="method_1013.txt";
+    char *arranjo1=NULL;
+    char *arranjo2=NULL;
+    FILE *method_1013=fopen(nome_do_arquivo, "wt");
+
+    IO_print("\nDigite a primeira frase (tamanho maximo de 80 caracteres): ");
+    fgets(arranjo1, 80, stdin);
+    fprintf(method_1013,"%d", arranjo1);
+    tamanho_string=strlen(arranjo1);
+
+    IO_print("\nDigite a segunda frase: ");
+    fgets(arranjo2, 80, stdin);
+    fprintf(method_1013,"%d", arranjo1);
+    tamanho_string=strlen(arranjo2);
+
+
 
     // Encerramento
     IO_end();
