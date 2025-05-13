@@ -480,7 +480,9 @@ void method_1013(void)
         if (!(tamanho_string > 0 && arranjo2[tamanho_string - 1] != '\n'))
         {
             fprintf(method_1013_02,"%s", arranjo2);
-
+            fclose(method_1013);
+            fclose(method_1013_02);
+            
             if(arranjo1!=NULL || arranjo1[0]!='\n' && arranjo2!=NULL || arranjo2[0]!='\n')
             {
                 arranjo1=readArrayFromFile_1013(nome_do_arquivo);
@@ -508,8 +510,6 @@ void method_1013(void)
     // Procedimentos para encerramento
     free(arranjo1);
     free(arranjo2);
-    fclose(method_1013);
-    fclose(method_1013_02);
 
     // Encerramento
     IO_end();
