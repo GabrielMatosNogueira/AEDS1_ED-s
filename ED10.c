@@ -32,6 +32,9 @@ cd 1563147_Gabriel_Matos_Nogueira (Windows, Linux e macOS)
 // Declaracao de biblioteca(s)
 #include "io.h"
 
+// Definicoes
+#define MAX 82
+
 // Declaracao dos metodos utilizados
 void method_00(void);
 void method_1011(void);
@@ -383,13 +386,35 @@ METODO readArrayFromFile
 ---------------------------------------------------------------------------------------------------
 */
 
-void readArrayFromFile(void)
+char *readArrayFromFile_1013(char *nome_do_arquivo, FILE *arquivo)
 {
     // Identificacao
-    IO_start("\nMetodo 1013\n");
+    IO_start("\nMetodo readArrayFromFile_1013\n");
 
-    // Encerramento
-    IO_end();
+    // Declaracao de variaveis
+    char *arranjo=NULL;
+    FILE *method_1013=fopen(nome_do_arquivo, "rd");
+
+    if (arquivo!=NULL)
+    {
+        if(nome_do_arquivo!=NULL)
+        {
+            fscanf(arquivo, "%s", arranjo);
+            printf("\nA frase encontrada foi: %s", arranjo);
+        }
+        else
+        {
+            IO_print("\nFalha ao carregar o nome do arquivo");
+        }
+    }
+    else
+    {
+        IO_print("\nErro ao abrir o arquivo");
+    }
+
+    fclose(arquivo);
+
+    return arranjo;
 }
 
 /*
@@ -399,19 +424,22 @@ METODO arrayCompare
 ---------------------------------------------------------------------------------------------------
 */
 
-void arrayCompare(void)
+char arrayCompare_1013(char *arranjo, char *nome_do_arquivo, FILE *method_1013)
 {
     // Identificacao
-    IO_start("\nMetodo 1013\n");
+    IO_start("\nMetodo arrayCompare_1013\n");
 
-    // Encerramento
-    IO_end();
+    //return nome_do_arquivo;
 }
 
 /*
 ---------------------------------------------------------------------------------------------------
 METODO 03
-- Funcao que es
+
+operar a comparação de dois arranjos.
+Para testar, receber dados de arquivos e 
+aplicar a função sobre os arranjos com os valores lidos.
+DICA: Verificar se, e somente se, os tamanhos forem iguais.
 ---------------------------------------------------------------------------------------------------
 */
 
@@ -423,21 +451,66 @@ void method_1013(void)
     // Declaracao de variaveis
     int tamanho_string=0;
     char *nome_do_arquivo="method_1013.txt";
+    char *nome_do_arquivo_02="method_1013_02.txt";
     char *arranjo1=NULL;
     char *arranjo2=NULL;
     FILE *method_1013=fopen(nome_do_arquivo, "wt");
+    FILE *method_1013_02=fopen(nome_do_arquivo_02, "wt");
 
-    IO_print("\nDigite a primeira frase (tamanho maximo de 80 caracteres): ");
-    fgets(arranjo1, 80, stdin);
-    fprintf(method_1013,"%d", arranjo1);
+    arranjo1=(char*)malloc(MAX*sizeof(char));
+    arranjo2=(char*)malloc(MAX*sizeof(char));
+
+    // Procedimento para escrever frases dentro do arquivo
+    //{
+    IO_print("Digite a primeira frase (tamanho maximo de 80 caracteres): ");
+    fgets(arranjo1, MAX, stdin);
     tamanho_string=strlen(arranjo1);
 
-    IO_print("\nDigite a segunda frase: ");
-    fgets(arranjo2, 80, stdin);
-    fprintf(method_1013,"%d", arranjo1);
-    tamanho_string=strlen(arranjo2);
+    // Se passar do tamanho limite, a string invade a area de arranjo2
 
+    if (!(tamanho_string > 0 && arranjo1[tamanho_string - 1] != '\n'))
+    {
+        fprintf(method_1013,"%s", arranjo1);
 
+        IO_print("\nDigite a segunda frase (tamanho maximo de 80 caracteres): ");
+        fgets(arranjo2, MAX, stdin);
+        tamanho_string=strlen(arranjo2);
+
+        if (!(tamanho_string > 0 && arranjo2[tamanho_string - 1] != '\n'))
+        {
+            fprintf(method_1013_02,"%s", arranjo2);
+
+            if(arranjo1!=NULL && arranjo2!=NULL)
+            {
+                arranjo1=readArrayFromFile_1013(nome_do_arquivo, method_1013);
+                printf("\n%s", arranjo1);
+                arranjo2=readArrayFromFile_1013(nome_do_arquivo, method_1013);
+                printf("\n%s", arranjo2);
+            }
+    
+            else
+            {
+                IO_print("\nErro ao alocar arranjos");
+            }
+        }
+
+        else
+        {
+            IO_print("\nInvalido, frase/palavra superou o limite. Programa comprometido.");
+        }
+    }
+    
+    else
+    {
+        IO_print("\nInvalido, frase/palavra superou o limite. Programa comprometido.");
+    }
+    //}fim do procedimento
+
+    // Procedimentos para encerramento
+    free(arranjo1);
+    free(arranjo2);
+    fclose(method_1013);
+    fclose(method_1013_02);
 
     // Encerramento
     IO_end();
