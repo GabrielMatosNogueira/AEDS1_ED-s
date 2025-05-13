@@ -275,7 +275,6 @@ void ReadArrayFromFile(int quantidade, int valor, char *nome_do_arquivo)
 
                 arraySearch(valor, quantidade, nome_do_arquivo, array_Int);
 
-                free(array_Int);
             }
             else
             {
@@ -386,21 +385,23 @@ METODO readArrayFromFile
 ---------------------------------------------------------------------------------------------------
 */
 
-char *readArrayFromFile_1013(char *nome_do_arquivo, FILE *arquivo)
+char *readArrayFromFile_1013(char *nome_do_arquivo)
 {
     // Identificacao
     IO_start("\nMetodo readArrayFromFile_1013\n");
 
     // Declaracao de variaveis
     char *arranjo=NULL;
-    FILE *method_1013=fopen(nome_do_arquivo, "rd");
+    FILE *arquivo=fopen(nome_do_arquivo, "r");
 
+    arranjo=(char*)malloc(MAX*sizeof(char));
+    
     if (arquivo!=NULL)
     {
         if(nome_do_arquivo!=NULL)
         {
             fscanf(arquivo, "%s", arranjo);
-            printf("\nA frase encontrada foi: %s", arranjo);
+            printf("\nA frase encontrada dentro do arquivo foi: %s\n\n", arranjo);
         }
         else
         {
@@ -480,12 +481,10 @@ void method_1013(void)
         {
             fprintf(method_1013_02,"%s", arranjo2);
 
-            if(arranjo1!=NULL && arranjo2!=NULL)
+            if(arranjo1!=NULL || arranjo1[0]!='\n' && arranjo2!=NULL || arranjo2[0]!='\n')
             {
-                arranjo1=readArrayFromFile_1013(nome_do_arquivo, method_1013);
-                printf("\n%s", arranjo1);
-                arranjo2=readArrayFromFile_1013(nome_do_arquivo, method_1013);
-                printf("\n%s", arranjo2);
+                arranjo1=readArrayFromFile_1013(nome_do_arquivo);
+                arranjo2=readArrayFromFile_1013(nome_do_arquivo_02);
             }
     
             else
