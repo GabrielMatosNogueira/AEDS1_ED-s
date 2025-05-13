@@ -533,6 +533,43 @@ void method_1013(void)
 
 /*
 ---------------------------------------------------------------------------------------------------
+METODO readArrayFromFile
+-
+---------------------------------------------------------------------------------------------------
+*/
+
+int readArrayFromFile_1014( char *filename )
+{
+    int numero=0;
+    FILE *arquivo=fopen(filename, "r");
+
+    fscanf(arquivo, "%d", &numero);
+
+    fclose(arquivo);
+    
+    return numero;
+}
+
+/*
+---------------------------------------------------------------------------------------------------
+METODO arrayAdd
+-
+---------------------------------------------------------------------------------------------------
+*/
+
+int arrayAdd_1014( int constante, int arranjo1, int *arranjo2 )
+{
+    int resultado=0;
+
+    *arranjo2= *arranjo2*constante;
+    
+    resultado=arranjo1+*arranjo2;
+
+    return resultado;
+}
+
+/*
+---------------------------------------------------------------------------------------------------
 METODO 04
 -
 ---------------------------------------------------------------------------------------------------
@@ -543,6 +580,52 @@ void method_1014(void)
     // Identificacao
     IO_start("\nMetodo 1014\n");
 
+    // Declaracao de variaveis
+
+    int constante=0;
+    int soma=0;
+    int numero=0;
+    
+    int arranjo1=0;
+    int arranjo2=0;
+
+    char *filename="method_1014.txt";
+    char *filename2="method_1014_02.txt";
+
+    FILE *arquivo1=fopen(filename, "w");
+    FILE *arquivo2=fopen(filename2, "w");
+
+    
+    if(arquivo1!=NULL && arquivo2!=NULL)
+    {
+        if(filename!=NULL && filename2!=NULL)
+        {
+            numero=rand()%1000;
+            fprintf(arquivo1, "%d", numero);
+        
+            numero=rand()%1000;
+            fprintf(arquivo2, "%d", numero);
+
+            constante=IO_readint("\nDigite uma constante para multiplicar os numeros aleatorios lidos de dentro do arquivo: ");
+
+            fclose(arquivo1);
+            fclose(arquivo2);
+            
+            arranjo1=readArrayFromFile_1014(filename);
+            arranjo2=readArrayFromFile_1014(filename2);
+            soma = arrayAdd_1014( constante, arranjo1, &arranjo2 );
+
+            printf("\nArranjo 1: %d\nArranjo 2: %d\nO valor da soma e: %d", arranjo1, arranjo2, soma);
+        }
+        else
+        {
+            IO_print("Falha ao criar o nome dos arquivos");
+        }
+    }
+    else
+    {
+        IO_print("\nFalha ao tentar abrir os arquivos");
+    }
     // Encerramento
     IO_end();
 }
