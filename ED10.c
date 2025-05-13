@@ -425,12 +425,25 @@ METODO arrayCompare
 ---------------------------------------------------------------------------------------------------
 */
 
-char arrayCompare_1013(char *arranjo, char *nome_do_arquivo, FILE *method_1013)
+int arrayCompare_1013(char *arranjo1, char *arranjo2)
 {
     // Identificacao
     IO_start("\nMetodo arrayCompare_1013\n");
 
-    //return nome_do_arquivo;
+    // Declaracao de variaveis
+    int verificador=0;
+
+    if(strlen(arranjo1)==strlen(arranjo2))
+    {
+        IO_print("\nO tamanho das strings sao iguais.");
+        verificador=1;
+    }
+    else
+    {
+        IO_print("\nO tamanho das strings sao diferentes.");
+        verificador=0;
+    }
+    return verificador;
 }
 
 /*
@@ -451,6 +464,7 @@ void method_1013(void)
 
     // Declaracao de variaveis
     int tamanho_string=0;
+    int verificador=0;
     char *nome_do_arquivo="method_1013.txt";
     char *nome_do_arquivo_02="method_1013_02.txt";
     char *arranjo1=NULL;
@@ -480,11 +494,11 @@ void method_1013(void)
         if (!(tamanho_string > 0 && arranjo2[tamanho_string - 1] != '\n'))
         {
             fprintf(method_1013_02,"%s", arranjo2);
-            fclose(method_1013);
-            fclose(method_1013_02);
-            
+
             if(arranjo1!=NULL || arranjo1[0]!='\n' && arranjo2!=NULL || arranjo2[0]!='\n')
             {
+                fclose(method_1013);
+                fclose(method_1013_02);
                 arranjo1=readArrayFromFile_1013(nome_do_arquivo);
                 arranjo2=readArrayFromFile_1013(nome_do_arquivo_02);
             }
@@ -506,6 +520,8 @@ void method_1013(void)
         IO_print("\nInvalido, frase/palavra superou o limite. Programa comprometido.");
     }
     //}fim do procedimento
+
+    verificador=arrayCompare_1013(arranjo1, arranjo2);
 
     // Procedimentos para encerramento
     free(arranjo1);
