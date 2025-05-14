@@ -1,6 +1,6 @@
 /*
-Nome do Programa:   ED
-Data:               //2025
+Nome do Programa:   ED10
+Data:               18/03/2025
 Nome:               Gabriel Matos Nogueira
 Codigo de Pessoa:   1563147
 Matricula:          870863
@@ -16,15 +16,15 @@ da sua maquina
 cd 1563147_Gabriel_Matos_Nogueira (Windows, Linux e macOS)
 
     2.1 - Compile o programa
-    Windows:    gcc -o  .c
-    Linux:      gcc -o  .c
-    macOS:      gcc -o  .c
+    Windows:    gcc -o ED10 ED10.c
+    Linux:      gcc -o ED10 ED10.c
+    macOS:      gcc -o ED10 ED10.c
 
 
     2.2 - Execute o programa
-    Windows:     ED
-    Linux:      ./ED
-    macOS:      ./
+    Windows:     ED10
+    Linux:      ./ED10
+    macOS:      ./ED10
 
 ---------------------------------------------------------------------------------------------------
 */
@@ -65,18 +65,18 @@ int main(void)
     do
     {
         IO_print("\n0 - Parar");
-        IO_print("\n1 - Metodo 0a11");
-        IO_print("\n2 - Metodo 0a12");
-        IO_print("\n3 - Metodo 0a13");
-        IO_print("\n4 - Metodo 0a14");
-        IO_print("\n5 - Metodo 0a15");
-        IO_print("\n6 - Metodo 0a16");
-        IO_print("\n7 - Metodo 0a17");
-        IO_print("\n8 - Metodo 0a18");
-        IO_print("\n9 - Metodo 0a19");
-        IO_print("\n10 - Metodo 0a20");
-        IO_print("\n11 - Metodo 0a21");
-        IO_print("\n12 - Metodo 0a22");
+        IO_print("\n1 - Metodo 1011");
+        IO_print("\n2 - Metodo 1012");
+        IO_print("\n3 - Metodo 1013");
+        IO_print("\n4 - Metodo 1014");
+        IO_print("\n5 - Metodo 1015");
+        IO_print("\n6 - Metodo 1016");
+        IO_print("\n7 - Metodo 1017");
+        IO_print("\n8 - Metodo 1018");
+        IO_print("\n9 - Metodo 1019");
+        IO_print("\n10 - Metodo 1020");
+        IO_print("\n11 - Metodo 10E01");
+        IO_print("\n12 - Metodo 10E02");
 
         opcao = IO_readint("\nDigite uma opcao: ");
         switch (opcao)
