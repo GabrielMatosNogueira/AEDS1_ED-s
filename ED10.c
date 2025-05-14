@@ -34,6 +34,7 @@ cd 1563147_Gabriel_Matos_Nogueira (Windows, Linux e macOS)
 
 // Definicoes
 #define MAX 82
+#define 
 
 // Declaracao dos metodos utilizados
 void method_00(void);
