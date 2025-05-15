@@ -211,7 +211,7 @@ void method_1011(void)
 
             if (arranjo_de_Inteiros != NULL)
             {
-                fprintf(method_1011, "Repeticoes requisitadas: %d\n", quantidade_Repeticoes);
+                fprintf(method_1011, "%d\n", quantidade_Repeticoes);
                 for (i = 0; i < quantidade_Repeticoes; i = i + 1)
                 {
                     arranjo_de_Inteiros[i] = RandomIntGenerate(limite_Inferior, limite_Superior);
@@ -260,17 +260,18 @@ int *ReadArrayFromFile(char *nome_do_arquivo)
     int *arranjo;
     FILE *arquivo = fopen(nome_do_arquivo, "r");
 
+    fscanf(arquivo, "%d", &tamanho);
+    arranjo = (int *) malloc (tamanho*sizeof(int));
 
     if (nome_do_arquivo != NULL)
     {
         if (arquivo != NULL)
         {
-            arranjo = (int *) malloc(sizeof(int));
+            arranjo = (int *) malloc (sizeof(int));
             do
             {
-                arranjo = (int *) realloc(arranjo, (tamanho + 1) * sizeof(int));
-                arranjo[tamanho] = numero;
-                printf("\nNumero lido [%d]: %d", tamanho, numero);
+                fscanf(arquivo, "%d", &arranjo[i]);
+                i=i+1;
             } while (!(EOF));
             
             free(arranjo);
@@ -346,7 +347,7 @@ void method_1012(void)
                 
             }
             printf("\nNumeros aleatorios gerados no arquivo %s", nome_do_Arquivo);
-            *arranjo1=ReadArrayFromFile(nome_do_Arquivo);
+            *arranjo1= *ReadArrayFromFile(nome_do_Arquivo);
             arraySearch(valor, arranjo1);
         }
         else
@@ -446,8 +447,8 @@ void method_1013(void)
             {
                 fclose(method_1013);
                 fclose(method_1013_02);
-                *arranjo1=ReadArrayFromFile(nome_do_arquivo);
-                *arranjo2=ReadArrayFromFile(nome_do_arquivo_02);
+                *arranjo1=*ReadArrayFromFile(nome_do_arquivo);
+                *arranjo2=*ReadArrayFromFile(nome_do_arquivo_02);
             }
     
             else
@@ -539,8 +540,8 @@ void method_1014(void)
             fclose(arquivo1);
             fclose(arquivo2);
             
-            arranjo1=ReadArrayFromFile(filename);
-            arranjo2=ReadArrayFromFile(filename2);
+            arranjo1=*ReadArrayFromFile(filename);
+            arranjo2=*ReadArrayFromFile(filename2);
             soma = arrayAdd_1014( constante, arranjo1, &arranjo2 );
 
             printf("\n------------------------------------\nArranjo 1: %d\nArranjo 2: %d\n------------------------------------\nO valor da soma e: %d\n", arranjo1, arranjo2, soma);
