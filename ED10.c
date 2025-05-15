@@ -34,7 +34,6 @@ cd 1563147_Gabriel_Matos_Nogueira (Windows, Linux e macOS)
 
 // Definicoes
 #define MAX 82
-#define 
 
 // Declaracao dos metodos utilizados
 void method_00(void);
@@ -51,8 +50,8 @@ void method_1020(void);
 void _10E1(void);
 void _10E2(void);
 int RandomIntGenerate(int limite_Inferior, int limite_Superior);
-void readArrayFromFile(int quantidade, char *nome_do_arquivo);
-void arraySearch(int quantidade, int valor, char *nome_do_arquivo, int *array);
+int readArrayFromFile(char *nome_do_arquivo);
+void arraySearch(int valor, int *array);
 
 // Funcao Principal
 int main(void)
@@ -198,27 +197,27 @@ void method_1011(void)
     FILE *method_1011 = fopen(nome_do_Arquivo, "wt");
 
     limite_Inferior = IO_readint("\nDigite o valor do limite inferior: ");
-    limite_Inferior = IO_readint("\nDigite o valor do limite superior: ");
-
-    quantidade_Repeticoes = IO_readint("\nDigite a quantidade de numeros aleatorios que deseja gerar: ");
+    limite_Superior = IO_readint("\nDigite o valor do limite superior: ");
 
     if (method_1011 != NULL)
     {
         // Checagem de pre-condicao de existencia de um intervalo
-        if (!(limite_Inferior < limite_Superior))
+        if ((limite_Inferior < limite_Superior) && (limite_Inferior!=limite_Superior))
         {
+            quantidade_Repeticoes = IO_readint("\nDigite a quantidade de numeros aleatorios que deseja gerar: ");
+
             // Alocacao na memoria de acordo com a quantidade digitada
             arranjo_de_Inteiros = (int *)malloc(quantidade_Repeticoes * sizeof(int));
 
             if (arranjo_de_Inteiros != NULL)
             {
-                fprintf(method_1011, "Repeticoes requisitadas: %d\n", quantidade_Repeticoes);
+                fprintf(method_1011, "%d\n", quantidade_Repeticoes);
                 for (i = 0; i < quantidade_Repeticoes; i = i + 1)
                 {
                     arranjo_de_Inteiros[i] = RandomIntGenerate(limite_Inferior, limite_Superior);
                     fprintf(method_1011, "%d\n", arranjo_de_Inteiros[i]);
                 }
-                IO_print("\nGravacao concluida");
+                printf("\nGravacao concluida no arquivo %s", nome_do_Arquivo);
             }
 
             else
@@ -229,7 +228,7 @@ void method_1011(void)
 
         else
         {
-            IO_print("\nIntervalo invalido, limite inferior e maior que limite superior.");
+            IO_print("\nIntervalo invalido, limite inferior e' maior que limite superior ou o intervalo e' igual.");
         }
     }
 
@@ -251,38 +250,32 @@ METODO readArrayFromFile
 ---------------------------------------------------------------------------------------------------
 */
 
-void ReadArrayFromFile(int quantidade, int valor, char *nome_do_arquivo)
+int * ReadArrayFromFile(char *nome_do_arquivo)
 {
     IO_print("\n\nReadArrayFromFile");
 
-    int i = 0;
-    int *array_Int = NULL;
-    FILE *method_1012 = NULL;
+    int i=0;
+    int tamanho=0;
+    int *arranjo;
+    FILE *arquivo = fopen(nome_do_arquivo, "r");
+
+    fscanf(arquivo, "%d", &tamanho);
+    arranjo = (int *) malloc (tamanho*sizeof(int));
 
     if (nome_do_arquivo != NULL)
     {
-        method_1012 = fopen(nome_do_arquivo, "r");
-
-        if (method_1012 != NULL)
+        if (arquivo != NULL)
         {
-            array_Int = (int *)malloc(quantidade * sizeof(int));
-
-            if (array_Int != NULL)
+            arranjo = (int *) malloc (sizeof(int));
+            do
             {
-                for (i = 0; i < quantidade; i = i + 1)
-                {
-                    fscanf(method_1012, "%d", &array_Int[i]);
-                }
-
-                arraySearch(valor, quantidade, nome_do_arquivo, array_Int);
-
-            }
-            else
-            {
-                IO_print("\nNao foi possivel alocar memoria");
-            }
-
-            fclose(method_1012);
+                fscanf(arquivo, "%d", &arranjo[i]);
+                i=i+1;
+            } while (i!=tamanho);
+            
+            free(arranjo);
+            fclose(arquivo);
+            printf("\nLeitura concluida.");
         }
         else
         {
@@ -291,8 +284,10 @@ void ReadArrayFromFile(int quantidade, int valor, char *nome_do_arquivo)
     }
     else
     {
-        IO_print("\nNome do arquivo invalido");
+        IO_print("\nNao foi possivel ler o nome do arquivo");
     }
+
+    return arranjo;
 }
 
 /*
@@ -301,25 +296,21 @@ METODO arraySearch
 ---------------------------------------------------------------------------------------------------
 */
 
-void arraySearch(int valor, int quantidade, char *nome_do_arquivo, int *array)
+void arraySearch(int valor, int *array)
 {
-    int i = 0;
-    int encontrou = 0;
+    int i=0;
+    int tamanho=0;
+    tamanho=sizeof(array)/sizeof(array[0]);
 
     if (array != NULL)
     {
-        for (i = 0; i < quantidade; i = i + 1)
+        for(i=0; i<tamanho; i=i+1)
         {
-            if (array[i] == valor)
+            if(array[tamanho]==valor)
             {
-                printf("\nValor encontrado na linha/posicao: %d\n", i+1);
-                encontrou = 1;
+                i=tamanho;
+                printf("\nValor encontrado na posicao %d", i);
             }
-        }
-
-        if (encontrou == 0)
-        {
-            printf("\nValor nao encontrado no array.");
         }
     }
 }
@@ -339,84 +330,42 @@ void method_1012(void)
     int quantidade = 0;
     int valor = 0;
     int i = 0;
+    int *arranjo1=NULL;
     char *nome_do_Arquivo = "method_1012.txt";
-    FILE *method_1012 = NULL;
+    FILE *method_1012 = fopen(nome_do_Arquivo, "wt");
 
     valor = IO_readint("\nDigite o valor que quer procurar no arquivo: ");
     quantidade = IO_readint("\nDigite a quantidade de numeros aleatorios para preencher o arquivo: ");
-
-    method_1012 = fopen(nome_do_Arquivo, "wt");
 
     if (method_1012 != NULL)
     {
         if (quantidade > 0)
         {
+            arranjo1=(int*)malloc(quantidade*sizeof(int));
+            fprintf(method_1012, "%d\n", quantidade);
             for (i = 0; i < quantidade; i = i + 1)
             {
                 fprintf(method_1012, "%d\n", rand() % 1000);
+                
             }
-
-            IO_print("\nNumeros aleatorios gerados");
+            printf("\nNumeros aleatorios gerados no arquivo %s", nome_do_Arquivo);
+            *arranjo1=*ReadArrayFromFile(nome_do_Arquivo);
+            arraySearch(valor, arranjo1);
         }
         else
         {
             IO_print("\nQuantidade invalida (menor ou igual a 0)");
         }
-
-        fclose(method_1012);
     }
     else
     {
         IO_print("\nNao foi possivel criar o arquivo");
     }
 
-    if (quantidade > 0)
-    {
-        ReadArrayFromFile(quantidade, valor, nome_do_Arquivo);
-    }
-
+    fclose(method_1012);
+    free(arranjo1);
     IO_end();
 
-}
-
-/*
----------------------------------------------------------------------------------------------------
-METODO readArrayFromFile
--
----------------------------------------------------------------------------------------------------
-*/
-
-char *readArrayFromFile_1013(char *nome_do_arquivo)
-{
-    // Identificacao
-    IO_start("\nMetodo readArrayFromFile_1013\n");
-
-    // Declaracao de variaveis
-    char *arranjo=NULL;
-    FILE *arquivo=fopen(nome_do_arquivo, "r");
-
-    arranjo=(char*)malloc(MAX*sizeof(char));
-    
-    if (arquivo!=NULL)
-    {
-        if(nome_do_arquivo!=NULL)
-        {
-            fscanf(arquivo, "%s", arranjo);
-            printf("\nA frase encontrada dentro do arquivo foi: %s\n\n", arranjo);
-        }
-        else
-        {
-            IO_print("\nFalha ao carregar o nome do arquivo");
-        }
-    }
-    else
-    {
-        IO_print("\nErro ao abrir o arquivo");
-    }
-
-    fclose(arquivo);
-
-    return arranjo;
 }
 
 /*
@@ -429,19 +378,19 @@ METODO arrayCompare
 int arrayCompare_1013(char *arranjo1, char *arranjo2)
 {
     // Identificacao
-    IO_start("\nMetodo arrayCompare_1013\n");
+    IO_start("\nMetodo arrayCompare_1013");
 
     // Declaracao de variaveis
     int verificador=0;
 
     if(strlen(arranjo1)==strlen(arranjo2))
     {
-        IO_print("\nO tamanho das strings sao iguais.");
+        IO_print("O tamanho das strings sao iguais.\n");
         verificador=1;
     }
     else
     {
-        IO_print("\nO tamanho das strings sao diferentes.");
+        IO_print("O tamanho das strings sao diferentes.\n");
         verificador=0;
     }
     return verificador;
@@ -500,8 +449,8 @@ void method_1013(void)
             {
                 fclose(method_1013);
                 fclose(method_1013_02);
-                arranjo1=readArrayFromFile_1013(nome_do_arquivo);
-                arranjo2=readArrayFromFile_1013(nome_do_arquivo_02);
+                *arranjo1=*ReadArrayFromFile(nome_do_arquivo);
+                *arranjo2=*ReadArrayFromFile(nome_do_arquivo_02);
             }
     
             else
@@ -534,37 +483,18 @@ void method_1013(void)
 
 /*
 ---------------------------------------------------------------------------------------------------
-METODO readArrayFromFile
--
----------------------------------------------------------------------------------------------------
-*/
-
-int readArrayFromFile_1014( char *filename )
-{
-    int numero=0;
-    FILE *arquivo=fopen(filename, "r");
-
-    fscanf(arquivo, "%d", &numero);
-
-    fclose(arquivo);
-    
-    return numero;
-}
-
-/*
----------------------------------------------------------------------------------------------------
 METODO arrayAdd
 -
 ---------------------------------------------------------------------------------------------------
 */
 
-int arrayAdd_1014( int constante, int arranjo1, int *arranjo2 )
+int arrayAdd_1014( int constante, int *arranjo1, int *arranjo2 )
 {
     int resultado=0;
 
-    *arranjo2= *arranjo2*constante;
+    *arranjo2= *(arranjo2)*constante;
     
-    resultado=arranjo1+*arranjo2;
+    resultado=*arranjo1+*arranjo2;
 
     return resultado;
 }
@@ -587,8 +517,8 @@ void method_1014(void)
     int soma=0;
     int numero=0;
     
-    int arranjo1=0;
-    int arranjo2=0;
+    int *arranjo1=NULL;
+    int *arranjo2=NULL;
 
     char *filename="method_1014.txt";
     char *filename2="method_1014_02.txt";
@@ -596,7 +526,10 @@ void method_1014(void)
     FILE *arquivo1=fopen(filename, "w");
     FILE *arquivo2=fopen(filename2, "w");
 
-    
+
+    arranjo1=(int*)malloc(1*sizeof(int));
+    arranjo2=(int*)malloc(1*sizeof(int));
+
     if(arquivo1!=NULL && arquivo2!=NULL)
     {
         if(filename!=NULL && filename2!=NULL)
@@ -612,11 +545,11 @@ void method_1014(void)
             fclose(arquivo1);
             fclose(arquivo2);
             
-            arranjo1=readArrayFromFile_1014(filename);
-            arranjo2=readArrayFromFile_1014(filename2);
-            soma = arrayAdd_1014( constante, arranjo1, &arranjo2 );
+            *arranjo1=*ReadArrayFromFile(filename);
+            *arranjo2=*ReadArrayFromFile(filename2);
+            soma = arrayAdd_1014( constante, arranjo1, arranjo2 );
 
-            printf("\nArranjo 1: %d\nArranjo 2: %d\nO valor da soma e: %d", arranjo1, arranjo2, soma);
+            printf("\n------------------------------------\nArranjo 1: %d\nArranjo 2: %d\n------------------------------------\nO valor da soma e: %d\n", *arranjo1, *arranjo2, soma);
         }
         else
         {
@@ -627,6 +560,10 @@ void method_1014(void)
     {
         IO_print("\nFalha ao tentar abrir os arquivos");
     }
+
+    free(arranjo1);
+    free(arranjo2);
+
     // Encerramento
     IO_end();
 }
@@ -642,6 +579,13 @@ void method_1015(void)
 {
     // Identificacao
     IO_start("\nMetodo 1015\n");
+
+    // Declaracao de variaveis
+    //int arranjo1[]=NULL;
+    //int arranjo2[]=NULL;
+    char *filename="method_1015.txt";
+    FILE *method_1015=fopen(filename, "wt");
+
 
     // Encerramento
     IO_end();
