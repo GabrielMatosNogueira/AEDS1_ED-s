@@ -1,6 +1,6 @@
 /*
 Nome do Programa:   ED10
-Data:               18/03/2025
+Data:               18/05/2025
 Nome:               Gabriel Matos Nogueira
 Codigo de Pessoa:   1563147
 Matricula:          870863
@@ -32,28 +32,44 @@ cd 1563147_Gabriel_Matos_Nogueira (Windows, Linux e macOS)
 // Declaracao de biblioteca(s)
 #include "io.h"
 
-// Definicoes
-#define MAX 82
-
 // Declaracao dos metodos utilizados
-void method_00(void);
-void method_1011(void);
-void method_1012(void);
-void method_1013(void);
-void method_1014(void);
-void method_1015(void);
-void method_1016(void);
-void method_1017(void);
+void method_00();
+void method_1011();
+void method_1012();
+void method_1013();
+void method_1014();
+void method_1015();
+void method_1016();
+void method_1017();
 void method_1018(void);
-void method_1019(void);
-void method_1020(void);
-void _10E1(void);
-void _10E2(void);
-int RandomIntGenerate(int limite_Inferior, int limite_Superior);
-int readArrayFromFile(char *nome_do_arquivo);
-void arraySearch(int valor, int *array);
+void method_1019();
+void method_1020();
+void method_10E1();
+void method_10E2();
 
-// Funcao Principal
+// Definicao do tipo ints como ponteiro para int
+typedef int* ints;
+
+typedef struct s_int_Array
+{
+    int length;
+    ints data;
+    int ix;
+} int_Array;
+
+typedef int_Array *ref_int_Array;
+
+typedef struct s_int_Matrix 
+{ 
+   int    rows      ; 
+   int    columns; 
+   ints* data   ; 
+   int     ix,  iy ; 
+} 
+int_Matrix; 
+
+typedef int_Matrix* ref_int_Matrix; 
+
 int main(void)
 {
     // armazenar a opcao do usuario
@@ -65,18 +81,18 @@ int main(void)
     do
     {
         IO_print("\n0 - Parar");
-        IO_print("\n1 - Metodo 1011");
-        IO_print("\n2 - Metodo 1012");
-        IO_print("\n3 - Metodo 1013");
-        IO_print("\n4 - Metodo 1014");
-        IO_print("\n5 - Metodo 1015");
-        IO_print("\n6 - Metodo 1016");
-        IO_print("\n7 - Metodo 1017");
-        IO_print("\n8 - Metodo 1018");
-        IO_print("\n9 - Metodo 1019");
-        IO_print("\n10 - Metodo 1020");
-        IO_print("\n11 - Metodo 10E01");
-        IO_print("\n12 - Metodo 10E02");
+        IO_print("\n1 - Metodo 0a11");
+        IO_print("\n2 - Metodo 0a12");
+        IO_print("\n3 - Metodo 0a13");
+        IO_print("\n4 - Metodo 0a14");
+        IO_print("\n5 - Metodo 0a15");
+        IO_print("\n6 - Metodo 0a16");
+        IO_print("\n7 - Metodo 0a17");
+        IO_print("\n8 - Metodo 0a18");
+        IO_print("\n9 - Metodo 0a19");
+        IO_print("\n10 - Metodo 0a20");
+        IO_print("\n11 - Metodo 0a21");
+        IO_print("\n12 - Metodo 0a22");
 
         opcao = IO_readint("\nDigite uma opcao: ");
         switch (opcao)
@@ -126,16 +142,15 @@ int main(void)
             break;
 
         case 11:
-            _10E1();
+            method_10E1();
             break;
 
         case 12:
-            _10E2();
+            method_10E2();
             break;
         }
     } while (opcao != 0);
 }
-// Funcoes do programa
 
 /*
 ---------------------------------------------------------------------------------------------------
@@ -155,90 +170,75 @@ void method_00(void)
 /*
 ---------------------------------------------------------------------------------------------------
 METODO RandomIntGenerate
-
-- Faz a divisao por 100 para garantir um numero aleatorio que respeite os limites da declaracao inteira
+- Gerar um numero inteiro aleatorio entre inferior e superior
+- @param inferior - limite inferior
 ---------------------------------------------------------------------------------------------------
 */
-
-int RandomIntGenerate(int limite_Inferior, int limite_Superior)
+int RandomIntGenerate(int inferior, int superior)
 {
-    return (rand() % (limite_Superior - limite_Inferior + 1)) + limite_Inferior;
-}
+    // Verificacao dos limites
+    if (inferior > superior)
+    {
+        IO_print("\nLimite inferior maior que o limite superior");
+        return -1;
+    }
+
+    else
+    {
+        // Geracao do numero aleatorio
+        int numero = (rand() % (superior - inferior + 1)) + inferior;
+        return numero;
+    }
+} // fim RandomIntGenerate ( )
 
 /*
 ---------------------------------------------------------------------------------------------------
 METODO 01
----------------------------------------------------------------------------------------------------
-gerar um valor inteiro aleatoriamente dentro de um intervalo,
-cujos limites de início e de fim serão recebidos como parâmetros.
-Para para testar, ler os limites do intervalo do teclado;
-ler a quantidade de elementos ( N ) a serem gerados;
-gerar essa quantidade ( N ) de valores aleatórios
-dentro do intervalo e armazená-los em arranjo;
-gravá-los, um por linha, em um arquivo ("DADOS.TXT").
-A primeira linha do arquivo deverá informar a quantidade
-de números aleatórios ( N ) que serão gravados em seguid
+- Gerar numeros aleatorios entre limites inferior e superior
+- @param limite_Inferior - limite inferior
 ---------------------------------------------------------------------------------------------------
 */
-
 void method_1011(void)
 {
     // identificacao
     IO_start("\nMetodo 1011\n");
 
-    // Declaracao de variaveis
+    // Definicao de variaveis
     int limite_Inferior = 0;
     int limite_Superior = 0;
     int quantidade_Repeticoes = 0;
-    int i = 0;
-    int *arranjo_de_Inteiros = NULL;
+    int numero=0;
+    FILE *arquivo = NULL;
+    char *nome_arquivo = "method_1011.txt";
 
-    char *nome_do_Arquivo = "method_1011.txt";
-    FILE *method_1011 = fopen(nome_do_Arquivo, "wt");
+    arquivo = fopen(nome_arquivo, "w");
 
-    limite_Inferior = IO_readint("\nDigite o valor do limite inferior: ");
-    limite_Superior = IO_readint("\nDigite o valor do limite superior: ");
+    // Leitura dos limites inferior e superior
+    limite_Inferior = IO_readint("\nDigite o limite inferior: ");
+    limite_Superior = IO_readint("\nDigite o limite superior: ");
 
-    if (method_1011 != NULL)
+    // Leitura da quantidade de repeticoes
+    quantidade_Repeticoes = IO_readint("\nDigite a quantidade de repeticoes: ");
+
+    // Verificacao dos limites
+    if (limite_Inferior > limite_Superior)
     {
-        // Checagem de pre-condicao de existencia de um intervalo
-        if ((limite_Inferior < limite_Superior) && (limite_Inferior!=limite_Superior))
-        {
-            quantidade_Repeticoes = IO_readint("\nDigite a quantidade de numeros aleatorios que deseja gerar: ");
-
-            // Alocacao na memoria de acordo com a quantidade digitada
-            arranjo_de_Inteiros = (int *)malloc(quantidade_Repeticoes * sizeof(int));
-
-            if (arranjo_de_Inteiros != NULL)
-            {
-                fprintf(method_1011, "%d\n", quantidade_Repeticoes);
-                for (i = 0; i < quantidade_Repeticoes; i = i + 1)
-                {
-                    arranjo_de_Inteiros[i] = RandomIntGenerate(limite_Inferior, limite_Superior);
-                    fprintf(method_1011, "%d\n", arranjo_de_Inteiros[i]);
-                }
-                printf("\nGravacao concluida no arquivo %s", nome_do_Arquivo);
-            }
-
-            else
-            {
-                IO_print("Erro ao alocar a memoria");
-            }
-        }
-
-        else
-        {
-            IO_print("\nIntervalo invalido, limite inferior e' maior que limite superior ou o intervalo e' igual.");
-        }
+        IO_print("\nLimite inferior maior que o limite superior");
     }
-
     else
     {
-        IO_print("\nErro ao tentar abrir o arquivo.");
+        fprintf(arquivo, "%d\n", quantidade_Repeticoes);
+        for (int i = 0; i < quantidade_Repeticoes; i = i + 1)
+        {
+            // Geracao do numero aleatorio
+            numero = RandomIntGenerate(limite_Inferior, limite_Superior);
+            // Gravar o numero no arquivo
+            fprintf(arquivo, "%d\n", numero);
+        }
+        IO_print("\nNumeros gerados no arquivo method_1011.txt\n");
     }
 
-    free(arranjo_de_Inteiros);
-    fclose(method_1011);
+    fclose(arquivo);
 
     // encerramento
     IO_end();
@@ -247,125 +247,140 @@ void method_1011(void)
 /*
 ---------------------------------------------------------------------------------------------------
 METODO readArrayFromFile
+- Lê um array de inteiros de um arquivo.
 ---------------------------------------------------------------------------------------------------
 */
-
-int * ReadArrayFromFile(char *nome_do_arquivo)
+ref_int_Array readArrayFromFile(char *filename)
 {
-    IO_print("\n\nReadArrayFromFile");
+    // Definicao de variaveis
+    ref_int_Array array = NULL;
+    FILE *arquivo = NULL;
+    int length = 0;
 
-    int i=0;
-    int tamanho=0;
-    int *arranjo;
-    FILE *arquivo = fopen(nome_do_arquivo, "r");
+    arquivo = fopen(filename, "r");
 
-    fscanf(arquivo, "%d", &tamanho);
-    arranjo = (int *) malloc (tamanho*sizeof(int));
-
-    if (nome_do_arquivo != NULL)
+    // Verificacao do arquivo
+    if (arquivo != NULL)
     {
-        if (arquivo != NULL)
+        // Leitura da quantidade de numeros
+        if (fscanf(arquivo, "%d", &length) == 1 && length > 0)
         {
-            arranjo = (int *) malloc (sizeof(int));
-            do
+            array = (ref_int_Array)malloc(sizeof(int_Array));
+            array->length = length;
+            array->data = (ints)malloc(length * sizeof(int));
+            array->ix = 0;
+
+            // Leitura dos numeros
+            for (int i = 0; i < length; i = i + 1)
             {
-                fscanf(arquivo, "%d", &arranjo[i]);
-                i=i+1;
-            } while (i!=tamanho);
-            
-            free(arranjo);
-            fclose(arquivo);
-            printf("\nLeitura concluida.");
+                fscanf(arquivo, "%d", &array->data[i]);
+            }
         }
         else
         {
-            IO_print("\nNao foi possivel abrir o arquivo");
+            IO_print("\nErro ao ler o tamanho do array no arquivo");
         }
+        fclose(arquivo);
     }
     else
     {
-        IO_print("\nNao foi possivel ler o nome do arquivo");
+        IO_print("\nErro ao abrir o arquivo");
     }
 
-    return arranjo;
+    return array;
 }
 
 /*
 ---------------------------------------------------------------------------------------------------
 METODO arraySearch
+- Busca o valor no array
 ---------------------------------------------------------------------------------------------------
 */
-
-void arraySearch(int valor, int *array)
+ref_int_Array arraySearch(int valor, ref_int_Array array)
 {
-    int i=0;
-    int tamanho=0;
-    tamanho=sizeof(array)/sizeof(array[0]);
+    // Definicao de variaveis
+    ref_int_Array resultado = NULL;
+    resultado = (ref_int_Array)malloc(sizeof(int_Array));
+    resultado->length = 0;
+    resultado->data = (ints)malloc(array->length * sizeof(int));
+    resultado->ix = 0;
 
+    // Verificacao do array
     if (array != NULL)
     {
-        for(i=0; i<tamanho; i=i+1)
+        // Busca do valor no array
+        for (int i = 0; i < array->length; i = i + 1)
         {
-            if(array[tamanho]==valor)
+            if (array->data[i] == valor)
             {
-                i=tamanho;
-                printf("\nValor encontrado na posicao %d", i);
+                resultado->data[resultado->ix] = i;
+                resultado->ix = resultado->ix + 1;
+                resultado->length = resultado->length + 1;
             }
         }
     }
+
+    return resultado;
 }
 
 /*
 ---------------------------------------------------------------------------------------------------
-METODO 02
--
+METODO method_1012
+- Lê o tamanho do array e os elementos do teclado, salva no arquivo, depois lê do arquivo usando readArrayFromFile.
 ---------------------------------------------------------------------------------------------------
 */
-
 void method_1012(void)
 {
+    // Identificacao
+    IO_start("\nMetodo 1012\n");
 
-    IO_print("\nmethod_1012\n");
+    // Definicao de variaveis
+    int tamanho = 0;
+    FILE *arquivo = NULL;
+    char *nome_arquivo = "method_1012.txt";
 
-    int quantidade = 0;
-    int valor = 0;
-    int i = 0;
-    int *arranjo1=NULL;
-    char *nome_do_Arquivo = "method_1012.txt";
-    FILE *method_1012 = fopen(nome_do_Arquivo, "wt");
+    // Leitura do tamanho do array
+    tamanho = IO_readint("\nDigite o tamanho do array: ");
 
-    valor = IO_readint("\nDigite o valor que quer procurar no arquivo: ");
-    quantidade = IO_readint("\nDigite a quantidade de numeros aleatorios para preencher o arquivo: ");
-
-    if (method_1012 != NULL)
+    // Salvar o tamanho e os elementos no arquivo
+    arquivo = fopen(nome_arquivo, "w");
+    if (arquivo != NULL)
     {
-        if (quantidade > 0)
+        fprintf(arquivo, "%d\n", tamanho);
+        IO_print("\nDigite os elementos do array:\n");
+        for (int i = 0; i < tamanho; i= i + 1)
         {
-            arranjo1=(int*)malloc(quantidade*sizeof(int));
-            fprintf(method_1012, "%d\n", quantidade);
-            for (i = 0; i < quantidade; i = i + 1)
-            {
-                fprintf(method_1012, "%d\n", rand() % 1000);
-                
-            }
-            printf("\nNumeros aleatorios gerados no arquivo %s", nome_do_Arquivo);
-            *arranjo1=*ReadArrayFromFile(nome_do_Arquivo);
-            arraySearch(valor, arranjo1);
+            int valor = IO_readint("");
+            fprintf(arquivo, "%d\n", valor);
         }
-        else
-        {
-            IO_print("\nQuantidade invalida (menor ou igual a 0)");
-        }
+        fclose(arquivo);
+        IO_print("\nArray salvo no arquivo method_1012.txt\n");
     }
     else
     {
-        IO_print("\nNao foi possivel criar o arquivo");
+        IO_print("\nErro ao abrir o arquivo para escrita.\n");
     }
 
-    fclose(method_1012);
-    free(arranjo1);
-    IO_end();
+    ref_int_Array array = readArrayFromFile(nome_arquivo);
 
+    if (array != NULL)
+    {
+        IO_print("\nElementos lidos do arquivo:\n");
+        for (int i = 0; i < array->length; i++)
+        {
+            IO_printf("%d ", array->data[i]);
+        }
+        IO_print("\n");
+        free(array->data);
+        free(array);
+    }
+    else
+    {
+        IO_print("\nErro ao ler o array do arquivo.\n");
+    }
+
+    // Encerramento
+    IO_end();
 }
 
 /*
@@ -374,108 +389,125 @@ METODO arrayCompare
 -
 ---------------------------------------------------------------------------------------------------
 */
-
-int arrayCompare_1013(char *arranjo1, char *arranjo2)
+ref_int_Array arrayCompare(ref_int_Array array1, ref_int_Array array2)
 {
-    // Identificacao
-    IO_start("\nMetodo arrayCompare_1013");
+    // Definicao de variaveis
+    ref_int_Array resultado = NULL;
+    resultado = (ref_int_Array)malloc(sizeof(int_Array));
+    resultado->length = 0;
+    resultado->data = NULL;
+    resultado->ix = 0;
 
-    // Declaracao de variaveis
-    int verificador=0;
+    // Verificacao dos arrays
+    if (array1 != NULL && array2 != NULL)
+    {
+        if (array1->length > array2->length)
+        {
+            IO_print("\nO primeiro array e' maior que o segundo.\n");
+        }
+        else if (array1->length < array2->length)
+        {
+            IO_print("\nO segundo array e' maior que o primeiro.\n");
+        }
+        else
+        {
+            IO_print("\nOs arrays possuem o mesmo tamanho.\n");
+        }
+    }
 
-    if(strlen(arranjo1)==strlen(arranjo2))
-    {
-        IO_print("O tamanho das strings sao iguais.\n");
-        verificador=1;
-    }
-    else
-    {
-        IO_print("O tamanho das strings sao diferentes.\n");
-        verificador=0;
-    }
-    return verificador;
+    return resultado;
 }
 
 /*
 ---------------------------------------------------------------------------------------------------
-METODO 03
-
-operar a comparação de dois arranjos.
-Para testar, receber dados de arquivos e 
-aplicar a função sobre os arranjos com os valores lidos.
-DICA: Verificar se, e somente se, os tamanhos forem iguais.
+METODO method_1013
+- Comparacao dos arrays (ler arrays do teclado, salvar em arquivos, ler dos arquivos)
 ---------------------------------------------------------------------------------------------------
 */
-
 void method_1013(void)
 {
     // Identificacao
     IO_start("\nMetodo 1013\n");
 
-    // Declaracao de variaveis
-    int tamanho_string=0;
-    int verificador=0;
-    char *nome_do_arquivo="method_1013.txt";
-    char *nome_do_arquivo_02="method_1013_02.txt";
-    char *arranjo1=NULL;
-    char *arranjo2=NULL;
-    FILE *method_1013=fopen(nome_do_arquivo, "wt");
-    FILE *method_1013_02=fopen(nome_do_arquivo_02, "wt");
+    // Definicao de variaveis
+    int tamanho1 = 0, tamanho2 = 0;
+    FILE *arquivo1 = NULL;
+    FILE *arquivo2 = NULL;
+    char *nome_arquivo1 = "array1_1013.txt";
+    char *nome_arquivo2 = "array2_1013.txt";
+    ref_int_Array array1 = NULL;
+    ref_int_Array array2 = NULL;
+    ref_int_Array resultado = NULL;
 
-    arranjo1=(char*)malloc(MAX*sizeof(char));
-    arranjo2=(char*)malloc(MAX*sizeof(char));
-
-    // Procedimento para escrever frases dentro do arquivo
-    //{
-    IO_print("Digite a primeira frase (tamanho maximo de 80 caracteres): ");
-    fgets(arranjo1, MAX, stdin);
-    tamanho_string=strlen(arranjo1);
-
-    // Se passar do tamanho limite, a string invade a area de arranjo2
-
-    if (!(tamanho_string > 0 && arranjo1[tamanho_string - 1] != '\n'))
+    // Leitura do primeiro array e gravacao no arquivo
+    tamanho1 = IO_readint("\nDigite o tamanho do primeiro array: ");
+    arquivo1 = fopen(nome_arquivo1, "w");
+    if (arquivo1 != NULL)
     {
-        fprintf(method_1013,"%s", arranjo1);
-
-        IO_print("\nDigite a segunda frase (tamanho maximo de 80 caracteres): ");
-        fgets(arranjo2, MAX, stdin);
-        tamanho_string=strlen(arranjo2);
-
-        if (!(tamanho_string > 0 && arranjo2[tamanho_string - 1] != '\n'))
+        fprintf(arquivo1, "%d\n", tamanho1);
+        IO_print("\nDigite os elementos do primeiro array:\n");
+        for (int i = 0; i < tamanho1; i = i + 1)
         {
-            fprintf(method_1013_02,"%s", arranjo2);
-
-            if(arranjo1!=NULL || arranjo1[0]!='\n' && arranjo2!=NULL || arranjo2[0]!='\n')
-            {
-                fclose(method_1013);
-                fclose(method_1013_02);
-                *arranjo1=*ReadArrayFromFile(nome_do_arquivo);
-                *arranjo2=*ReadArrayFromFile(nome_do_arquivo_02);
-            }
-    
-            else
-            {
-                IO_print("\nErro ao alocar arranjos");
-            }
+            int valor = IO_readint("");
+            fprintf(arquivo1, "%d\n", valor);
         }
-
-        else
-        {
-            IO_print("\nInvalido, frase/palavra superou o limite. Programa comprometido.");
-        }
+        fclose(arquivo1);
     }
-    
     else
     {
-        IO_print("\nInvalido, frase/palavra superou o limite. Programa comprometido.");
+        IO_print("\nErro ao abrir o arquivo para o primeiro array.\n");
+        IO_end();
+        return;
     }
-    //}fim do procedimento
 
-    verificador=arrayCompare_1013(arranjo1, arranjo2);
+    IO_print("\n-------------------------------------------------------------------------\n");
 
-    // Procedimentos para encerramento
-    free(arranjo1);
-    free(arranjo2);
+    // Leitura do segundo array e gravacao no arquivo
+    tamanho2 = IO_readint("\nDigite o tamanho do segundo array: ");
+    arquivo2 = fopen(nome_arquivo2, "w");
+    if (arquivo2 != NULL)
+    {
+        fprintf(arquivo2, "%d\n", tamanho2);
+        IO_print("\nDigite os elementos do segundo array:\n");
+        for (int i = 0; i < tamanho2; i = i + 1)
+        {
+            int valor = IO_readint("");
+            fprintf(arquivo2, "%d\n", valor);
+        }
+        fclose(arquivo2);
+    }
+    else
+    {
+        IO_print("\nErro ao abrir o arquivo para o segundo array.\n");
+        IO_end();
+        return;
+    }
+
+    IO_print("\n-------------------------------------------------------------------------\n");
+
+    // Leitura dos arrays dos arquivos
+    array1 = readArrayFromFile(nome_arquivo1);
+    array2 = readArrayFromFile(nome_arquivo2);
+
+    // Comparacao dos arrays
+    resultado = arrayCompare(array1, array2);
+
+    // Liberacao da memoria
+    if (array1 != NULL) 
+    { 
+        free(array1->data); 
+        free(array1); 
+    }
+    if (array2 != NULL) 
+    { 
+        free(array2->data); 
+        free(array2); 
+    }
+
+    if (resultado != NULL) 
+    { 
+        free(resultado); 
+    }
 
     // Encerramento
     IO_end();
@@ -484,85 +516,145 @@ void method_1013(void)
 /*
 ---------------------------------------------------------------------------------------------------
 METODO arrayAdd
--
+- Multiplicar todos elementos do segundo array por um numero e somar o array 1 com o array 2
+- @param array - array a ser multiplicado
 ---------------------------------------------------------------------------------------------------
 */
-
-int arrayAdd_1014( int constante, int *arranjo1, int *arranjo2 )
+ref_int_Array arrayAdd(ref_int_Array array, int valor)
 {
-    int resultado=0;
+    // Definicao de variaveis
+    ref_int_Array resultado = NULL;
+    resultado = (ref_int_Array)malloc(sizeof(int_Array));
+    resultado->length = array->length;
+    resultado->data = (ints)malloc(resultado->length * sizeof(int));
+    resultado->ix = 0;
 
-    *arranjo2= *(arranjo2)*constante;
-    
-    resultado=*arranjo1+*arranjo2;
+    // Verificacao do array
+    if (array != NULL)
+    {
+        // Multiplicacao dos elementos do array pelo valor
+        for (int i = 0; i < array->length; i = i + 1)
+        {
+            resultado->data[i] = array->data[i] * valor;
+        }
+    }
 
     return resultado;
 }
 
 /*
 ---------------------------------------------------------------------------------------------------
-METODO 04
--
+METODO method_1014
+- Multiplicar os elementos do array por um numero e depois somar ambos os array (ler do teclado)
 ---------------------------------------------------------------------------------------------------
 */
-
 void method_1014(void)
 {
     // Identificacao
     IO_start("\nMetodo 1014\n");
 
-    // Declaracao de variaveis
+    // Definicao de variaveis
+    ref_int_Array array1 = NULL;
+    ref_int_Array array2 = NULL;
+    ref_int_Array resultado = NULL;
+    int numero = 0;
+    int minLength = 0;
+    int tamanho1 = 0, tamanho2 = 0;
+    FILE *arquivo1 = NULL, *arquivo2 = NULL;
+    char *nome_arquivo1 = "array1_1014.txt";
+    char *nome_arquivo2 = "array2_1014.txt";
 
-    int constante=0;
-    int soma=0;
-    int numero=0;
-    
-    int *arranjo1=NULL;
-    int *arranjo2=NULL;
+    // Leitura do numero
+    numero = IO_readint("\nDigite o numero para multiplicar os elementos do segundo array: ");
 
-    char *filename="method_1014.txt";
-    char *filename2="method_1014_02.txt";
-
-    FILE *arquivo1=fopen(filename, "w");
-    FILE *arquivo2=fopen(filename2, "w");
-
-
-    arranjo1=(int*)malloc(1*sizeof(int));
-    arranjo2=(int*)malloc(1*sizeof(int));
-
-    if(arquivo1!=NULL && arquivo2!=NULL)
+    // Leitura do primeiro array e gravacao no arquivo
+    tamanho1 = IO_readint("\nDigite o tamanho do primeiro array: ");
+    arquivo1 = fopen(nome_arquivo1, "w");
+    if (arquivo1 != NULL)
     {
-        if(filename!=NULL && filename2!=NULL)
+        fprintf(arquivo1, "%d\n", tamanho1);
+        IO_print("\nDigite os elementos do primeiro array:\n");
+        for (int i = 0; i < tamanho1; i++)
         {
-            numero=rand()%1000;
-            fprintf(arquivo1, "%d", numero);
-        
-            numero=rand()%1000;
-            fprintf(arquivo2, "%d", numero);
-
-            constante=IO_readint("\nDigite uma constante para multiplicar os numeros aleatorios lidos de dentro do arquivo: ");
-
-            fclose(arquivo1);
-            fclose(arquivo2);
-            
-            *arranjo1=*ReadArrayFromFile(filename);
-            *arranjo2=*ReadArrayFromFile(filename2);
-            soma = arrayAdd_1014( constante, arranjo1, arranjo2 );
-
-            printf("\n------------------------------------\nArranjo 1: %d\nArranjo 2: %d\n------------------------------------\nO valor da soma e: %d\n", *arranjo1, *arranjo2, soma);
+            int valor = IO_readint("");
+            fprintf(arquivo1, "%d\n", valor);
         }
-        else
-        {
-            IO_print("Falha ao criar o nome dos arquivos");
-        }
+        fclose(arquivo1);
     }
     else
     {
-        IO_print("\nFalha ao tentar abrir os arquivos");
+        IO_print("\nErro ao abrir o arquivo para o primeiro array.\n");
     }
 
-    free(arranjo1);
-    free(arranjo2);
+    IO_print("\n-------------------------------------------------------------------------\n");
+
+    // Leitura do segundo array e gravacao no arquivo
+    tamanho2 = IO_readint("\nDigite o tamanho do segundo array: ");
+    arquivo2 = fopen(nome_arquivo2, "w");
+    if (arquivo2 != NULL)
+    {
+        fprintf(arquivo2, "%d\n", tamanho2);
+        IO_print("\nDigite os elementos do segundo array:\n");
+        for (int i = 0; i < tamanho2; i++)
+        {
+            int valor = IO_readint("");
+            fprintf(arquivo2, "%d\n", valor);
+        }
+        fclose(arquivo2);
+    }
+    else
+    {
+        IO_print("\nErro ao abrir o arquivo para o segundo array.\n");
+    }
+
+    IO_print("\n-------------------------------------------------------------------------\n");
+
+    // Leitura dos arrays dos arquivos
+    array1 = readArrayFromFile(nome_arquivo1);
+    array2 = readArrayFromFile(nome_arquivo2);
+
+    if (array1 != NULL && array2 != NULL)
+    {
+        // Multiplicacao dos elementos do array2 pelo numero
+        resultado = arrayAdd(array2, numero);
+
+        // Soma dos arrays elemento a elemento
+        minLength = (array1->length < resultado->length) ? array1->length : resultado->length;
+        for (int i = 0; i < minLength; i = i + 1)
+        {
+            resultado->data[i] = resultado->data[i] + array1->data[i];
+        }
+
+        // Exibicao do resultado
+        IO_print("\nResultado da soma dos arrays: ");
+        for (int i = 0; i < resultado->length; i = i + 1)
+        {
+            IO_printf("%d ", resultado->data[i]);
+        }
+        IO_print("\n");
+
+        // Liberacao da memoria
+        free(array1->data);
+        free(array1);
+        free(array2->data);
+        free(array2);
+        free(resultado->data);
+        free(resultado);
+    }
+    else
+    {
+        IO_print("\nErro ao ler os arrays dos arquivos.\n");
+        if (array1) 
+        { 
+            free(array1->data); 
+            free(array1); 
+        }
+        if (array2) 
+        { 
+            free(array2->data); 
+            free(array2); 
+        }
+    }
 
     // Encerramento
     IO_end();
@@ -570,22 +662,82 @@ void method_1014(void)
 
 /*
 ---------------------------------------------------------------------------------------------------
-METODO 05
--
+METODO isArrayDecrescent
+- Verifica se o array e' decrescente
 ---------------------------------------------------------------------------------------------------
 */
+ref_int_Array isArrayDecrescent(ref_int_Array array)
+{
+    // Definicao de variaveis
+    ref_int_Array resultado = NULL;
+    resultado = (ref_int_Array)malloc(sizeof(int_Array));
+    resultado->length = 0;
+    resultado->data = NULL;
+    resultado->ix = 0;
 
+    // Verificacao do array
+    if (array != NULL)
+    {
+        // Verificacao se o array e' decrescente
+        for (int i = 0; i < array->length - 1; i = i + 1)
+        {
+            if (array->data[i] < array->data[i + 1])
+            {
+                resultado->length = 0;
+                return resultado;
+            }
+        }
+        resultado->length = 1;
+    }
+
+    return resultado;
+}
+
+/*
+---------------------------------------------------------------------------------------------------
+METODO 1015
+- Verifica se o array e' decrescente (ler do teclado)
+---------------------------------------------------------------------------------------------------
+*/
 void method_1015(void)
 {
     // Identificacao
     IO_start("\nMetodo 1015\n");
 
-    // Declaracao de variaveis
-    //int arranjo1[]=NULL;
-    //int arranjo2[]=NULL;
-    char *filename="method_1015.txt";
-    FILE *method_1015=fopen(filename, "wt");
+    // Definicao de variaveis
+    ref_int_Array array = NULL;
+    int tamanho = 0;
 
+    // Leitura do array
+    tamanho = IO_readint("\nDigite o tamanho do array: ");
+    array = (ref_int_Array)malloc(sizeof(int_Array));
+    array->length = tamanho;
+    array->data = (ints)malloc(tamanho * sizeof(int));
+    array->ix = 0;
+
+    IO_print("\nDigite os elementos do array:\n");
+    for (int i = 0; i < tamanho; i++)
+    {
+        array->data[i] = IO_readint("");
+    }
+
+    IO_print("\n-------------------------------------------------------------------------\n");
+
+    // Verificacao se o array e' decrescente
+    ref_int_Array resultado = isArrayDecrescent(array);
+    if (resultado->length > 0)
+    {
+        IO_print("\nO array e' decrescente\n");
+    }
+    else
+    {
+        IO_print("\nO array nao e' decrescente\n");
+    }
+
+    // Liberacao da memoria
+    free(array->data);
+    free(array);
+    free(resultado);
 
     // Encerramento
     IO_end();
@@ -593,47 +745,450 @@ void method_1015(void)
 
 /*
 ---------------------------------------------------------------------------------------------------
-METODO 06
--
+METODO matrixTranspose
+- Calcula a transposta de uma matriz
 ---------------------------------------------------------------------------------------------------
 */
+ref_int_Matrix matrixTranspose(ref_int_Matrix matriz1)
+{
+    ref_int_Matrix matriz2 = NULL;
+    if (matriz1 == NULL)
+        return NULL;
 
+    matriz2 = (ref_int_Matrix)malloc(sizeof(int_Matrix));
+    matriz2->rows = matriz1->columns;
+    matriz2->columns = matriz1->rows;
+    matriz2->data = (ints*)malloc(matriz2->rows * sizeof(int*));
+    matriz2->ix = 0;
+    matriz2->iy = 0;
+
+    for (int i = 0; i < matriz2->rows; i = i + 1)
+    {
+        matriz2->data[i] = (int*)malloc(matriz2->columns * sizeof(int));
+        for (int j = 0; j < matriz2->columns; j = j + 1)
+        {
+            matriz2->data[i][j] = matriz1->data[j][i];
+        }
+    }
+
+    return matriz2;
+}
+
+/*
+---------------------------------------------------------------------------------------------------
+METODO 1016
+- Ler matriz do teclado, obter a transposta e exibir ambas
+---------------------------------------------------------------------------------------------------
+*/
 void method_1016(void)
 {
     // Identificacao
     IO_start("\nMetodo 1016\n");
 
+    // Definicao de variaveis
+    int rows = 0, columns = 0;
+
+    rows = IO_readint("\nDigite o numero de linhas da matriz: ");
+    columns = IO_readint("Digite o numero de colunas da matriz: ");
+
+    ref_int_Matrix matrix = (ref_int_Matrix)malloc(sizeof(int_Matrix));
+    matrix->rows = rows;
+    matrix->columns = columns;
+    matrix->data = (ints*)malloc(rows * sizeof(int*));
+    matrix->ix = 0;
+    matrix->iy = 0;
+
+    IO_print("\nDigite os elementos da matriz (linha por linha):\n");
+    for (int i = 0; i < rows; i++)
+    {
+        matrix->data[i] = (int*)malloc(columns * sizeof(int));
+        for (int j = 0; j < columns; j++)
+        {
+            matrix->data[i][j] = IO_readint("");
+        }
+    }
+
+    IO_print("\nMatriz original:\n");
+    for (int i = 0; i < matrix->rows; i = i + 1)
+    {
+        for (int j = 0; j < matrix->columns; j = j + 1)
+        {
+            IO_printf("%d ", matrix->data[i][j]);
+        }
+        IO_print("\n");
+    }
+
+    ref_int_Matrix transposta = matrixTranspose(matrix);
+
+    IO_print("\nMatriz transposta:\n");
+    for (int i = 0; i < transposta->rows; i = i + 1)
+    {
+        for (int j = 0; j < transposta->columns; j = j + 1)
+        {
+            IO_printf("%d ", transposta->data[i][j]);
+        }
+        IO_print("\n");
+    }
+
+    // Liberacao da memoria
+    for (int i = 0; i < matrix->rows; i = i + 1)
+        free(matrix->data[i]);
+    for (int i = 0; i < transposta->rows; i = i + 1)
+        free(transposta->data[i]);
+    free(matrix->data);
+    free(matrix);
+    free(transposta->data);
+    free(transposta);
+
     // Encerramento
     IO_end();
 }
 
 /*
 ---------------------------------------------------------------------------------------------------
-METODO 07
--
+METODO matrixZero
+- Verifica se a matriz contem algum valor nulo (zero)
+- Retorna 1 se houver pelo menos um zero e 0 caso nao houver
 ---------------------------------------------------------------------------------------------------
 */
+int matrixZero(ref_int_Matrix matriz1)
+{
+    if (matriz1 == NULL)
+    {
+        IO_print("\nErro ao tentar ler a matriz\n");
+        return 0;
+    }
 
+    for (int i = 0; i < matriz1->rows; i = i + 1)
+    {
+        for (int j = 0; j < matriz1->columns; j = j + 1)
+        {
+            if (matriz1->data[i][j] == 0)
+            {
+                return 1; // Encontrou valor nulo
+            }
+        }
+    }
+    return 0; // Nenhum valor nulo encontrado
+}
+
+/*
+---------------------------------------------------------------------------------------------------
+METODO 1017
+- Testar se uma matriz só contém valores iguais a zero.
+  Ler matriz do teclado e aplicar a função sobre a matriz lida.
+---------------------------------------------------------------------------------------------------
+*/
 void method_1017(void)
 {
     // Identificacao
     IO_start("\nMetodo 1017\n");
 
+    // Definicao de variaveis
+    ref_int_Matrix matriz = NULL;
+    int rows = 0;
+    int columns = 0;
+    int i = 0;
+
+    rows = IO_readint("\nDigite o numero de linhas da matriz: ");
+    columns = IO_readint("Digite o numero de colunas da matriz: ");
+
+    matriz = (ref_int_Matrix)malloc(sizeof(int_Matrix));
+    matriz->rows = rows;
+    matriz->columns = columns;
+    matriz->data = (ints*)malloc(rows * sizeof(int*));
+    matriz->ix = 0;
+    matriz->iy = 0;
+
+    IO_print("\nDigite os elementos da matriz (linha por linha):\n");
+    for (int i = 0; i < rows; i++)
+    {
+        matriz->data[i] = (int*)malloc(columns * sizeof(int));
+        for (int j = 0; j < columns; j++)
+        {
+            matriz->data[i][j] = IO_readint("");
+        }
+    }
+
+    IO_print("\nMatriz lida:\n");
+    for (int i = 0; i < matriz->rows; i++)
+    {
+        for (int j = 0; j < matriz->columns; j++)
+        {
+            IO_printf("%d ", matriz->data[i][j]);
+        }
+        IO_print("\n");
+    }
+
+    int verificador = matrixZero(matriz);
+
+    if (verificador == 1)
+    {
+        IO_print("\n\nA matriz possui pelo menos um valor nulo\n");
+    }
+    else
+    {
+        IO_print("\n\nA matriz nao possui nenhum valor nulo\n");
+    }
+
+    // Liberacao da memoria
+    for (i = 0; i < matriz->rows; i++)
+        {
+            free(matriz->data[i]);
+        }
+
+    free(matriz->data);
+    free(matriz);
+
     // Encerramento
     IO_end();
 }
-
 /*
 ---------------------------------------------------------------------------------------------------
 METODO 08
--
+- Para testar, receber dados de arquivos e  
+aplicar a função sobre as matrizes com os valores lidos. 
+DICA: Verificar se os tamanhos são compatíveis. 
+Usar o modelo de matriz proposto nos exemplos. 
+Exemplo: matriz1   = readMatrixFromFile ( "DADOS1.TXT" ); 
+matriz2   = readMatrixFromFile ( "DADOS2.TXT" ); 
+resposta = matrixCompare        
+( matriz1, matriz2 ); 
 ---------------------------------------------------------------------------------------------------
 */
+
+// Função para ler matriz de arquivo
+ref_int_Matrix readMatrixFromFile(char *filename)
+{
+    ref_int_Matrix matriz = NULL;
+    FILE *arquivo = fopen(filename, "r");
+    int rows = 0, columns = 0, i = 0, j = 0;
+
+    if (arquivo != NULL)
+    {
+        if (fscanf(arquivo, "%d %d", &rows, &columns) == 2 && rows > 0 && columns > 0)
+        {
+            matriz = (ref_int_Matrix)malloc(sizeof(int_Matrix));
+            matriz->rows = rows;
+            matriz->columns = columns;
+            matriz->data = (ints*)malloc(rows * sizeof(int*));
+            matriz->ix = 0;
+            matriz->iy = 0;
+
+            for (i = 0; i < rows; i++)
+            {
+                matriz->data[i] = (int*)malloc(columns * sizeof(int));
+                for (j = 0; j < columns; j++)
+                {
+                    fscanf(arquivo, "%d", &matriz->data[i][j]);
+                }
+            }
+        }
+        fclose(arquivo);
+    }
+    else
+    {
+        IO_print("\nErro ao abrir o arquivo para leitura da matriz.\n");
+    }
+
+    return matriz;
+}
+
+ref_int_Matrix matrixCompare(ref_int_Matrix m1, ref_int_Matrix m2)
+{
+    ref_int_Matrix resultado = NULL;
+    int iguais = 1;
+    int i, j;
+
+    resultado = (ref_int_Matrix)malloc(sizeof(int_Matrix));
+    resultado->rows = 1;
+    resultado->columns = 1;
+    resultado->data = (ints*)malloc(sizeof(int*));
+    resultado->data[0] = (int*)malloc(sizeof(int));
+    resultado->ix = 0;
+    resultado->iy = 0;
+
+    if (m1 != NULL && m2 != NULL)
+    {
+        if (m1->rows == m2->rows && m1->columns == m2->columns)
+        {
+            for (i = 0; i < m1->rows; i++)
+            {
+                for (j = 0; j < m1->columns; j++)
+                {
+                    if (m1->data[i][j] != m2->data[i][j])
+                    {
+                        iguais = 0;
+                    }
+                }
+            }
+            resultado->data[0][0] = iguais;
+        }
+        else
+        {
+            IO_print("\nAs matrizes possuem tamanhos diferentes.\n");
+            resultado->data[0][0] = 0;
+        }
+    }
+    else
+    {
+        IO_print("\nErro: uma das matrizes é nula.\n");
+        resultado->data[0][0] = 0;
+    }
+
+    return resultado;
+}
 
 void method_1018(void)
 {
     // Identificacao
     IO_start("\nMetodo 1018\n");
+
+    // Definicao de variaveis
+    ref_int_Matrix matriz1 = NULL;
+    ref_int_Matrix matriz2 = NULL;
+    ref_int_Matrix resposta = NULL;
+    char *nome_arquivo1 = "matrix1_1018.txt";
+    char *nome_arquivo2 = "matrix2_1018.txt";
+    FILE *arquivo1 = NULL;
+    FILE *arquivo2 = NULL;
+    int valor = 0;
+    int rows1 = 0;
+    int columns1 = 0;
+    int rows2 = 0;
+    int columns2 = 0;
+    int i = 0;
+    int j = 0;
+
+    // Preenchendo a matriz 1
+    arquivo1 = fopen(nome_arquivo1, "w");
+    if (arquivo1 != NULL)
+    {
+        rows1 = IO_readint("\nDigite o numero de linhas da matriz 1: ");
+        columns1 = IO_readint("Digite o numero de colunas da matriz 1: ");
+        fprintf(arquivo1, "%d %d\n", rows1, columns1);
+
+        for (i = 0; i < rows1; i= i + 1)
+        {
+            for (j = 0; j < columns1; j= j + 1)
+            {
+                valor = IO_readint("");
+                fprintf(arquivo1, "%d ", valor);
+            }
+            fprintf(arquivo1, "\n");
+        }
+        fclose(arquivo1);
+    }
+    else
+    {
+        IO_print("\nErro ao abrir o arquivo para a matriz 1.\n");
+    }
+
+    // Preenchendo a matriz 2
+    arquivo2 = fopen(nome_arquivo2, "w");
+    if (arquivo2 != NULL)
+    {
+        rows2 = IO_readint("\nDigite o numero de linhas da matriz 2: ");
+        columns2 = IO_readint("Digite o numero de colunas da matriz 2: ");
+        fprintf(arquivo2, "%d %d\n", rows2, columns2);
+
+        for (i = 0; i < rows2; i= i + 1)
+        {
+            for (j = 0; j < columns2; j= j + 1)
+            {
+                valor = IO_readint("");
+                fprintf(arquivo2, "%d ", valor);
+            }
+            fprintf(arquivo2, "\n");
+        }
+        fclose(arquivo2);
+    }
+    else
+    {
+        IO_print("\nErro ao abrir o arquivo para a matriz 2.\n");
+    }
+
+    // Ler as matrizes dos arquivos
+    matriz1 = readMatrixFromFile(nome_arquivo1);
+    matriz2 = readMatrixFromFile(nome_arquivo2);
+
+    if (matriz1 != NULL && matriz2 != NULL)
+    {
+        if (matriz1->rows == matriz2->rows && matriz1->columns == matriz2->columns)
+        {
+            IO_print("\nMatriz 1:\n");
+            for (i = 0; i < matriz1->rows; i= i + 1)
+            {
+                for (j = 0; j < matriz1->columns; j = j + 1)
+                {
+                    IO_printf("%d ", matriz1->data[i][j]);
+                }
+                IO_print("\n");
+            }
+
+            IO_print("\nMatriz 2:\n");
+            for (i = 0; i < matriz2->rows; i= i + 1)
+            {
+                for (j = 0; j < matriz2->columns; j = j + 1)
+                {
+                    IO_printf("%d ", matriz2->data[i][j]);
+                }
+                IO_print("\n");
+            }
+
+            resposta = matrixCompare(matriz1, matriz2);
+
+            if (resposta != NULL)
+            {
+                if (resposta->data[0][0] == 1)
+                {
+                    IO_print("\nAs matrizes sao iguais.\n");
+                }
+                else
+                {
+                    IO_print("\nAs matrizes sao diferentes.\n");
+                }
+            }
+            else
+            {
+                IO_print("\nErro ao comparar as matrizes.\n");
+            }
+        }
+        else
+        {
+            IO_print("\nAs matrizes possuem tamanhos diferentes e nao podem ser comparadas.\n");
+        }
+    }
+    else
+    {
+        IO_print("\nErro ao ler as matrizes dos arquivos.\n");
+    }
+
+    // Liberacao da memoria
+    if (matriz1 != NULL)
+    {
+        for (i = 0; i < matriz1->rows; i++)
+        {
+            free(matriz1->data[i]);
+        }
+        free(matriz1->data);
+        free(matriz1);
+    }
+    if (matriz2 != NULL)
+    {
+        for (i = 0; i < matriz2->rows; i++)
+        {
+            free(matriz2->data[i]);
+        }
+        free(matriz2->data);
+        free(matriz2);
+    }
+    if (resposta != NULL)
+    {
+        free(resposta->data[0]);
+        free(resposta->data);
+        free(resposta);
+    }
 
     // Encerramento
     IO_end();
@@ -645,7 +1200,6 @@ METODO 09
 -
 ---------------------------------------------------------------------------------------------------
 */
-
 void method_1019(void)
 {
     // Identificacao
@@ -661,7 +1215,6 @@ METODO 10
 -
 ---------------------------------------------------------------------------------------------------
 */
-
 void method_1020(void)
 {
     // Identificacao
@@ -677,8 +1230,7 @@ METODO 11
 -
 ---------------------------------------------------------------------------------------------------
 */
-
-void _10E1(void)
+void method_10E1(void)
 {
     // Identificacao
     IO_start("\n10E1\n");
@@ -693,8 +1245,7 @@ METODO 12
 -
 ---------------------------------------------------------------------------------------------------
 */
-
-void _10E2(void)
+void method_10E2(void)
 {
     // Identificacao
     IO_start("\n10E2\n");
