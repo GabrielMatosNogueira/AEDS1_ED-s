@@ -48,7 +48,7 @@ void method_10E1();
 void method_10E2();
 
 // Definicao do tipo ints como ponteiro para int
-typedef int* ints;
+typedef int *ints;
 
 typedef struct s_int_Array
 {
@@ -59,16 +59,15 @@ typedef struct s_int_Array
 
 typedef int_Array *ref_int_Array;
 
-typedef struct s_int_Matrix 
-{ 
-   int    rows      ; 
-   int    columns; 
-   ints* data   ; 
-   int     ix,  iy ; 
-} 
-int_Matrix; 
+typedef struct s_int_Matrix
+{
+    int rows;
+    int columns;
+    ints *data;
+    int ix, iy;
+} int_Matrix;
 
-typedef int_Matrix* ref_int_Matrix; 
+typedef int_Matrix *ref_int_Matrix;
 
 int main(void)
 {
@@ -207,7 +206,7 @@ void method_1011(void)
     int limite_Inferior = 0;
     int limite_Superior = 0;
     int quantidade_Repeticoes = 0;
-    int numero=0;
+    int numero = 0;
     FILE *arquivo = NULL;
     char *nome_arquivo = "method_1011.txt";
 
@@ -348,7 +347,7 @@ void method_1012(void)
     {
         fprintf(arquivo, "%d\n", tamanho);
         IO_print("\nDigite os elementos do array:\n");
-        for (int i = 0; i < tamanho; i= i + 1)
+        for (int i = 0; i < tamanho; i = i + 1)
         {
             int valor = IO_readint("");
             fprintf(arquivo, "%d\n", valor);
@@ -493,20 +492,20 @@ void method_1013(void)
     resultado = arrayCompare(array1, array2);
 
     // Liberacao da memoria
-    if (array1 != NULL) 
-    { 
-        free(array1->data); 
-        free(array1); 
+    if (array1 != NULL)
+    {
+        free(array1->data);
+        free(array1);
     }
-    if (array2 != NULL) 
-    { 
-        free(array2->data); 
-        free(array2); 
+    if (array2 != NULL)
+    {
+        free(array2->data);
+        free(array2);
     }
 
-    if (resultado != NULL) 
-    { 
-        free(resultado); 
+    if (resultado != NULL)
+    {
+        free(resultado);
     }
 
     // Encerramento
@@ -644,15 +643,15 @@ void method_1014(void)
     else
     {
         IO_print("\nErro ao ler os arrays dos arquivos.\n");
-        if (array1) 
-        { 
-            free(array1->data); 
-            free(array1); 
+        if (array1)
+        {
+            free(array1->data);
+            free(array1);
         }
-        if (array2) 
-        { 
-            free(array2->data); 
-            free(array2); 
+        if (array2)
+        {
+            free(array2->data);
+            free(array2);
         }
     }
 
@@ -758,13 +757,13 @@ ref_int_Matrix matrixTranspose(ref_int_Matrix matriz1)
     matriz2 = (ref_int_Matrix)malloc(sizeof(int_Matrix));
     matriz2->rows = matriz1->columns;
     matriz2->columns = matriz1->rows;
-    matriz2->data = (ints*)malloc(matriz2->rows * sizeof(int*));
+    matriz2->data = (ints *)malloc(matriz2->rows * sizeof(int *));
     matriz2->ix = 0;
     matriz2->iy = 0;
 
     for (int i = 0; i < matriz2->rows; i = i + 1)
     {
-        matriz2->data[i] = (int*)malloc(matriz2->columns * sizeof(int));
+        matriz2->data[i] = (int *)malloc(matriz2->columns * sizeof(int));
         for (int j = 0; j < matriz2->columns; j = j + 1)
         {
             matriz2->data[i][j] = matriz1->data[j][i];
@@ -794,14 +793,14 @@ void method_1016(void)
     ref_int_Matrix matrix = (ref_int_Matrix)malloc(sizeof(int_Matrix));
     matrix->rows = rows;
     matrix->columns = columns;
-    matrix->data = (ints*)malloc(rows * sizeof(int*));
+    matrix->data = (ints *)malloc(rows * sizeof(int *));
     matrix->ix = 0;
     matrix->iy = 0;
 
     IO_print("\nDigite os elementos da matriz (linha por linha):\n");
     for (int i = 0; i < rows; i++)
     {
-        matrix->data[i] = (int*)malloc(columns * sizeof(int));
+        matrix->data[i] = (int *)malloc(columns * sizeof(int));
         for (int j = 0; j < columns; j++)
         {
             matrix->data[i][j] = IO_readint("");
@@ -896,14 +895,14 @@ void method_1017(void)
     matriz = (ref_int_Matrix)malloc(sizeof(int_Matrix));
     matriz->rows = rows;
     matriz->columns = columns;
-    matriz->data = (ints*)malloc(rows * sizeof(int*));
+    matriz->data = (ints *)malloc(rows * sizeof(int *));
     matriz->ix = 0;
     matriz->iy = 0;
 
     IO_print("\nDigite os elementos da matriz (linha por linha):\n");
     for (int i = 0; i < rows; i++)
     {
-        matriz->data[i] = (int*)malloc(columns * sizeof(int));
+        matriz->data[i] = (int *)malloc(columns * sizeof(int));
         for (int j = 0; j < columns; j++)
         {
             matriz->data[i][j] = IO_readint("");
@@ -933,9 +932,9 @@ void method_1017(void)
 
     // Liberacao da memoria
     for (i = 0; i < matriz->rows; i++)
-        {
-            free(matriz->data[i]);
-        }
+    {
+        free(matriz->data[i]);
+    }
 
     free(matriz->data);
     free(matriz);
@@ -943,21 +942,13 @@ void method_1017(void)
     // Encerramento
     IO_end();
 }
+
 /*
 ---------------------------------------------------------------------------------------------------
-METODO 08
-- Para testar, receber dados de arquivos e  
-aplicar a função sobre as matrizes com os valores lidos. 
-DICA: Verificar se os tamanhos são compatíveis. 
-Usar o modelo de matriz proposto nos exemplos. 
-Exemplo: matriz1   = readMatrixFromFile ( "DADOS1.TXT" ); 
-matriz2   = readMatrixFromFile ( "DADOS2.TXT" ); 
-resposta = matrixCompare        
-( matriz1, matriz2 ); 
+METODO readMatrixFromFile
+- Le uma matriz de inteiros de um arquivo.
 ---------------------------------------------------------------------------------------------------
 */
-
-// Função para ler matriz de arquivo
 ref_int_Matrix readMatrixFromFile(char *filename)
 {
     ref_int_Matrix matriz = NULL;
@@ -971,13 +962,13 @@ ref_int_Matrix readMatrixFromFile(char *filename)
             matriz = (ref_int_Matrix)malloc(sizeof(int_Matrix));
             matriz->rows = rows;
             matriz->columns = columns;
-            matriz->data = (ints*)malloc(rows * sizeof(int*));
+            matriz->data = (ints *)malloc(rows * sizeof(int *));
             matriz->ix = 0;
             matriz->iy = 0;
 
             for (i = 0; i < rows; i++)
             {
-                matriz->data[i] = (int*)malloc(columns * sizeof(int));
+                matriz->data[i] = (int *)malloc(columns * sizeof(int));
                 for (j = 0; j < columns; j++)
                 {
                     fscanf(arquivo, "%d", &matriz->data[i][j]);
@@ -994,85 +985,81 @@ ref_int_Matrix readMatrixFromFile(char *filename)
     return matriz;
 }
 
-ref_int_Matrix matrixCompare(ref_int_Matrix m1, ref_int_Matrix m2)
+/*
+---------------------------------------------------------------------------------------------------
+METODO matrixCompare
+- Comparar a igualdade entre duas matrizes
+- Retorna 1 se forem iguais e 0 se forem diferentes
+---------------------------------------------------------------------------------------------------
+*/
+int matrixCompare(ref_int_Matrix matriz1, ref_int_Matrix matriz2)
 {
-    ref_int_Matrix resultado = NULL;
-    int iguais = 1;
-    int i, j;
-
-    resultado = (ref_int_Matrix)malloc(sizeof(int_Matrix));
-    resultado->rows = 1;
-    resultado->columns = 1;
-    resultado->data = (ints*)malloc(sizeof(int*));
-    resultado->data[0] = (int*)malloc(sizeof(int));
-    resultado->ix = 0;
-    resultado->iy = 0;
-
-    if (m1 != NULL && m2 != NULL)
+    if (matriz1 != NULL && matriz2 != NULL)
     {
-        if (m1->rows == m2->rows && m1->columns == m2->columns)
+        if (matriz1->rows != matriz2->rows || matriz1->columns != matriz2->columns)
         {
-            for (i = 0; i < m1->rows; i++)
+            return 0; // Matrizes de tamanhos diferentes
+        }
+
+        for (int i = 0; i < matriz1->rows; i++)
+        {
+            for (int j = 0; j < matriz1->columns; j++)
             {
-                for (j = 0; j < m1->columns; j++)
+                if (matriz1->data[i][j] != matriz2->data[i][j])
                 {
-                    if (m1->data[i][j] != m2->data[i][j])
-                    {
-                        iguais = 0;
-                    }
+                    return 0; // Matrizes diferentes
                 }
             }
-            resultado->data[0][0] = iguais;
         }
-        else
-        {
-            IO_print("\nAs matrizes possuem tamanhos diferentes.\n");
-            resultado->data[0][0] = 0;
-        }
+        return 1; // Matrizes iguais
     }
     else
     {
-        IO_print("\nErro: uma das matrizes é nula.\n");
-        resultado->data[0][0] = 0;
+        IO_print("\nErro ao comparar matrizes: uma ou ambas as matrizes sao nulas.\n");
+        return 0;
     }
-
-    return resultado;
 }
 
+/*
+---------------------------------------------------------------------------------------------------
+METODO 08
+- Para testar, receber dados de arquivos e
+aplicar a função sobre as matrizes com os valores lidos.
+DICA: Verificar se os tamanhos são compatíveis.
+Usar o modelo de matriz proposto nos exemplos.
+Exemplo: matriz1   = readMatrixFromFile ( "DADOS1.TXT" );
+matriz2   = readMatrixFromFile ( "DADOS2.TXT" );
+resposta = matrixCompare
+( matriz1, matriz2 );
+---------------------------------------------------------------------------------------------------
+*/
 void method_1018(void)
 {
     // Identificacao
     IO_start("\nMetodo 1018\n");
 
     // Definicao de variaveis
+    int resultado = 0;
     ref_int_Matrix matriz1 = NULL;
     ref_int_Matrix matriz2 = NULL;
-    ref_int_Matrix resposta = NULL;
-    char *nome_arquivo1 = "matrix1_1018.txt";
-    char *nome_arquivo2 = "matrix2_1018.txt";
+    char *nome_arquivo1 = "matrix1.txt";
+    char *nome_arquivo2 = "matrix2.txt";
     FILE *arquivo1 = NULL;
     FILE *arquivo2 = NULL;
-    int valor = 0;
-    int rows1 = 0;
-    int columns1 = 0;
-    int rows2 = 0;
-    int columns2 = 0;
-    int i = 0;
-    int j = 0;
 
-    // Preenchendo a matriz 1
+    // Leitura do primeiro arquivo
     arquivo1 = fopen(nome_arquivo1, "w");
     if (arquivo1 != NULL)
     {
-        rows1 = IO_readint("\nDigite o numero de linhas da matriz 1: ");
-        columns1 = IO_readint("Digite o numero de colunas da matriz 1: ");
-        fprintf(arquivo1, "%d %d\n", rows1, columns1);
-
-        for (i = 0; i < rows1; i= i + 1)
+        int rows = IO_readint("\nDigite o numero de linhas da matriz 1: ");
+        int columns = IO_readint("Digite o numero de colunas da matriz 1: ");
+        fprintf(arquivo1, "%d %d\n", rows, columns);
+        IO_print("\nDigite os elementos da matriz 1 (linha por linha):\n");
+        for (int i = 0; i < rows; i++)
         {
-            for (j = 0; j < columns1; j= j + 1)
+            for (int j = 0; j < columns; j++)
             {
-                valor = IO_readint("");
+                int valor = IO_readint("");
                 fprintf(arquivo1, "%d ", valor);
             }
             fprintf(arquivo1, "\n");
@@ -1084,19 +1071,19 @@ void method_1018(void)
         IO_print("\nErro ao abrir o arquivo para a matriz 1.\n");
     }
 
-    // Preenchendo a matriz 2
+    // Leitura do segundo arquivo
     arquivo2 = fopen(nome_arquivo2, "w");
     if (arquivo2 != NULL)
     {
-        rows2 = IO_readint("\nDigite o numero de linhas da matriz 2: ");
-        columns2 = IO_readint("Digite o numero de colunas da matriz 2: ");
-        fprintf(arquivo2, "%d %d\n", rows2, columns2);
-
-        for (i = 0; i < rows2; i= i + 1)
+        int rows = IO_readint("\nDigite o numero de linhas da matriz 2: ");
+        int columns = IO_readint("Digite o numero de colunas da matriz 2: ");
+        fprintf(arquivo2, "%d %d\n", rows, columns);
+        IO_print("\nDigite os elementos da matriz 2 (linha por linha):\n");
+        for (int i = 0; i < rows; i++)
         {
-            for (j = 0; j < columns2; j= j + 1)
+            for (int j = 0; j < columns; j++)
             {
-                valor = IO_readint("");
+                int valor = IO_readint("");
                 fprintf(arquivo2, "%d ", valor);
             }
             fprintf(arquivo2, "\n");
@@ -1108,86 +1095,212 @@ void method_1018(void)
         IO_print("\nErro ao abrir o arquivo para a matriz 2.\n");
     }
 
-    // Ler as matrizes dos arquivos
+    IO_print("\n-------------------------------------------------------------------------\n");
+
+    // Leitura da matriz 1 e 2
     matriz1 = readMatrixFromFile(nome_arquivo1);
     matriz2 = readMatrixFromFile(nome_arquivo2);
 
-    if (matriz1 != NULL && matriz2 != NULL)
+    // Comparacao das matrizes
+    resultado = matrixCompare(matriz1, matriz2);
+    if (resultado == 1)
     {
-        if (matriz1->rows == matriz2->rows && matriz1->columns == matriz2->columns)
+        IO_print("\nAs matrizes sao iguais.\n");
+    }
+    else
+    {
+        IO_print("\nAs matrizes sao diferentes.\n");
+    }
+
+    // Liberacao da memoria
+    for (int i = 0; i < matriz1->rows; i = i + 1)
+    {
+        free(matriz1->data[i]);
+    }
+
+    for (int i = 0; i < matriz2->rows; i = i + 1)
+    {
+        free(matriz2->data[i]);
+    }
+    free(matriz1->data);
+    free(matriz1);
+    free(matriz2->data);
+    free(matriz2);
+
+    // Fechamento dos arquivos
+    fclose(arquivo1);
+    fclose(arquivo2);
+
+    // Encerramento
+    IO_end();
+}
+
+/*
+---------------------------------------------------------------------------------------------------
+METODO matrixAdd
+- Retorna a soma de duas matrizes sendo a segunda multiplicada por uma constante
+---------------------------------------------------------------------------------------------------
+*/
+ref_int_Matrix matrixAdd(ref_int_Matrix matriz1, ref_int_Matrix matriz2, int constante)
+{
+    ref_int_Matrix resultado = NULL;
+
+    if (matriz1 != NULL && matriz2 != NULL && matriz1->rows == matriz2->rows && matriz1->columns == matriz2->columns)
+    {
+        resultado = (ref_int_Matrix)malloc(sizeof(int_Matrix));
+        resultado->rows = matriz1->rows;
+        resultado->columns = matriz1->columns;
+        resultado->data = (ints *)malloc(resultado->rows * sizeof(int *));
+        resultado->ix = 0;
+        resultado->iy = 0;
+
+        for (int i = 0; i < resultado->rows; i++)
         {
-            IO_print("\nMatriz 1:\n");
-            for (i = 0; i < matriz1->rows; i= i + 1)
+            resultado->data[i] = (int *)malloc(resultado->columns * sizeof(int));
+            for (int j = 0; j < resultado->columns; j++)
             {
-                for (j = 0; j < matriz1->columns; j = j + 1)
-                {
-                    IO_printf("%d ", matriz1->data[i][j]);
-                }
-                IO_print("\n");
-            }
-
-            IO_print("\nMatriz 2:\n");
-            for (i = 0; i < matriz2->rows; i= i + 1)
-            {
-                for (j = 0; j < matriz2->columns; j = j + 1)
-                {
-                    IO_printf("%d ", matriz2->data[i][j]);
-                }
-                IO_print("\n");
-            }
-
-            resposta = matrixCompare(matriz1, matriz2);
-
-            if (resposta != NULL)
-            {
-                if (resposta->data[0][0] == 1)
-                {
-                    IO_print("\nAs matrizes sao iguais.\n");
-                }
-                else
-                {
-                    IO_print("\nAs matrizes sao diferentes.\n");
-                }
-            }
-            else
-            {
-                IO_print("\nErro ao comparar as matrizes.\n");
+                resultado->data[i][j] = matriz1->data[i][j] + (matriz2->data[i][j] * constante);
             }
         }
-        else
+    }
+
+    return resultado;
+}
+
+/*
+---------------------------------------------------------------------------------------------------
+METODO 09
+- obter o produto de duas matrizes.
+---------------------------------------------------------------------------------------------------
+*/
+void method_1019(void)
+{
+    // Identificacao
+    IO_start("\nMetodo 1019\n");
+
+    // Definicao de variaveis
+    ref_int_Matrix matriz1 = NULL;
+    ref_int_Matrix matriz2 = NULL;
+    ref_int_Matrix resultado = NULL;
+    char *nome_arquivo1 = "matrix1.txt";
+    char *nome_arquivo2 = "matrix2.txt";
+    FILE *arquivo1 = NULL;
+    FILE *arquivo2 = NULL;
+    int constante = 0;
+    int rows1 = 0;
+    int columns1 = 0;
+    int rows2 = 0;
+    int columns2 = 0;
+    int i = 0;
+    int j = 0;
+
+    constante = IO_readint("\nDigite o valor da constante para multiplicar a segunda matriz: ");
+
+    // Leitura do primeiro arquivo
+    arquivo1 = fopen(nome_arquivo1, "w");
+    if (arquivo1 != NULL)
+    {
+        rows1 = IO_readint("\nDigite o numero de linhas da matriz 1: ");
+        columns1 = IO_readint("Digite o numero de colunas da matriz 1: ");
+        fprintf(arquivo1, "%d %d\n", rows1, columns1);
+        IO_print("\nDigite os elementos da matriz 1 (linha por linha):\n");
+        for (i = 0; i < rows1; i = i + 1)
         {
-            IO_print("\nAs matrizes possuem tamanhos diferentes e nao podem ser comparadas.\n");
+            for (j = 0; j < columns1; j = j + 1)
+            {
+                int valor = IO_readint("");
+                fprintf(arquivo1, "%d ", valor);
+            }
+            fprintf(arquivo1, "\n");
+        }
+        fclose(arquivo1);
+    }
+    else
+    {
+        IO_print("\nErro ao abrir o arquivo para a matriz 1.\n");
+        IO_end();
+        return;
+    }
+
+    // Leitura do segundo arquivo
+    arquivo2 = fopen(nome_arquivo2, "w");
+    if (arquivo2 != NULL)
+    {
+        rows2 = IO_readint("\nDigite o numero de linhas da matriz 2: ");
+        columns2 = IO_readint("Digite o numero de colunas da matriz 2: ");
+        fprintf(arquivo2, "%d %d\n", rows2, columns2);
+        IO_print("\nDigite os elementos da matriz 2 (linha por linha):\n");
+        for (i = 0; i < rows2; i = i + 1)
+        {
+            for (j = 0; j < columns2; j = j + 1)
+            {
+                int valor = IO_readint("");
+                fprintf(arquivo2, "%d ", valor);
+            }
+            fprintf(arquivo2, "\n");
+        }
+        fclose(arquivo2);
+    }
+    else
+    {
+        IO_print("\nErro ao abrir o arquivo para a matriz 2.\n");
+        IO_end();
+        return;
+    }
+
+    IO_print("\n-------------------------------------------------------------------------\n");
+
+    // Leitura da matriz 1 e 2
+    matriz1 = readMatrixFromFile(nome_arquivo1);
+    matriz2 = readMatrixFromFile(nome_arquivo2);
+
+    // Produto das matrizes
+    resultado = matrixAdd(matriz1, matriz2, constante);
+
+    if (resultado != NULL)
+    {
+        IO_print("\nSoma das matrizes (segunda multiplicada pela constante):\n");
+        for (i = 0; i < resultado->rows; i = i + 1)
+        {
+            for (j = 0; j < resultado->columns; j = j + 1)
+            {
+                IO_printf("%d ", resultado->data[i][j]);
+            }
+            IO_print("\n");
         }
     }
     else
     {
-        IO_print("\nErro ao ler as matrizes dos arquivos.\n");
+        IO_print("\nErro ao calcular a soma das matrizes.\n");
     }
 
     // Liberacao da memoria
-    if (matriz1 != NULL)
+    if (matriz1)
     {
-        for (i = 0; i < matriz1->rows; i++)
+        for (i = 0; i < matriz1->rows; i = i + 1)
         {
             free(matriz1->data[i]);
         }
         free(matriz1->data);
         free(matriz1);
     }
-    if (matriz2 != NULL)
+    if (matriz2)
     {
-        for (i = 0; i < matriz2->rows; i++)
+        for (i = 0; i < matriz2->rows; i = i + 1)
         {
             free(matriz2->data[i]);
         }
         free(matriz2->data);
         free(matriz2);
     }
-    if (resposta != NULL)
+    if (resultado)
     {
-        free(resposta->data[0]);
-        free(resposta->data);
-        free(resposta);
+        for (i = 0; i < resultado->rows; i = i + 1)
+        {
+            free(resultado->data[i]);
+        }
+        free(resultado->data);
+        free(resultado);
     }
 
     // Encerramento
@@ -1196,17 +1309,42 @@ void method_1018(void)
 
 /*
 ---------------------------------------------------------------------------------------------------
-METODO 09
--
+METODO matrixProduct
+- obter o produto de duas matrizes.
 ---------------------------------------------------------------------------------------------------
 */
-void method_1019(void)
+ref_int_Matrix matrixProduct(ref_int_Matrix matriz1, ref_int_Matrix matriz2)
 {
-    // Identificacao
-    IO_start("\nMetodo 1019\n");
+    ref_int_Matrix resultado = NULL;
 
-    // Encerramento
-    IO_end();
+    if (matriz1 != NULL && matriz2 != NULL && matriz1->columns == matriz2->rows)
+    {
+        resultado = (ref_int_Matrix)malloc(sizeof(int_Matrix));
+        resultado->rows = matriz1->rows;
+        resultado->columns = matriz2->columns;
+        resultado->data = (ints *)malloc(resultado->rows * sizeof(int *));
+        resultado->ix = 0;
+        resultado->iy = 0;
+
+        for (int i = 0; i < resultado->rows; i++)
+        {
+            resultado->data[i] = (int *)malloc(resultado->columns * sizeof(int));
+            for (int j = 0; j < resultado->columns; j++)
+            {
+                resultado->data[i][j] = 0;
+                for (int k = 0; k < matriz1->columns; k++)
+                {
+                    resultado->data[i][j] += matriz1->data[i][k] * matriz2->data[k][j];
+                }
+            }
+        }
+    }
+    else
+    {
+        resultado = NULL;
+    }
+
+    return resultado;
 }
 
 /*
@@ -1218,7 +1356,120 @@ METODO 10
 void method_1020(void)
 {
     // Identificacao
-    IO_start("\nMetodo 1020\n");
+    IO_start("\nMetodo 1019\n");
+
+    // Definicao de variaveis
+    ref_int_Matrix matriz1 = NULL;
+    ref_int_Matrix matriz2 = NULL;
+    ref_int_Matrix resultado = NULL;
+    char *nome_arquivo1 = "matrix1.txt";
+    char *nome_arquivo2 = "matrix2.txt";
+    FILE *arquivo1 = NULL;
+    FILE *arquivo2 = NULL;
+    int rows1 = 0;
+    int columns1 = 0;
+    int rows2 = 0;
+    int columns2 = 0;
+    int i = 0;
+    int j = 0;
+
+    // Leitura do primeiro arquivo
+    arquivo1 = fopen(nome_arquivo1, "w");
+    if (arquivo1 != NULL)
+    {
+        rows1 = IO_readint("\nDigite o numero de linhas da matriz 1: ");
+        columns1 = IO_readint("Digite o numero de colunas da matriz 1: ");
+        fprintf(arquivo1, "%d %d\n", rows1, columns1);
+        IO_print("\nDigite os elementos da matriz 1 (linha por linha):\n");
+        for (i = 0; i < rows1; i = i + 1)
+        {
+            for (j = 0; j < columns1; j = j + 1)
+            {
+                int valor = IO_readint("");
+                fprintf(arquivo1, "%d ", valor);
+            }
+            fprintf(arquivo1, "\n");
+        }
+        fclose(arquivo1);
+    }
+    else
+    {
+        IO_print("\nErro ao abrir o arquivo para a matriz 1.\n");
+    }
+
+    // Leitura do segundo arquivo
+    arquivo2 = fopen(nome_arquivo2, "w");
+    if (arquivo2 != NULL)
+    {
+        rows2 = IO_readint("\nDigite o numero de linhas da matriz 2: ");
+        columns2 = IO_readint("Digite o numero de colunas da matriz 2: ");
+        fprintf(arquivo2, "%d %d\n", rows2, columns2);
+        IO_print("\nDigite os elementos da matriz 2 (linha por linha):\n");
+        for (i = 0; i < rows2; i = i + 1)
+        {
+            for (j = 0; j < columns2; j = j + 1)
+            {
+                int valor = IO_readint("");
+                fprintf(arquivo2, "%d ", valor);
+            }
+            fprintf(arquivo2, "\n");
+        }
+        fclose(arquivo2);
+    }
+    else
+    {
+        IO_print("\nErro ao abrir o arquivo para a matriz 2.\n");
+    }
+
+    IO_print("\n-------------------------------------------------------------------------\n");
+
+    // Leitura da matriz 1 e 2
+    matriz1 = readMatrixFromFile(nome_arquivo1);
+    matriz2 = readMatrixFromFile(nome_arquivo2);
+
+    // Produto das matrizes
+    resultado = matrixProduct(matriz1, matriz2);
+    if (resultado != NULL)
+    {
+        IO_print("\nProduto das matrizes:\n");
+        for (i = 0; i < resultado->rows; i = i + 1)
+        {
+            for (j = 0; j < resultado->columns; j = j + 1)
+            {
+                IO_printf("%d ", resultado->data[i][j]);
+            }
+            IO_print("\n");
+        }
+    }
+    else
+    {
+        IO_print("\nErro ao calcular o produto das matrizes.\n");
+    }
+
+    // Liberacao da memoria
+    for (i = 0; i < matriz1->rows; i = i + 1)
+    {
+        free(matriz1->data[i]);
+    }
+    for (i = 0; i < matriz2->rows; i = i + 1)
+    {
+        free(matriz2->data[i]);
+    }
+    for (i = 0; i < resultado->rows; i = i + 1)
+    {
+        free(resultado->data[i]);
+    }
+
+    free(matriz1->data);
+    free(matriz1);
+    free(matriz2->data);
+    free(matriz2);
+    free(resultado->data);
+    free(resultado);
+
+    // Fechamento dos arquivos
+    fclose(arquivo1);
+    fclose(arquivo2);
 
     // Encerramento
     IO_end();
@@ -1226,8 +1477,49 @@ void method_1020(void)
 
 /*
 ---------------------------------------------------------------------------------------------------
+METODO sortArrayDown
+- colocar um arranjo em ordem decrescente
+---------------------------------------------------------------------------------------------------
+*/
+ref_int_Array sortArrayDown(ref_int_Array arranjo)
+{
+    // Definicao de variaveis
+    ref_int_Array resultado = NULL;
+    resultado = (ref_int_Array)malloc(sizeof(int_Array));
+    resultado->length = arranjo->length;
+    resultado->data = (ints)malloc(resultado->length * sizeof(int));
+    resultado->ix = 0;
+
+    // Copiar os dados do array original
+    if (arranjo != NULL)
+    {
+        for (int i = 0; i < arranjo->length; i=i+1)
+        {
+            resultado->data[i] = arranjo->data[i];
+        }
+
+        // Ordenacao decrescente (Bubble Sort) AEDS II???????????
+        for (int i = 0; i < resultado->length - 1; i++)
+        {
+            for (int j = 0; j < resultado->length - 1 - i; j++)
+            {
+                if (resultado->data[j] < resultado->data[j + 1])
+                {
+                    int temp = resultado->data[j];
+                    resultado->data[j] = resultado->data[j + 1];
+                    resultado->data[j + 1] = temp;
+                }
+            }
+        }
+    }
+
+    return resultado;
+}
+
+/*
+---------------------------------------------------------------------------------------------------
 METODO 11
--
+- colocar um arranjo em ordem decrescente
 ---------------------------------------------------------------------------------------------------
 */
 void method_10E1(void)
@@ -1235,20 +1527,289 @@ void method_10E1(void)
     // Identificacao
     IO_start("\n10E1\n");
 
+    // Definicao de variaveis
+    ref_int_Array arranjo = NULL;
+    int tamanho = 0;
+    ref_int_Array resultado = NULL;
+    FILE *arquivo = NULL;
+    char *nome_arquivo = "method_10E1.txt";
+
+    // Leitura do array e gravação no arquivo
+    tamanho = IO_readint("\nDigite o tamanho do array: ");
+    arquivo = fopen(nome_arquivo, "w");
+    if (arquivo != NULL)
+    {
+        fprintf(arquivo, "%d\n", tamanho);
+        IO_print("\nDigite os elementos do array:\n");
+        for (int i = 0; i < tamanho; i = i + 1)
+        {
+            int valor = IO_readint("");
+            fprintf(arquivo, "%d\n", valor);
+        }
+        fclose(arquivo);
+    }
+    else
+    {
+        IO_print("\nErro ao abrir o arquivo para gravacao.\n");
+        IO_end();
+        return;
+    }
+
+    // Agora lê o array do arquivo
+    arranjo = readArrayFromFile(nome_arquivo);
+
+    if (arranjo == NULL)
+    {
+        IO_print("\nErro ao ler o array do arquivo.\n");
+        IO_end();
+        return;
+    }
+
+    IO_print("\n-------------------------------------------------------------------------\n");
+
+    // Ordenacao do array
+    resultado = sortArrayDown(arranjo);
+
+    // Exibicao do resultado
+    IO_print("\nArray ordenado em ordem decrescente: ");
+
+    for (int i = 0; i < resultado->length; i = i + 1)
+    {
+        IO_printf("%d ", resultado->data[i]);
+    }
+
+    IO_print("\n");
+
+    // Liberacao da memoria
+    free(arranjo->data);
+    free(arranjo);
+    free(resultado->data);
+    free(resultado);
+
     // Encerramento
     IO_end();
 }
 
 /*
 ---------------------------------------------------------------------------------------------------
+METODO identityMatrix
+- testar se o produto de duas matrizes é igual à matriz identidade
+---------------------------------------------------------------------------------------------------
+*/
+ref_int_Matrix identityMatrix(int size)
+{
+    ref_int_Matrix matriz = NULL;
+    matriz = (ref_int_Matrix)malloc(sizeof(int_Matrix));
+    matriz->rows = size;
+    matriz->columns = size;
+    matriz->data = (ints *)malloc(size * sizeof(int *));
+    matriz->ix = 0;
+    matriz->iy = 0;
+
+    for (int i = 0; i < size; i = i + 1)
+    {
+        matriz->data[i] = (int *)malloc(size * sizeof(int));
+        for (int j = 0; j < size; j = j + 1)
+        {
+            if (i == j)
+            {
+                matriz->data[i][j] = 1;
+            }
+            else
+            {
+                matriz->data[i][j] = 0;
+            }
+        }
+    }
+
+    return matriz;
+}
+
+/*
+---------------------------------------------------------------------------------------------------
 METODO 12
--
+- Testar se o produto de duas matrizes e igual a matriz identidade
 ---------------------------------------------------------------------------------------------------
 */
 void method_10E2(void)
 {
     // Identificacao
     IO_start("\n10E2\n");
+
+    // Variaveis
+    ref_int_Matrix matriz1 = NULL;
+    ref_int_Matrix matriz2 = NULL;
+    ref_int_Matrix resultado = NULL;
+    ref_int_Matrix identidade = NULL;
+    char *nome_arquivo1 = "matrix1.txt";
+    char *nome_arquivo2 = "matrix2.txt";
+    FILE *arquivo1 = NULL;
+    FILE *arquivo2 = NULL;
+    int rows1 = 0, columns1 = 0;
+    int rows2 = 0, columns2 = 0;
+    int i = 0, j = 0;
+    int igual = 1;
+
+    // Leitura do primeiro arquivo
+    arquivo1 = fopen(nome_arquivo1, "w");
+    if (arquivo1 != NULL)
+    {
+        rows1 = IO_readint("\nDigite o numero de linhas da matriz 1: ");
+        columns1 = IO_readint("Digite o numero de colunas da matriz 1: ");
+        fprintf(arquivo1, "%d %d\n", rows1, columns1);
+        IO_print("\nDigite os elementos da matriz 1 (linha por linha):\n");
+        for (i = 0; i < rows1; i++)
+        {
+            for (j = 0; j < columns1; j++)
+            {
+                int valor = IO_readint("");
+                fprintf(arquivo1, "%d ", valor);
+            }
+            fprintf(arquivo1, "\n");
+        }
+        fclose(arquivo1);
+    }
+    else
+    {
+        IO_print("\nErro ao abrir o arquivo para a matriz 1.\n");
+        IO_end();
+        return;
+    }
+
+    // Leitura do segundo arquivo
+    arquivo2 = fopen(nome_arquivo2, "w");
+    if (arquivo2 != NULL)
+    {
+        rows2 = IO_readint("\nDigite o numero de linhas da matriz 2: ");
+        columns2 = IO_readint("Digite o numero de colunas da matriz 2: ");
+        fprintf(arquivo2, "%d %d\n", rows2, columns2);
+        IO_print("\nDigite os elementos da matriz 2 (linha por linha):\n");
+        for (i = 0; i < rows2; i++)
+        {
+            for (j = 0; j < columns2; j++)
+            {
+                int valor = IO_readint("");
+                fprintf(arquivo2, "%d ", valor);
+            }
+            fprintf(arquivo2, "\n");
+        }
+        fclose(arquivo2);
+    }
+    else
+    {
+        IO_print("\nErro ao abrir o arquivo para a matriz 2.\n");
+        IO_end();
+        return;
+    }
+
+    IO_print("\n-------------------------------------------------------------------------\n");
+
+    // Leitura das matrizes dos arquivos
+    matriz1 = readMatrixFromFile(nome_arquivo1);
+    matriz2 = readMatrixFromFile(nome_arquivo2);
+
+    // Produto das matrizes
+    resultado = matrixProduct(matriz1, matriz2);
+
+    if (resultado != NULL)
+    {
+        IO_print("\nProduto das matrizes:\n");
+        for (i = 0; i < resultado->rows; i++)
+        {
+            for (j = 0; j < resultado->columns; j++)
+            {
+                IO_printf("%d ", resultado->data[i][j]);
+            }
+            IO_print("\n");
+        }
+    }
+    else
+    {
+        IO_print("\nErro ao calcular o produto das matrizes.\n");
+        // Liberar memoria e encerrar
+        if (matriz1)
+        {
+            for (i = 0; i < matriz1->rows; i++) free(matriz1->data[i]);
+            free(matriz1->data);
+            free(matriz1);
+        }
+        if (matriz2)
+        {
+            for (i = 0; i < matriz2->rows; i=i+1) 
+            {
+                free(matriz2->data[i]);
+            }
+            free(matriz2->data);
+            free(matriz2);
+        }
+        IO_end();
+        return;
+    }
+
+    // Criar matriz identidade
+    if (resultado->rows == resultado->columns)
+    {
+        identidade = identityMatrix(resultado->rows);
+        IO_print("\nMatriz identidade:\n");
+        for (i = 0; i < identidade->rows; i++)
+        {
+            for (j = 0; j < identidade->columns; j++)
+            {
+                IO_printf("%d ", identidade->data[i][j]);
+            }
+            IO_print("\n");
+        }
+
+        // Verificar se o produto e igual a identidade
+        for (i = 0; i < resultado->rows; i++)
+        {
+            for (j = 0; j < resultado->columns; j++)
+            {
+                if (resultado->data[i][j] != identidade->data[i][j])
+                {
+                    igual = 0;
+                }
+            }
+        }
+        if (igual == 1)
+        {
+            IO_print("\nO produto das matrizes e igual a matriz identidade.\n");
+        }
+        else
+        {
+            IO_print("\nO produto das matrizes NAO e igual a matriz identidade.\n");
+        }
+    }
+    else
+    {
+        IO_print("\nO produto nao e quadrado, nao pode comparar com matriz identidade.\n");
+    }
+
+    // Liberacao da memoria
+    if (matriz1)
+    {
+        for (i = 0; i < matriz1->rows; i++) free(matriz1->data[i]);
+        free(matriz1->data);
+        free(matriz1);
+    }
+    if (matriz2)
+    {
+        for (i = 0; i < matriz2->rows; i++) free(matriz2->data[i]);
+        free(matriz2->data);
+        free(matriz2);
+    }
+    if (resultado)
+    {
+        for (i = 0; i < resultado->rows; i++) free(resultado->data[i]);
+        free(resultado->data);
+        free(resultado);
+    }
+    if (identidade)
+    {
+        for (i = 0; i < identidade->rows; i++) free(identidade->data[i]);
+        free(identidade->data);
+        free(identidade);
+    }
 
     // Encerramento
     IO_end();
